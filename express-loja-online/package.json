@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "serverstart": "DEBUG=express-loja-online:* npm run devstart"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -13,5 +15,8 @@
     "mongoose": "^7.0.4",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
