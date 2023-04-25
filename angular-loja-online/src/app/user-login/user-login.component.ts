@@ -31,11 +31,12 @@ export class UserLoginComponent {
                 if(user.password === pass) {
                     // return login bem sucedido
                 } else {
-                    // return pass errada
+                    alert("A password inserida esta incorreta!");
+                    return;
                 }
             }
         });
-        // return email nao encontrado
+        alert("Nao existe nenhuma conta associada a este e-mail!");
     }
 
 }
