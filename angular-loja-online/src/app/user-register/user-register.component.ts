@@ -42,5 +42,6 @@ export class UserRegisterComponent {
         });
         var list: Game[] = []
         this.userService.registerUser({name: name, email:mail, password:pass1, gameList:list} as User);
+        alert("TODO: registo bem sucedido");
     }
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from "../user";
 import { UserService } from "../user.service"
-
 @Component({
     selector: 'app-user-login',
     templateUrl: './user-login.component.html',
@@ -29,7 +28,8 @@ export class UserLoginComponent {
         this.users.forEach(function(user) {
             if(user.email === mail) {
                 if(user.password === pass) {
-                    // return login bem sucedido
+                    alert("TODO: login bem sucedido");
+                    return;
                 } else {
                     alert("A password inserida esta incorreta!");
                     return;

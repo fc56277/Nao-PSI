@@ -19,7 +19,7 @@ export class UserService {
   }
 
   registerUser(user: User): Observable<User> {
-    console.log(this.usersUrl + "/register");
-    return this.http.post<User>(this.usersUrl + "/register", user);
+    const url = `${this.usersUrl}/register`;
+    return this.http.post<User>(url, user);
   }
 }
