@@ -1,1 +1,17 @@
-<p>user-login works!</p>
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Login</h2>
+
+<form >
+  <label for="fname">e-mail:</label><br>
+  <input type="text" id="mail" #mail><br>
+  <label for="lname">password:</label><br>
+  <input type="text" id="pass" #pass><br><br>
+  <button type="button" (click)="login(mail.value, pass.value)">entrar</button>
+  <button type="button" onClick="window.location.href='localhost:4200/register'">registar</button>
+</form> 
+
+</body>
+</html>

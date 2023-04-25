@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/login', function(req, res, next) {
-  res.send('users');
-});
+const user_controller = require("../controllers/userController");
+
+/* pedidos com prefixo /users */
+
+// lista de todos os users
+router.get('/', user_controller.users_get);
 
 module.exports = router;
