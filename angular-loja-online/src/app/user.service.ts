@@ -13,10 +13,17 @@ export class UserService {
     private http:HttpClient
   ) { }
   
+  private mainUrl = 'api'
   private usersUrl = 'api/users'; 
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
+  }
+
+  /** GET hero by _id. Will 404 if _id not found */
+  getUser(_id: string): Observable<User> {
+    const url = `${this.mainUrl}/user/?_id=${_id}`;
+    return this.http.get<User>(url);
   }
 
   registerUser(user: User): Observable<User> {
