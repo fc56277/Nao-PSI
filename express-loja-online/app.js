@@ -3,13 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var catalogRouter = require("./routes/catalog"); //Import routes for "catalog" area of site
+const catalogRouter = require("./routes/catalog");
+//var userRouter = require('./routes/user');
 
 var app = express();
 
+// Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 const mongoDB = "mongodb+srv://fc56292:mPFyAfkivzGYvBQV@cluster0.dtza9rt.mongodb.net/ProjetoPSI17";
@@ -18,7 +21,9 @@ main().catch(err => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
 }
-var cors = require('cors');
+
+// Middleware for parsing JSON request body
+//app.use(express.json());
 app.use(cors());
 
 // view engine setup
@@ -31,8 +36,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', catalogRouter);
+app.use('/', indexRouter);
+app.use('/', catalogRouter); // Add catalog routes to middleware chain.
 app.use('/api/users', usersRouter);
+//app.use('/api/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

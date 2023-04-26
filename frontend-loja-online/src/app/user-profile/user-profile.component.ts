@@ -14,20 +14,16 @@ export class UserProfileComponent {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService
-) {}
+  ) {}
 
-ngOnInit(): void {
-  this.getUser();
-}
-
-getUser(): void {
-  const _id = this.route.snapshot.paramMap.get('id');
-  console.log('Fetched _id:', _id); // Add this log
-  if (!_id) {
-    console.error('Invalid or missing _id');
-    return;
+  getUser(): void {
+    const _id = this.route.snapshot.paramMap.get('_id');
+    console.log('Fetched _id:', _id); // Add this log
+    if (!_id) {
+      console.error('Invalid or missing _id');
+      return;
+    }
+    this.userService.getUser(_id)
+      .subscribe(user => this.user = user);
   }
-  this.userService.getUser(_id)
-    .subscribe(user => this.user = user);
-}
 }

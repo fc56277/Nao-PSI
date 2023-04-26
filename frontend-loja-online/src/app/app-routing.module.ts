@@ -6,10 +6,10 @@ import {UserRegisterComponent} from "./user-register/user-register.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: UserLoginComponent },
-  { path: 'register', component: UserRegisterComponent },
-  { path: 'user/:id', component: UserProfileComponent },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'login', component: UserLoginComponent },
+    { path: 'register', component: UserRegisterComponent },
+    { path: 'user/:_id', component: UserProfileComponent }
 ];
 
 @NgModule({

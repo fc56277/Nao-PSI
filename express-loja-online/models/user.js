@@ -6,7 +6,7 @@ const UserSchema = new Schema({
   name: { type: String, required: true},
   email: { type: String, required: true},
   password: { type: String, required: true},
-  gameList: [{ type: Schema.Types.ObjectId, ref: 'Game' }]
+  wishList: [{ type: Schema.Types.ObjectId, ref: 'Game' }]
 });
 
 UserSchema.virtual("url").get(function () {

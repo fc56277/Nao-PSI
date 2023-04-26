@@ -9,7 +9,7 @@ exports.users_get = async (req, res) => {
 
 // regista um novo user
 exports.user_register_post = async(req, res) => {
-    const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, gameList: req.body.gameList });
+    const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, wishList: req.body.wishList });
     user.save();
     res.set('Content-Type', 'application/json');
     res.status(200).send(JSON.stringify(user));
@@ -27,7 +27,7 @@ exports.user_detail = (req, res) => {
 
     //.populate("pet") - DEPOIS IRÁ SER NECESSÁRIO!
     User.findById(req.params.id)
-      .exec((err, hero) => {
+      .exec((err, user) => {
         if (err) {
           return next(err);
         }
