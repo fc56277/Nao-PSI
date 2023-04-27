@@ -26,11 +26,12 @@ export class UserLoginComponent {
 
     login(mail: string, pass: string): void {
         var exists = false;
+        var id = null;
         this.users.forEach(function(user) {
             if(user.email === mail) {
                 exists = true;
                 if(user.password === pass) {
-                    alert("TODO: login bem sucedido");
+                    id = user._id;
                     return;
                 } else {
                     alert("A password inserida esta incorreta!");
@@ -40,6 +41,8 @@ export class UserLoginComponent {
         });
         if(!exists) {
             alert("Nao existe nenhuma conta associada a este e-mail!");
+        } else if(id != null) {
+            this.userService.loginUser(id).subscribe();
         }
     }
 }

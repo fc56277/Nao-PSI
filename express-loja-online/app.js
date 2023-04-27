@@ -22,6 +22,13 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
+var session = require('express-session');
+//app.use(session({secret: 'badSecret'}));
+var MongoStore = require('connect-mongo')(express);
+app.use(session({
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
 // Middleware for parsing JSON request body
 //app.use(express.json());
 app.use(cors());
