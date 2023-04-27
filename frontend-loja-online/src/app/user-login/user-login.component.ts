@@ -28,7 +28,7 @@ export class UserLoginComponent {
 
     login(mail: string, pass: string): void {
         var exists = false;
-        var id = null;
+        var id: string | null = null;
         this.users.forEach(function(user) {
             if(user.email === mail) {
                 exists = true;
@@ -48,6 +48,7 @@ export class UserLoginComponent {
                 (response) => {
                   alert(response.message);
                   // Redirect to login page
+                  //this.router.navigate(['/user', id]);
                   this.router.navigate(['/dashboard']);
                 }
               );
