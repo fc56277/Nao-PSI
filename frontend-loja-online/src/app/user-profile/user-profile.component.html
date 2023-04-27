@@ -13,11 +13,11 @@
     <div class="follow-info">
       <div class="follow-item">
         <a [routerLink]="['/followers']">Seguidores</a>
-        <span>917772516</span>
+        <span>{{user.followers.length}}</span>
       </div>
       <div class="follow-item">
         <a [routerLink]="['/following']">Seguidos</a>
-        <span>456</span>
+        <span>{{user.following.length}}</span>
       </div>
     </div>
     <div class="perfil-links">

@@ -7,4 +7,7 @@ export interface User {
     password: string;
     imagemPerfil: string;
     wishList: [Game];
+    followers: [User];
+    following: [User];
+
 }
