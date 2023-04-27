@@ -10,6 +10,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserFollowersComponent } from './user-followers/user-followers.component';
+import { UserFollowingComponent } from './user-following/user-following.component';
+import { UserLibraryComponent } from './user-library/user-library.component';
+import { UserWishlistComponent } from './user-wishlist/user-wishlist.component';
+import { UserPersonalizedListComponent } from './user-personalized-list/user-personalized-list.component';
 
 
 @NgModule({
@@ -18,7 +23,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UserProfileComponent,
     UserLoginComponent,
     UserRegisterComponent,
-    DashboardComponent ],
+    DashboardComponent,
+    UserFollowersComponent,
+    UserFollowingComponent,
+    UserLibraryComponent,
+    UserWishlistComponent,
+    UserPersonalizedListComponent ],
   imports: [
     HttpClientModule,
     BrowserModule,
