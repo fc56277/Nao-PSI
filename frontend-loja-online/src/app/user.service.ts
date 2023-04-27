@@ -22,7 +22,7 @@ export class UserService {
 
   /** GET hero by _id. Will 404 if _id not found */
   getUser(_id: string): Observable<User> {
-    const url = `${this.mainUrl}/user/?_id=${_id}`;
+    const url = `${'http://localhost:3000/user'}/${_id}`;
     return this.http.get<User>(url);
   }
 

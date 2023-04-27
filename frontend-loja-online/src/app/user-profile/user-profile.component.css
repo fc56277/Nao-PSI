@@ -1,0 +1,43 @@
+/* CADA LINK NUMA LINHA DIFERENTE */
+.perfil-links {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.perfil-links a {
+margin: 0.5rem 0;
+text-decoration: none;
+}
+
+.perfil-links a:hover {
+text-decoration: underline;
+}
+/* CADA LINK NUMA LINHA DIFERENTE */
+
+/* IMAGEM */
+.perfil-imagem {
+  width: 80px; /* Tamanho imagem */
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #000; /* Borda */
+}
+/* IMAGEM */
+
+/* FOLLOWERS & FOLLOWING */
+.follow-info {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.follow-item {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.follow-item span {
+  margin-left: 5px;
+}
+/* FOLLOWERS & FOLLOWING */

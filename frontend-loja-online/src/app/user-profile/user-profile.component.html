@@ -1,23 +1,29 @@
-<p>FFF</p>
 <div *ngIf="user">
-  <p>ENTROU</p>
-  <h2>{{user.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{user._id}}</div>
-  <div>
-    <label for="user-name">User name: </label>
-    <input id="user-name" [(ngModel)]="user.name" placeholder="name"><br><br>
+  <h2>PERFIL</h2>
+  <div class="perfil-container">
+    <div class="perfil-info">
+      <h3>{{user.name | uppercase}}</h3>
+      <ng-container *ngIf="user.imagemPerfil; else defaultImage">
+        <img [src]="user.imagemPerfil" alt="Imagem de perfil" class="perfil-imagem" />
+      </ng-container>    
+      <ng-template #defaultImage>
+        <img src="assets/perfil.jpg" alt="Imagem de perfil" class="perfil-imagem" />
+      </ng-template>
+    </div>
+    <div class="follow-info">
+      <div class="follow-item">
+        <a [routerLink]="['/followers']">Seguidores</a>
+        <span>917772516</span>
+      </div>
+      <div class="follow-item">
+        <a [routerLink]="['/following']">Seguidos</a>
+        <span>456</span>
+      </div>
+    </div>
+    <div class="perfil-links">
+      <a [routerLink]="['/biblioteca']">Biblioteca</a>
+      <a [routerLink]="['/wishlist']">Wishlist</a>
+      <a [routerLink]="['/listas-personalizadas']">Listas personalizadas</a>
+    </div>
   </div>
 </div>
-        <!-- <div>
-        <label for="pet-name">Actual hero pet: </label>
-        <input id="pet-name" [(ngModel)]="hero.pet" placeholder="Hero pet"/><br><br>
-      </div> -->
-<!-- 
-    <div>
-      <label for="pet-select">Select a new Pet:</label> 
-      <select id="pet-select" [(ngModel)]="selectedPet"> 
-        <option *ngFor="let pet of pets" [ngValue]="pet">{{pet.name}}</option> 
-      </select>
-    </div> -->
-
-    <!-- <button type="button" (click)="save()">save</button> -->
