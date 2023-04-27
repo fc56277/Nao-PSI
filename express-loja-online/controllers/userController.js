@@ -7,6 +7,12 @@ exports.users_get = async (req, res) => {
     res.status(200).send(JSON.stringify(users));
 };
 
+// preenche o campo user_id da sessao com o id do user atual
+exports.user_login_get = async (req, res) => {
+  req.session.user_id = req.params.id;
+  res.status(200).send('login bem sucedido');
+};
+
 // regista um novo user
 exports.user_register_post = async(req, res) => {
     const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, wishList: req.body.wishList });

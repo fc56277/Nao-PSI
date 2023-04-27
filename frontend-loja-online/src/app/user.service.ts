@@ -34,7 +34,13 @@ export class UserService {
         catchError(this.handleError<any>('registerUser'))
       );
   }
-  
+
+  loginUser(id: string): Observable<string> {
+    const url = `${this.usersUrl}/login/${id}`;
+    console.log(url);
+    return this.http.get<string>(url);
+  }  
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
