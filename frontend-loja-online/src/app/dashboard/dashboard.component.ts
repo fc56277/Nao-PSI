@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { GameService } from '../game.service';
 import { Game } from '../game';
+import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +10,24 @@ import { Game } from '../game';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  games: Game[] = [];
+  users: User[] = [];
+  destaqueGames: Game[] = [];
+  allGames: Game[] = [];
 
-  constructor(private gameService: GameService) { }
+  constructor(private userService: UserService, private gameService: GameService) { }
+
+  ngOnInit(): void {
+    this.getEmDestaqueGames();
+    this.getAllGames();
+  }
+
+  getAllGames(): void {
+    this.gameService.getGames()
+      .subscribe(games => this.allGames = games)
+  }
 
   getEmDestaqueGames(): void {
     this.gameService.getGames()
-      .subscribe(games => this.games = games.slice(1,4));
+      .subscribe(games => this.destaqueGames = games.slice(0,3));
   }
 }

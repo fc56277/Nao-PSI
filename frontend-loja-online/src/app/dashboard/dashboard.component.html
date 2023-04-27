@@ -1,1 +1,15 @@
-<p>dashboard works!</p>
+<h2>DESTAQUES</h2>
+<div class="users-menu" *ngFor="let game of destaqueGames">
+    <a
+    routerLink="/game/{{game._id}}">
+    {{game.name}}
+    </a>
+</div>
+
+<h2>À VENDA</h2>
+<div class="users-menu" *ngFor="let game of allGames">
+    <a
+    routerLink="/game/{{game._id}}">
+    {{game.name}}
+    </a>
+</div>

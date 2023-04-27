@@ -13,6 +13,10 @@ exports.init = async (req, res) => {
     Game.create([
       { name: 'game1'},
       { name: 'game2'},
+      { name: 'game3'},
+      { name: 'game4'},
+      { name: 'game5'},
+      { name: 'game6'},
     ]);
       
     res.json("Database Initializated");

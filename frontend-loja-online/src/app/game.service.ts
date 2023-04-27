@@ -16,8 +16,7 @@ export class GameService {
 
   getGames(): Observable<Game[]> {
     return this.http.get<Game[]>('http://localhost:3000/games').pipe(
-      catchError(this.handleError<Game[]>('getGames', []))
-      );
+      catchError(this.handleError<Game[]>('getGames', [])));
   }
 
   httpOptions = {
