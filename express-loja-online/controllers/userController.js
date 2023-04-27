@@ -29,21 +29,18 @@ exports.user_id = async (req, res) => {
 
 // Display detail page for a specific User.
 // /user/id - GET - devolve uma resposta JSON com os detalhes do user especificado pelo id
-exports.user_detail = (req, res) => {
-
-    //.populate("pet") - DEPOIS IRÁ SER NECESSÁRIO!
-    User.findById(req.params.id)
-      .exec((err, user) => {
-        if (err) {
-          return next(err);
-        }
-        if (user == null) {
-          // No results.
-          const err = new Error("User not found");
-          err.status = 404;
-          return next(err);
-        }
-        // Successful, so return JSON object
-        res.json(user);
-      });
-  };
+exports.user_detail = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id).exec();
+    if (user == null) {
+      // No results.
+      const err = new Error("User not found");
+      err.status = 404;
+      return next(err);
+    }
+    // Successful, so return JSON object
+    res.json(user);
+  } catch (err) {
+    return next(err);
+  }
+};
