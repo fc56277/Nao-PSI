@@ -10,7 +10,7 @@ exports.users_get = async (req, res) => {
 // preenche o campo user_id da sessao com o id do user atual
 exports.user_login_get = async (req, res) => {
   req.session.user_id = req.params.id;
-  res.status(200).send('login bem sucedido');
+  res.status(200).json({ message: 'login bem sucedido' });
 };
 
 // regista um novo user

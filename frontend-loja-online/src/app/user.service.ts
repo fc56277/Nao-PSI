@@ -35,10 +35,9 @@ export class UserService {
       );
   }
 
-  loginUser(id: string): Observable<string> {
+  loginUser(id: string): Observable<{ message: string }> {
     const url = `${this.usersUrl}/login/${id}`;
-    console.log(url);
-    return this.http.get<string>(url);
+    return this.http.get<{ message: string }>(url);
   }  
 
   handleError<T>(operation = 'operation', result?: T) {
