@@ -15,7 +15,6 @@ exports.user_login_get = async (req, res) => {
 
 // regista um novo user
 exports.user_register_post = async(req, res) => {
-    console.log(req.session.user_id);
     const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, wishList: req.body.wishList });
     user.save();
     res.set('Content-Type', 'application/json');

@@ -22,12 +22,19 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
-var session = require('express-session');
-//app.use(session({secret: 'badSecret'}));
-var MongoStore = require('connect-mongo')(express);
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
 app.use(session({
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  secret: 'foo',
+  store: MongoStore.create({
+    mongoUrl: mongoDB,
+    mongooseConnection: mongoose.connection
+  }),
+  resave: false,
+  saveUninitialized: false
 }));
+
 
 // Middleware for parsing JSON request body
 //app.use(express.json());
