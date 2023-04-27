@@ -23,13 +23,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUser(): void {
-    const _id = this.route.snapshot.paramMap.get('id');
-    console.log('Fetched _id:', _id); // Add this log
-    if (!_id) {
-      console.error('Invalid or missing _id');
-      return;
-    }
-    this.userService.getUser(_id)
+    this.userService.getUser()
       .subscribe(user => this.user = user);
   }
 

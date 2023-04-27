@@ -9,7 +9,7 @@ router.get("/init", init_controller.init);
 
 router.get("/users", users_controller.users_get);
 
-router.get("/user/:id", users_controller.user_detail);
+router.get("/api/users/:id", users_controller.user_detail);
 
 router.get("/games", games_controller.games_list);
 

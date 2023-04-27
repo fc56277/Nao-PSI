@@ -21,8 +21,8 @@ export class UserService {
   }
 
   /** GET hero by _id. Will 404 if _id not found */
-  getUser(_id: string): Observable<User> {
-    const url = `${'http://localhost:3000/user'}/${_id}`;
+  getUser(): Observable<User> {
+    const url = `${'api/users'}`;
     return this.http.get<User>(url);
   }
 
@@ -37,6 +37,7 @@ export class UserService {
 
   loginUser(id: string): Observable<{ message: string }> {
     const url = `${this.usersUrl}/login/${id}`;
+    console.log(url);
     return this.http.get<{ message: string }>(url);
   }  
 
