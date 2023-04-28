@@ -1,3 +1,28 @@
+.users-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 800px;
+  }
+  
+  .users-menu a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .users-menu img {
+    width: 150px;
+    height: auto;
+  }
+
 /* Reset some default styles */
 * {
     margin: 0;
@@ -48,36 +73,4 @@
     margin: 2rem 0;
     color: #1a237e; /* Blue color */
   }
-  
-  /* Game links */
-  .users-menu {
-    margin-bottom: 1rem;
-    position: relative;
-  }
-  
-  .users-menu::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 4px;
-    transition: height 0.4s;
-  }
-  
-  .users-menu:hover::before {
-    height: 0;
-  }
-  
-  .users-menu a {
-    display: block;
-    text-decoration: none;
-    font-size: 1.2rem;
-    color: #1a237e; /* Blue color */
-    transition: color 0.3s, transform 0.3s;
-  }
-  
-  .users-menu a:hover {
-    color: #64b5f6; /* Light blue color */
-    transform: translateX(10px); /* Moves the link to the right when hovered */
-  }  
+

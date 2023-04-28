@@ -5,18 +5,14 @@
 
 <h2>DESTAQUES</h2>
 <div class="users-menu" *ngFor="let game of destaqueGames">
-    <a
-    routerLink="/game/{{game._id}}">
-    {{game.name}}
-    </a>
+    <a routerLink="/game/{{game._id}}">{{game.name}}</a>
 </div>
 
 <h2>À VENDA</h2>
 <div class="users-menu" *ngFor="let game of allGames">
-    <a
-    routerLink="/game/{{game._id}}">
-    {{game.name}}
-    </a>
+    <a routerLink="/game/{{game._id}}">{{game.name}}</a>
+    <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" />
+    <p>{{game.price}}</p>
 </div>
 
 <button type="button" (click)="doLogOut()">Sair</button>
