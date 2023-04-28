@@ -43,4 +43,20 @@ private handleError<T>(operation = 'operation', result?: T) {
     return of(result as T);
   };
 }
+
+/* GET games whose name contains search term */
+searchGames(term: string): Observable<Game[]> {
+  if (!term.trim()) {
+    // if not search term, return empty hero array.
+    return of([]);
+  }
+  return this.http.get<Game[]>(`${this.gameUrl}/?name=${term}`).pipe(
+    tap(x => x.length ?
+       console.error(`found games matching "${term}"`) :
+       console.error(`no games matching "${term}"`)),
+    catchError(this.handleError<Game[]>('searchItems', []))
+  );
+}
+
+
 }

@@ -15,6 +15,7 @@ import { UserFollowingComponent } from './user-following/user-following.componen
 import { UserLibraryComponent } from './user-library/user-library.component';
 import { UserWishlistComponent } from './user-wishlist/user-wishlist.component';
 import { UserPersonalizedListComponent } from './user-personalized-list/user-personalized-list.component';
+import { ItemsSearchComponent } from './items-search/items-search.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { UserPersonalizedListComponent } from './user-personalized-list/user-per
     UserFollowingComponent,
     UserLibraryComponent,
     UserWishlistComponent,
-    UserPersonalizedListComponent ],
+    UserPersonalizedListComponent,
+    ItemsSearchComponent ],
   imports: [
     HttpClientModule,
     BrowserModule,
