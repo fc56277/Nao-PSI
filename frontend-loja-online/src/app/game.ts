@@ -3,4 +3,6 @@ export interface Game {
     name: string;
     type: string;
     price: number;
+    description: string;
+    img: string;
 }

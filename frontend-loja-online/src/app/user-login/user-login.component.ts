@@ -48,7 +48,6 @@ export class UserLoginComponent {
                 (response) => {
                   alert(response.message);
                   // Redirect to login page
-                  //this.router.navigate(['/user', id]);
                   this.router.navigate(['/dashboard']);
                 }
               );
