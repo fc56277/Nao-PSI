@@ -74,3 +74,44 @@
     color: #1a237e; /* Blue color */
   }
 
+/* Add this new style rule for .combined-links */
+.combined-links {
+  display: flex;
+}
+
+/* FOLLOWERS & FOLLOWING */
+.follow-info {
+  display: flex;
+  margin-bottom: 1rem;
+  margin-right: 1rem; /* Add this to create space between .follow-info and .perfil-links */
+}
+
+.follow-item {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.follow-item span {
+  margin-bottom: 5px;
+}
+/* FOLLOWERS & FOLLOWING */
+
+.reactive-box {
+  font-weight: bold;
+  display: inline-block;
+  background-color: #1e90ff;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin: 4px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.reactive-box:hover {
+  background-color: #007acc;
+  transform: translateY(-2px);
+}
