@@ -1,0 +1,83 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Basic navigation bar styling */
+  nav {
+    background-color: #1a237e; /* Blue color */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 0;
+    position: relative;
+  }
+  
+  nav::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: #64b5f6; /* Light blue color */
+    width: 0;
+    transition: width 0.4s;
+  }
+  
+  nav:hover::before {
+    width: 100%;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  nav a:hover {
+    color: #64b5f6; /* Light blue color */
+    transform: scale(1.1); /* Enlarges the link when hovered */
+  }
+  
+  /* Section headings */
+  h2 {
+    font-size: 2rem;
+    margin: 2rem 0;
+    color: #1a237e; /* Blue color */
+  }
+  
+  /* Game links */
+  .users-menu {
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .users-menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 4px;
+    transition: height 0.4s;
+  }
+  
+  .users-menu:hover::before {
+    height: 0;
+  }
+  
+  .users-menu a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #1a237e; /* Blue color */
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  .users-menu a:hover {
+    color: #64b5f6; /* Light blue color */
+    transform: translateX(10px); /* Moves the link to the right when hovered */
+  }  
