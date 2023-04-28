@@ -1,6 +1,7 @@
 <nav>
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/user">Perfil</a>
+  <a (click)="doLogOut()">Sair</a>
 </nav>
 
 <h2>DESTAQUES</h2>
@@ -14,5 +15,3 @@
     <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" />
     <p>{{game.price}}</p>
 </div>
-
-<button type="button" (click)="doLogOut()">Sair</button>

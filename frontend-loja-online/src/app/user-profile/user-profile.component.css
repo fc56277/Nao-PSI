@@ -1,18 +1,29 @@
 /* CADA LINK NUMA LINHA DIFERENTE */
 .perfil-links {
-    display: flex;
-    flex-direction: column;
-  }
-  
+  font-weight: bold;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
 .perfil-links a {
-margin: 0.5rem 0;
-text-decoration: none;
+  margin: 0.5rem 0;
+  text-decoration: none;
+  color: inherit;
 }
 
 .perfil-links a:hover {
-text-decoration: underline;
+  text-decoration: none;
+  color: white; /* Blue color */
+  background-color: #1e90ff; /* Light blue color */
+  border-radius: 4px;
+  padding: 10px 15px;
+  transform: translateY(-2px);
 }
 /* CADA LINK NUMA LINHA DIFERENTE */
+
+/* Rest of the CSS remains the same */
+
 
 /* IMAGEM */
 .perfil-imagem {
@@ -32,13 +43,14 @@ text-decoration: underline;
 
 .follow-item {
   display: flex;
+  flex-direction: column-reverse;
   align-items: center;
   font-weight: bold;
   margin-right: 1rem;
 }
 
 .follow-item span {
-  margin-left: 5px;
+  margin-bottom: 5px;
 }
 /* FOLLOWERS & FOLLOWING */
 
@@ -93,36 +105,30 @@ h2 {
   color: #1a237e; /* Blue color */
 }
 
-/* Game links */
-.users-menu {
-  margin-bottom: 1rem;
-  position: relative;
+.perfil-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.users-menu::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background: #64b5f6; /* Light blue color */
-  width: 4px;
-  transition: height 0.4s;
+.perfil-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.users-menu:hover::before {
-  height: 0;
-}
-
-.users-menu a {
-  display: block;
+.reactive-box {
+  display: inline-block;
+  background-color: #1e90ff;
+  color: white;
   text-decoration: none;
-  font-size: 1.2rem;
-  color: #1a237e; /* Blue color */
-  transition: color 0.3s, transform 0.3s;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin: 4px;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
-.users-menu a:hover {
-  color: #64b5f6; /* Light blue color */
-  transform: translateX(10px); /* Moves the link to the right when hovered */
+.reactive-box:hover {
+  background-color: #007acc;
+  transform: translateY(-2px);
 }
