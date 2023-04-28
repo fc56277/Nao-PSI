@@ -15,7 +15,7 @@ exports.user_login_get = async (req, res) => {
 
 // verifica se o login foi efetuado
 exports.user_isLogged_get = async (req, res) => {
-  res.status(200).json({ value: req.session.user_id == undefined });
+  res.status(200).json({ value: req.session.user_id != undefined });
 };
 
 // faz logout do user atual
