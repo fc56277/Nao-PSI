@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { UserService } from "../user.service"
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -13,7 +14,7 @@ export class UserProfileComponent implements OnInit {
   user: User | undefined;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService,
     private location: Location,
   ) {}
@@ -29,5 +30,16 @@ export class UserProfileComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  doLogOut(): void {
+    this.userService.logOutUser()
+      .subscribe(
+        (response) => {
+          alert(response.message);
+          // Redirect to login page
+          this.router.navigate(['/login']);
+        }
+      );
   }
 }

@@ -41,6 +41,12 @@ export class UserService {
     return this.http.get<{ message: string }>(url);
   }  
 
+  logOutUser(): Observable<{ message: string }> {
+    const url = `${this.usersUrl}/logout`;
+    console.log(url);
+    return this.http.get<{ message: string }>(url);
+  }  
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
