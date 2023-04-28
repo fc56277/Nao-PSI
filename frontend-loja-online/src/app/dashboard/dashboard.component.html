@@ -1,10 +1,26 @@
 <nav>
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/user">Perfil</a>
-  <a (click)="doLogOut()">Sair</a>
+  <a routerLink="" (click)="doLogOut()">Sair</a>
 </nav>
 
 <app-items-search></app-items-search>
+
+<div class="combined-links">
+  <div class="follow-info">
+    <div class="follow-item">
+      <a class="reactive-box">Seguidores</a>
+    </div>
+    <div class="follow-item">
+      <a class="reactive-box">Seguidos</a>
+    </div>
+  </div>
+  <div class="perfil-links">
+    <a class="reactive-box">Biblioteca</a>
+    <a class="reactive-box">Wishlist</a>
+    <a class="reactive-box">Listas Personalizadas</a>
+  </div>
+</div>
 
 <h2>DESTAQUES</h2>
 <div class="users-menu" *ngFor="let game of destaqueGames">
