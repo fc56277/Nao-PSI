@@ -22,6 +22,7 @@ export class DashboardComponent {
     ) { }
 
   ngOnInit(): void {
+    this.checkIfLogged();
     this.getEmDestaqueGames();
     this.getAllGames();
   }
@@ -34,6 +35,18 @@ export class DashboardComponent {
   getEmDestaqueGames(): void {
     this.gameService.getGames()
       .subscribe(games => this.destaqueGames = games.slice(0,3));
+  }
+
+  checkIfLogged(): void {
+    this.userService.checkIfLogged()
+    .subscribe(
+      (response) => {
+        if(!response.value) {
+          alert("Nenhum Utilizador autenticado.");
+          this.router.navigate(['/login']);
+        }
+      }
+    );
   }
 
   doLogOut(): void {

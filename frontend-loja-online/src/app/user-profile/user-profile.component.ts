@@ -20,6 +20,7 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.checkIfLogged();
     this.getUser();
   }
 
@@ -41,5 +42,17 @@ export class UserProfileComponent implements OnInit {
           this.router.navigate(['/login']);
         }
       );
+  }
+
+  checkIfLogged(): void {
+    this.userService.checkIfLogged()
+    .subscribe(
+      (response) => {
+        if(!response.value) {
+          alert("Nenhum Utilizador autenticado.");
+          this.router.navigate(['/login']);
+        }
+      }
+    );
   }
 }
