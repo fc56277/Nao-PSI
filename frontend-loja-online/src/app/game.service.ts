@@ -11,58 +11,62 @@ export class GameService {
 
   private gameUrl = 'http://localhost:3000';
 
-  constructor(
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getGames(): Observable<Game[]> {
-    return this.http.get<Game[]>('http://localhost:3000/games').pipe(
-      catchError(this.handleError<Game[]>('getGames', [])));
+    httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    
+    getGames(): Observable<Game[]> {
+      return this.http.get<Game[]>('http://localhost:3000/games').pipe(
+        catchError(this.handleError<Game[]>('getGames', [])));
+    }
+      /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   *
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      //this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-
-    /**
- * Handle Http operation that failed.
- * Let the app continue.
- *
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
-private handleError<T>(operation = 'operation', result?: T) {
-  return (error: any): Observable<T> => {
-
-    // TODO: send the error to remote logging infrastructure
-    console.error(error); // log to console instead
-
-    // TODO: better job of transforming error for user consumption
-    //this.log(`${operation} failed: ${error.message}`);
-
-    // Let the app keep running by returning an empty result.
-    return of(result as T);
-  };
-}
 
 /* GET games whose name contains search term */
-searchGames(name: string): Observable<Game[]> {
-  if (!name.trim()) {
-    // if not search term, return empty hero array.
-    console.log("DENTRO DO TRIM");
-    
-    return of([]);
+  searchGames(name: string): Observable<Game[]> {
+    if (!name.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+
+    const url = `http://localhost:3000/games/${name}`;
+
+    return this.http.get<Game[]>(url).pipe(
+      tap(x => x.length ?
+        console.log(`found games matching "${name}"`) :
+        console.error(`no games matching "${name}"`)),
+      catchError(this.handleError<Game[]>('searchItems', []))
+    );
   }
 
-  const url = `http://localhost:3000/games/${name}`;
-
-  console.log("ABOUT THE MAKE THE REQUEST");
-  return this.http.get<Game[]>(url).pipe(
-    tap(x => x.length ?
-       console.error(`found games matching "${name}"`) :
-       console.error(`no games matching "${name}"`)),
-    catchError(this.handleError<Game[]>('searchItems', []))
-  );
-}
+  getGameById(id: string) {
+    const url = `${this.gameUrl}/detail/${id}`;
+      
+      return this.http.get<Game>(url).pipe(
+        tap(_ => console.error(`fetched game id=${id}`)),
+        catchError(this.handleError<Game>(`getGame id=${id}`))
+      );
+  }
 
 
 }

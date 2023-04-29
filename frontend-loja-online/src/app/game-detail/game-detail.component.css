@@ -1,0 +1,126 @@
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: #1b2839;
+    color: white;
+    height: 91.7vh;
+}
+
+.container {
+    display: flexbox;
+    width: 70%;
+    height: min-content;
+}
+
+/* Content do jogo */
+.gameContent {
+    /* border: blue solid; */
+    display: flex;
+    /* flex-direction: row; */
+}
+
+.leftContent {
+    width: 60%;
+    height: 400px;
+    flex: 1;
+    /* border: green solid; */
+    padding: 13px;
+    display: flex;
+    justify-content: center;
+}
+
+#gameImage {
+    width: 100%;
+}
+
+.rightContent {
+    width: 40%;
+    /* border: yellow solid; */
+    display: flex;
+    flex-direction: column;
+}
+
+/* inicio buy button */
+.btn-group {
+  margin-top: 18px;
+}
+
+.btn-group .btn a {
+  padding: 5px 15px;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 3px;
+  margin-left: -2px;
+  text-decoration: none;
+}
+
+/* fim Content do jogo */
+
+/* Basic navigation bar styling */
+.nav {
+    background-color: #1c212a;
+    padding: 1%;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
+  .nav * {
+    box-sizing: border-box;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .nav li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em;
+    overflow: hidden;
+  }
+  .nav a {
+    padding: 0.3em 0;
+    color: rgb(255, 255, 255);
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1px;
+    margin-right: 2px;
+    text-decoration: none;
+  }
+  
+  .nav li:last-of-type {
+    margin-left: auto;
+  }
+  
+  .nav a:before,
+  .nav a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .nav a:before {
+    top: 100%;
+    display: block;
+    height: 3px;
+    width: 100%;
+    content: "";
+    background-color: #0099ff;
+  }
+  .nav a:after {
+    padding: 0.3em 0;
+    position: absolute;
+    top: 108%;
+    left: 0;
+    content: attr(data-hover);
+    color: white;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+  .nav li:hover a,
+  .nav .current a {
+    transform: translateY(-100%);
+  }
+  /* fim navbar */
+
