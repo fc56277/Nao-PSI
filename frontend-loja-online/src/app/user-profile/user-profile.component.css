@@ -92,7 +92,7 @@ h2 {
 .perfil-links a:hover {
   text-decoration: none;
   color: white; /* Blue color */
-  background-color: #1e90ff; /* Light blue color */
+  background-color: #006cb3; /* Light blue color */
   border-radius: 4px;
   padding: 10px 15px;
   transform: translateY(-2px);
@@ -198,7 +198,7 @@ nav a:hover {
 
 .reactive-box {
   display: inline-block;
-  background-color: #1e90ff;
+  background-color: #1F2937;
   color: white;
   text-decoration: none;
   padding: 10px 15px;
@@ -208,7 +208,7 @@ nav a:hover {
 }
 
 .reactive-box:hover {
-  background-color: #007acc;
+  background-color: #006cb3;
   transform: translateY(-2px);
 }
 
@@ -300,4 +300,44 @@ nav a:hover {
   margin: 0 10px;
   text-decoration: none;
   color: #000;
+}
+
+/* Add media queries for responsiveness */
+@media screen and (max-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .games-grid {
+    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  }
+  .nav li {
+    margin: 0 1em;
+  }
+  .card {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .games-grid {
+    grid-template-columns: repeat(auto-fit, minmax(90%, 1fr));
+    grid-gap: 2rem;
+  }
+  .nav li {
+    margin: 0 0.5em;
+  }
+  .nav a {
+    font-size: 0.9rem;
+  }
+  .h2 {
+    font-size: 1.5rem;
+  }
+  .card {
+    width: 100%;
+    margin: 0 auto;
+  }
 }

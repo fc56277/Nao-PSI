@@ -15,7 +15,8 @@ exports.init = async (req, res) => {
       name: 'user2',
       email: "user2@gmail.com",
       password: "2",
-      followers: [user1._id] // Adiciona o _id do user1 à lista de seguidores do user2
+      followers: [user1._id], // Adiciona o _id do user1 à lista de seguidores do user2
+      //following: [user1.id],
     });
     
     await user2.save();
