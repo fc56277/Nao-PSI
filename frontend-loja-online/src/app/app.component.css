@@ -1,11 +1,11 @@
-@font-face {
-    font-family: 'Product Sans';
-    src: url('/path/to/product-sans.woff2') format('woff2'),
+/* @font-face {
+     font-family: 'Product Sans';
+     src: url('/path/to/product-sans.woff2') format('woff2'),
          url('/path/to/product-sans.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
+  } */
 
   body {
     font-family: 'Product Sans', sans-serif;
