@@ -30,7 +30,7 @@ exports.init = async (req, res) => {
       { name: 'F1 2023', type:"Racing", price: 59.99, description: "Take the wheel of a Formula One car and race to victory in F1 2021. This racing game features realistic physics, challenging AI opponents, and a variety of tracks to race on.", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
       { name: 'FIFA 23', type: "Sports", price: 69.90, description: "Experience the thrill of soccer in FIFA 23. This sports game features updated rosters, realistic graphics, and new gameplay mechanics to enhance the experience for both new and returning players", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
       { name: 'CS:GO', type: "First-person Shooter", price: 69.90, description: "description", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
-      { name: 'AmonP', type: "Multiplayer, Social Deduction", price: 4.99, description: "AMONG P", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
+      { name: 'AmonP', type: "Multiplayer, Social Deduction", price: 4.99, description: "AMONG P", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'}
   ]);
       
     res.json("Database Initializated");
