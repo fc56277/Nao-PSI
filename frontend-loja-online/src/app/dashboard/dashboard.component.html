@@ -29,5 +29,5 @@
 <div class="users-menu" *ngFor="let game of allGames">
     <a routerLink="/game/{{game._id}}">{{game.name}}</a>
     <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" />
-    <p>{{game.price}}</p>
+    <p class="game-price">{{game.price}}</p>
 </div>
