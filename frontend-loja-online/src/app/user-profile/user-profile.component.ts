@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { User } from '../user';
 import { UserService } from "../user.service"
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { GameService } from '../game.service';
 import { Game } from '../game';
-
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,7 +13,9 @@ import { Game } from '../game';
 })
 export class UserProfileComponent implements OnInit {
   user: User | undefined;
+  showGames: boolean = false;
   allGames: Game[] = [];
+  @ViewChild('gamesSection') gamesSection!: ElementRef;
 
   constructor(
     private router: Router,
@@ -22,11 +23,12 @@ export class UserProfileComponent implements OnInit {
     private gameService: GameService,
     private location: Location,
   ) {}
-
+      
   ngOnInit(): void {
     this.checkIfLogged();
     this.getUser();
     this.getAllGames();
+    this.toggleGames();
   }
 
   getUser(): void {
@@ -34,11 +36,20 @@ export class UserProfileComponent implements OnInit {
       .subscribe(user => this.user = user);
   }
 
+  toggleGames() {
+    this.showGames = !this.showGames;
+    return this.showGames;
+  }
+
   getAllGames(): void {
     this.gameService.getGames()
       .subscribe(games => this.allGames = games)
   }
 
+  scrollToGames() {
+    this.gamesSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+  
   goBack(): void {
     this.location.back();
   }
