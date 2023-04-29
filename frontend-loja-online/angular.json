@@ -67,6 +67,7 @@
             }
           },
           "options": {
+            "browserTarget": "frontend-loja-online:build",
             "proxyConfig": "src/proxy.conf.json"
           },
           "defaultConfiguration": "development"

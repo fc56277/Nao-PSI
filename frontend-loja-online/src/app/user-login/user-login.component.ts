@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from "../user";
 import { UserService } from "../user.service"
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-user-login',
     templateUrl: './user-login.component.html',
@@ -11,7 +12,8 @@ export class UserLoginComponent {
     users: User[] = [];
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private router: Router,
     ) {}
 
     ngOnInit(): void {
@@ -26,7 +28,7 @@ export class UserLoginComponent {
 
     login(mail: string, pass: string): void {
         var exists = false;
-        var id = null;
+        var id: string | null = null;
         this.users.forEach(function(user) {
             if(user.email === mail) {
                 exists = true;
@@ -42,7 +44,13 @@ export class UserLoginComponent {
         if(!exists) {
             alert("Nao existe nenhuma conta associada a este e-mail!");
         } else if(id != null) {
-            this.userService.loginUser(id).subscribe();
+            this.userService.loginUser(id).subscribe(
+                (response) => {
+                  alert(response.message);
+                  // Redirect to login page
+                  this.router.navigate(['/dashboard']);
+                }
+              );
         }
     }
 }

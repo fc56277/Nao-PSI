@@ -35,6 +35,13 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// ALTERNATIVA - FALAR COM PROFESSORA
+// app.use(session({
+//   secret: 'foo',
+//   resave: false,
+//   saveUninitialized: false
+// }));
+
 
 // Middleware for parsing JSON request body
 //app.use(express.json());

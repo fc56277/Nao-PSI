@@ -1,0 +1,117 @@
+.users-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 800px;
+  }
+  
+  .users-menu a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .users-menu img {
+    width: 150px;
+    height: auto;
+  }
+
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Basic navigation bar styling */
+  nav {
+    background-color: #1a237e; /* Blue color */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 0;
+    position: relative;
+  }
+  
+  nav::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: #64b5f6; /* Light blue color */
+    width: 0;
+    transition: width 0.4s;
+  }
+  
+  nav:hover::before {
+    width: 100%;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  nav a:hover {
+    color: #64b5f6; /* Light blue color */
+    transform: scale(1.1); /* Enlarges the link when hovered */
+  }
+  
+  /* Section headings */
+  h2 {
+    font-size: 2rem;
+    margin: 2rem 0;
+    color: #1a237e; /* Blue color */
+  }
+
+/* Add this new style rule for .combined-links */
+.combined-links {
+  display: flex;
+}
+
+/* FOLLOWERS & FOLLOWING */
+.follow-info {
+  display: flex;
+  margin-bottom: 1rem;
+  margin-right: 1rem; /* Add this to create space between .follow-info and .perfil-links */
+}
+
+.follow-item {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.follow-item span {
+  margin-bottom: 5px;
+}
+/* FOLLOWERS & FOLLOWING */
+
+.reactive-box {
+  font-weight: bold;
+  display: inline-block;
+  background-color: #1e90ff;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin: 4px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.reactive-box:hover {
+  background-color: #007acc;
+  transform: translateY(-2px);
+}

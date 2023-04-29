@@ -9,9 +9,20 @@ exports.users_get = async (req, res) => {
 
 // preenche o campo user_id da sessao com o id do user atual
 exports.user_login_get = async (req, res) => {
-  req.session.user_id = req.params.id;
-  res.status(200).send('login bem sucedido');
+    req.session.user_id = req.params.id;
+    res.status(200).json({ message: 'login bem sucedido' });
 };
+
+// verifica se o login foi efetuado
+exports.user_isLogged_get = async (req, res) => {
+  res.status(200).json({ value: req.session.user_id != undefined });
+};
+
+// faz logout do user atual
+exports.user_logout_get = async (req, res) => {
+  delete req.session.user_id;
+  res.status(200).json({ message: 'logout bem sucedido' });
+}
 
 // regista um novo user
 exports.user_register_post = async(req, res) => {
@@ -19,19 +30,14 @@ exports.user_register_post = async(req, res) => {
     user.save();
     res.set('Content-Type', 'application/json');
     res.status(200).send(JSON.stringify(user));
+    
 }
-
-//APAGAR (?)
-exports.user_id = async (req, res) => {
-    const user = await User.findOne({ id: req.params.id });
-    res.json(user);
-};
 
 // Display detail page for a specific User.
 // /user/id - GET - devolve uma resposta JSON com os detalhes do user especificado pelo id
 exports.user_detail = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id).exec();
+    const user = await User.findById(req.session.user_id).exec();
     if (user == null) {
       // No results.
       const err = new Error("User not found");

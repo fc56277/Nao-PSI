@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { UserService } from "../user.service"
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -13,27 +14,45 @@ export class UserProfileComponent implements OnInit {
   user: User | undefined;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService,
     private location: Location,
   ) {}
 
   ngOnInit(): void {
+    this.checkIfLogged();
     this.getUser();
   }
 
   getUser(): void {
-    const _id = this.route.snapshot.paramMap.get('id');
-    console.log('Fetched _id:', _id); // Add this log
-    if (!_id) {
-      console.error('Invalid or missing _id');
-      return;
-    }
-    this.userService.getUser(_id)
+    this.userService.getUser()
       .subscribe(user => this.user = user);
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  doLogOut(): void {
+    this.userService.logOutUser()
+      .subscribe(
+        (response) => {
+          alert(response.message);
+          // Redirect to login page
+          this.router.navigate(['/login']);
+        }
+      );
+  }
+
+  checkIfLogged(): void {
+    this.userService.checkIfLogged()
+    .subscribe(
+      (response) => {
+        if(!response.value) {
+          alert("Nenhum Utilizador autenticado.");
+          this.router.navigate(['/login']);
+        }
+      }
+    );
   }
 }
