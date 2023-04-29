@@ -7,8 +7,10 @@ exports.games_list = async (req, res) => {
 
 exports.games_names = async (req, res) => {
 
-    const searchTerm = req.query.name;
-    console.log("AAAAAAAAAAAAA"+searchTerm);
+    const searchTerm = req.params.name;
+    console.log("PARAM.NAME: "+searchTerm);
+    // console.log("REQ.PARAM.NAME: "+req.query);
+
 
   if (!searchTerm) {
     return res.status(400).json({ error: "Missing search term" });

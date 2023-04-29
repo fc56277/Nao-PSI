@@ -45,18 +45,21 @@ private handleError<T>(operation = 'operation', result?: T) {
 }
 
 /* GET games whose name contains search term */
-searchGames(term: string): Observable<Game[]> {
-  if (!term.trim()) {
+searchGames(name: string): Observable<Game[]> {
+  if (!name.trim()) {
     // if not search term, return empty hero array.
     console.log("DENTRO DO TRIM");
     
     return of([]);
   }
+
+  const url = `http://localhost:3000/games/${name}`;
+
   console.log("ABOUT THE MAKE THE REQUEST");
-  return this.http.get<Game[]>(`${this.gameUrl}/games/?name=${term}`).pipe(
+  return this.http.get<Game[]>(url).pipe(
     tap(x => x.length ?
-       console.error(`found games matching "${term}"`) :
-       console.error(`no games matching "${term}"`)),
+       console.error(`found games matching "${name}"`) :
+       console.error(`no games matching "${name}"`)),
     catchError(this.handleError<Game[]>('searchItems', []))
   );
 }
