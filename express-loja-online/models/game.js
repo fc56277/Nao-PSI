@@ -5,7 +5,9 @@ const Schema = mongoose.Schema;
 const GameSchema = new Schema({
   name: { type: String, required: true},
   type: { type: String, required: false},
-  price: { type: Number, required: false}
+  price: { type: Number, required: true},
+  description: {type: String, required: true},
+  img: {type: String, required: true}
 });
 
 GameSchema.virtual("url").get(function () {

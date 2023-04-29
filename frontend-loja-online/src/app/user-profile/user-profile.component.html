@@ -1,7 +1,14 @@
-<nav>
+<!-- <nav>
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/user">Perfil</a>
-</nav>
+  <a routerLink="" (click)="doLogOut()">Sair</a>
+</nav> -->
+
+<ul class="nav">
+  <li><a routerLink="/dashboard" data-hover="DASHBOARD">DASHBOARD</a></li>
+  <li><a routerLink="/user" data-hover="PERFIL">PERFIL</a></li>
+  <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
+</ul>
 
 <div *ngIf="user">
   <h2>PERFIL</h2>
@@ -17,18 +24,18 @@
     </div>
     <div class="follow-info">
       <div class="follow-item">
-        <a [routerLink]="['/followers']">Seguidores</a>
+        <a class="reactive-box">Seguidores</a>
         <span>{{user.followers.length}}</span>
       </div>
       <div class="follow-item">
-        <a [routerLink]="['/following']">Seguidos</a>
+        <a class="reactive-box">Seguidos</a>
         <span>{{user.following.length}}</span>
       </div>
     </div>
     <div class="perfil-links">
-      <a [routerLink]="['/biblioteca']">Biblioteca</a>
-      <a [routerLink]="['/wishlist']">Wishlist</a>
-      <a [routerLink]="['/listas-personalizadas']">Listas personalizadas</a>
+      <a class="reactive-box">Biblioteca</a>
+      <a class="reactive-box">Wishlist</a>
+      <a class="reactive-box">Listas Personalizadas</a>
     </div>
   </div>
 </div>

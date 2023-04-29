@@ -13,14 +13,12 @@ export class UserService {
     private http:HttpClient
   ) { }
   
-  private mainUrl = 'api'
   private usersUrl = 'api/users'; 
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
   }
 
-  /** GET hero by _id. Will 404 if _id not found */
   getUser(): Observable<User> {
     const url = `${'api/user'}`;
     return this.http.get<User>(url);
@@ -37,7 +35,16 @@ export class UserService {
 
   loginUser(id: string): Observable<{ message: string }> {
     const url = `${this.usersUrl}/login/${id}`;
-    console.log(url);
+    return this.http.get<{ message: string }>(url);
+  }  
+
+  checkIfLogged(): Observable<{ value: boolean }> {
+    const url = `${this.usersUrl}/login`;
+    return this.http.get<{ value: boolean }>(url);
+  }  
+
+  logOutUser(): Observable<{ message: string }> {
+    const url = `${this.usersUrl}/logout`;
     return this.http.get<{ message: string }>(url);
   }  
 
