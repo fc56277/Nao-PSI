@@ -48,8 +48,11 @@ private handleError<T>(operation = 'operation', result?: T) {
 searchGames(term: string): Observable<Game[]> {
   if (!term.trim()) {
     // if not search term, return empty hero array.
+    console.log("DENTRO DO TRIM");
+    
     return of([]);
   }
+  console.log("ABOUT THE MAKE THE REQUEST");
   return this.http.get<Game[]>(`${this.gameUrl}/?name=${term}`).pipe(
     tap(x => x.length ?
        console.error(`found games matching "${term}"`) :

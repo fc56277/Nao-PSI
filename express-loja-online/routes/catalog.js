@@ -13,4 +13,6 @@ router.get("/api/user", users_controller.user_detail);
 
 router.get("/games", games_controller.games_list);
 
+router.get("/games/:name", games_controller.games_names);
+ 
 module.exports = router;
