@@ -53,7 +53,7 @@ searchGames(term: string): Observable<Game[]> {
     return of([]);
   }
   console.log("ABOUT THE MAKE THE REQUEST");
-  return this.http.get<Game[]>(`${this.gameUrl}/?name=${term}`).pipe(
+  return this.http.get<Game[]>(`${this.gameUrl}/games/?name=${term}`).pipe(
     tap(x => x.length ?
        console.error(`found games matching "${term}"`) :
        console.error(`no games matching "${term}"`)),
