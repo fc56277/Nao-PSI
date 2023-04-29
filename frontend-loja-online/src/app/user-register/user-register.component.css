@@ -7,8 +7,8 @@
 body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
     height: 100vh;
+    grid-column-gap: 15%;
     margin: 0;
     background: linear-gradient(135deg, rgba(28,61,90,1) 10%, rgba(52,211,153,1) 120%);
   }  
@@ -23,8 +23,8 @@ body {
   
   form {
     display: grid;
-    grid-column: span 2;
-    grid-row: span 3;
+    grid-column: 2;
+    grid-row: 1;
     place-self: center;
 }
 
