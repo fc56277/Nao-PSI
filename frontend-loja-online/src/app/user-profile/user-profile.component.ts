@@ -3,6 +3,8 @@ import { User } from '../user';
 import { UserService } from "../user.service"
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { GameService } from '../game.service';
+import { Game } from '../game';
 
 
 @Component({
@@ -12,21 +14,29 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
   user: User | undefined;
+  allGames: Game[] = [];
 
   constructor(
     private router: Router,
     private userService: UserService,
+    private gameService: GameService,
     private location: Location,
   ) {}
 
   ngOnInit(): void {
     this.checkIfLogged();
     this.getUser();
+    this.getAllGames();
   }
 
   getUser(): void {
     this.userService.getUser()
       .subscribe(user => this.user = user);
+  }
+
+  getAllGames(): void {
+    this.gameService.getGames()
+      .subscribe(games => this.allGames = games)
   }
 
   goBack(): void {
