@@ -1,22 +1,10 @@
-<!-- <nav>
-  <a routerLink="/dashboard">DASHBOARD</a>
-  <a routerLink="/user">Perfil</a>
-  <a routerLink="" (click)="doLogOut()">Sair</a>
-</nav> -->
-
+<body>
   <ul class="nav">
     <li><a routerLink="/dashboard" data-hover="DASHBOARD">DASHBOARD</a></li>
     <li><a routerLink="/user" data-hover="PERFIL">PERFIL</a></li>
-    <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
-  </ul>
-  <body>
-  <!-- slideshow -->
-  <img class="slideshow" src="https://c0.wallpaperflare.com/preview/496/756/962/nature-landscape-garden-spring.jpg" style="width:100%">
-
 
     <!-- search bar -->
-    <div class="wrapper">
-      <div class="label">Pesquisar itens:</div>
+    <div class="searchBar-wrapper">
       <div class="searchBar">
         <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Pesquisar" value="" />
         <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
@@ -27,6 +15,18 @@
     </div>
 
 
+
+    <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
+  </ul>
+
+ 
+  <!-- slideshow -->
+  <img class="slideshow" src="https://i.imgur.com/eLzrVWU.png" style="width:100%">
+
+
+    
+
+
     <!-- destaques -->
     <!-- <div class="users-menu" *ngFor="let game of allGames">
       <a routerLink="/game/{{game._id}}">{{game.name}}</a>
@@ -34,33 +34,24 @@
       <p>{{game.price}}</p>
   </div> -->
 
-
-    <div class="destaques-container" *ngFor="let game of destaqueGames">
-      <div class="card">
-        <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" />
-        <div class="card-body">
-          <div class="row">
-            <div class="card-title">
-              <h4><a class="game-name" routerLink="/game/{{game._id}}">{{game.name}}</a></h4>
-              <h3>{{game.price}}</h3>
-            </div>
-            <div class="view-btn">
-              <a href="">View Details</a>
-            </div>
-          </div>
-          <hr />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi,
-            dignissimos.
-          </p>
-          <div class="btn-group">
-            <div class="btn">
-              <a href="">Buy Now</a>
-            </div>
-          </div>
+  <h2>DESTAQUES</h2>
+  <div class="destaques-container">
+    <div class="product-card-wrapper" *ngFor="let game of destaqueGames" >
+      <div class="product-img">
+        <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
+      </div>
+      <div class="product-info">
+        <div class="product-text">
+          <h1>{{game.name}}</h1>
+          <p>{{game.description}}</p>
+        </div>
+        <div class="product-price-btn">
+          <p><span>{{game.price}}</span>€</p>
+          <button type="button">buy now</button>
         </div>
       </div>
     </div>
+  </div>
 
 
 
