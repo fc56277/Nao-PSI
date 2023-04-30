@@ -2,13 +2,13 @@
 <html>
 <body>
 
-<h2>Login</h2>
+<h2 [@fadeInOut]>Login</h2>
 
-<form >
+<form  [@fadeInOut]>
   <input type="text" id="user" placeholder="Username" #user><br>
   <input type="password" id="pass" placeholder="Password" #pass><br><br>
   <button type="button" (click)="login(user.value, pass.value)">Iniciar Sessão</button>
-  <button type="button" onClick="window.location.href='http://localhost:4200/register'">Criar Conta</button>
+  <button type="button" (click)="goToRegister()">Criar Conta</button>
 </form> 
 
 </body>

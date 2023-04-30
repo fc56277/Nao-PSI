@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body >
 
-<h2>Registar</h2>
+<h2 [@fadeInOut]>Registar</h2>
 
-<form >
+<form [@fadeInOut]>
   <input type="text" id="mail" placeholder="Insira o seu username" #name><br>
   <input type="password" id="pass" placeholder="Insira uma password" #pass1><br><br>
   <input type="password" id="pass" placeholder="Repita a sua passord" #pass2><br><br>
   <button type="button" (click)="register(name.value, pass1.value, pass2.value)">Efetuar o registo</button>
-  <button type="button" onClick="window.location.href='http://localhost:4200/login'">Voltar</button>
+  <button type="button" (click)="goToLogin()">Voltar</button>
 </form> 
 
 </body>
