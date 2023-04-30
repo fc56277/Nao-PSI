@@ -33,6 +33,10 @@ exports.init = async (req, res) => {
       { name: 'FIFA 23', type: "Sports", price: 69.90, description: "Experience the thrill of soccer in FIFA 23. This sports game features updated rosters, realistic graphics, and new gameplay mechanics to enhance the experience for both new and returning players", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
       { name: 'CS:GO', type: "First-person Shooter", price: 69.90, description: "description", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'}
     ]);
+
+    const games = await Game.find().limit(2); // encontra os dois primeiros jogos na lista de jogos
+    user1.library = games.map(game => game._id); // mapeia os jogos e armazena os seus _id na biblioteca do user1
+    await user1.save();
       
     res.json("Database Initializated");
 };
