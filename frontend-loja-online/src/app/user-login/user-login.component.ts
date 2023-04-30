@@ -26,24 +26,21 @@ export class UserLoginComponent {
         })
     }
 
-    login(mail: string, pass: string): void {
-        var exists = false;
+    login(username: string, pass: string): void {
+        var success = false;
         var id: string | null = null;
         this.users.forEach(function(user) {
-            if(user.email === mail) {
-                exists = true;
+            if(user.name === username) {
                 if(user.password === pass) {
+                    success = true;
                     id = user._id;
-                    return;
-                } else {
-                    alert("A password inserida esta incorreta!");
                     return;
                 }
             }
         });
-        if(!exists) {
-            alert("Nao existe nenhuma conta associada a este e-mail!");
-        } else if(id != null) {
+        if(!success) {
+            alert("Ocorreu um erro na autenticação");
+        } else if (id != null) {
             this.userService.loginUser(id).subscribe(
                 (response) => {
                   alert(response.message);

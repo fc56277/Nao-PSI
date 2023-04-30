@@ -5,12 +5,10 @@
 <h2>Login</h2>
 
 <form >
-  <label for="fname">e-mail:</label><br>
-  <input type="text" id="mail" #mail><br>
-  <label for="lname">password:</label><br>
-  <input type="password" id="pass" #pass><br><br>
-  <button type="button" (click)="login(mail.value, pass.value)">entrar</button>
-  <button type="button" onClick="window.location.href='http://localhost:4200/register'">registar</button>
+  <input type="text" id="user" placeholder="Username" #user><br>
+  <input type="password" id="pass" placeholder="Password" #pass><br><br>
+  <button type="button" (click)="login(user.value, pass.value)">Iniciar Sessão</button>
+  <button type="button" onClick="window.location.href='http://localhost:4200/register'">Criar Conta</button>
 </form> 
 
 </body>

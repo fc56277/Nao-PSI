@@ -5,16 +5,12 @@
 <h2>Registar</h2>
 
 <form >
-  <label for="fname">nome:</label><br>
-  <input type="text" id="mail" #name><br>
-  <label for="fname">e-mail:</label><br>
-  <input type="text" id="mail" #mail><br>
-  <label for="lname">password1:</label><br>
-  <input type="password" id="pass" #pass1><br><br>
-  <label for="lname">password2:</label><br>
-  <input type="password" id="pass" #pass2><br><br>
-  <button type="button" (click)="register(name.value, mail.value, pass1.value, pass2.value)">registar</button>
-  <button type="button" onClick="window.location.href='http://localhost:4200/login'">voltar</button>
+  <input type="text" id="mail" placeholder="Insira o seu username" #name><br>
+  <input type="text" id="mail" placeholder="Insira o seu e-mail" #mail><br>
+  <input type="password" id="pass" placeholder="Insira uma password" #pass1><br><br>
+  <input type="password" id="pass" placeholder="Repita a sua passord" #pass2><br><br>
+  <button type="button" (click)="register(name.value, mail.value, pass1.value, pass2.value)">Efetuar o registo</button>
+  <button type="button" onClick="window.location.href='http://localhost:4200/login'">Voltar</button>
 </form> 
 
 </body>

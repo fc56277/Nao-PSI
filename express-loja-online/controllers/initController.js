@@ -6,7 +6,10 @@ exports.init = async (req, res) => {
     await Game.deleteMany({});
 
     await User.create([
-      { name: 'user1', email: "user1@gmail.com", password: "1", imagemPerfil: "https://i.scdn.co/image/ab67616d00001e027a58bc39b4e2466cd9273c55"}
+      { name: 'user1', 
+      email: "user1@gmail.com", 
+      password: "1", 
+      imagemPerfil: "https://i.scdn.co/image/ab67616d00001e027a58bc39b4e2466cd9273c55"},
     ]);
     
     const user1 = await User.findOne({ email: "user1@gmail.com" });
@@ -15,7 +18,8 @@ exports.init = async (req, res) => {
       name: 'user2',
       email: "user2@gmail.com",
       password: "2",
-      followers: [user1._id] // Adiciona o _id do user1 à lista de seguidores do user2
+      followers: [user1._id], // Adiciona o _id do user1 à lista de seguidores do user2
+      //following: [user1.id],
     });
     
     await user2.save();
@@ -32,6 +36,10 @@ exports.init = async (req, res) => {
       { name: 'CS:GO', type: "First-person Shooter", price: 69.90, description: "description", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
       { name: 'AmonP', type: "Multiplayer, Social Deduction", price: 4.99, description: "AMONG P", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'}
   ]);
+
+    const games = await Game.find().limit(2); // encontra os dois primeiros jogos na lista de jogos
+    user1.library = games.map(game => game._id); // mapeia os jogos e armazena os seus _id na biblioteca do user1
+    await user1.save();
       
     res.json("Database Initializated");
 };

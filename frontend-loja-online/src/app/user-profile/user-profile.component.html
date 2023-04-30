@@ -1,16 +1,10 @@
-<!-- <nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/user">Perfil</a>
-  <a routerLink="" (click)="doLogOut()">Sair</a>
-</nav> -->
-
 <ul class="nav">
   <li><a routerLink="/dashboard" data-hover="DASHBOARD">DASHBOARD</a></li>
   <li><a routerLink="/user" data-hover="PERFIL">PERFIL</a></li>
   <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
 </ul>
 
-<div *ngIf="user">
+<div class="allElements" *ngIf="user">
   <h2>PERFIL</h2>
   <div class="perfil-container">
     <div class="perfil-info">
@@ -24,18 +18,18 @@
     </div>
     <div class="follow-info">
       <div class="follow-item">
-        <a class="reactive-box">Seguidores</a>
-        <span>{{user.followers.length}}</span>
+          <a class="reactive-box" tabindex="0">Seguidores</a>
+          <span>{{user.followers.length}}</span>
       </div>
       <div class="follow-item">
-        <a class="reactive-box">Seguidos</a>
-        <span>{{user.following.length}}</span>
+          <a class="reactive-box" routerLink="/following" tabindex="0">A Seguir</a>
+          <span>{{user.following.length}}</span>
       </div>
     </div>
     <div class="perfil-links">
-      <a class="reactive-box">Biblioteca</a>
-      <a class="reactive-box">Wishlist</a>
-      <a class="reactive-box">Listas Personalizadas</a>
-    </div>
+        <a class="reactive-box" tabindex="0" routerLink="/biblioteca">Biblioteca</a>
+        <a class="reactive-box" tabindex="0">Wishlist</a>
+        <a class="reactive-box" tabindex="0">Listas Personalizadas</a>
+    </div>        
   </div>
 </div>
