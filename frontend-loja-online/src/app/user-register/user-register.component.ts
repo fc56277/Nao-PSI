@@ -27,7 +27,7 @@ export class UserRegisterComponent {
         })
     }
 
-    register(name: string, mail: string, pass1: string, pass2: string): void {
+    register(name: string, pass1: string, pass2: string): void {
         const alphanumeric = /^[0-9a-zA-Z]+$/
         const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]+$/;
 
@@ -56,7 +56,7 @@ export class UserRegisterComponent {
             return;
         }
         var list: Game[] = []
-        this.userService.registerUser({ name: name, email: mail, password: pass1, wishList: list, library: list} as User)
+        this.userService.registerUser({ name: name, password: pass1, wishList: list, library: list} as User)
             .subscribe(
                 () => {
                     alert("Registo bem sucedido")

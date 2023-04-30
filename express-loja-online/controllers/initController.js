@@ -7,16 +7,14 @@ exports.init = async (req, res) => {
 
     await User.create([
       { name: 'user1', 
-      email: "user1@gmail.com", 
       password: "1", 
       imagemPerfil: "https://i.scdn.co/image/ab67616d00001e027a58bc39b4e2466cd9273c55"},
     ]);
     
-    const user1 = await User.findOne({ email: "user1@gmail.com" });
+    const user1 = await User.findOne({ name: "user1" });
 
     const user2 = new User({ 
       name: 'user2',
-      email: "user2@gmail.com",
       password: "2",
       followers: [user1._id], // Adiciona o _id do user1 à lista de seguidores do user2
       //following: [user1.id],
