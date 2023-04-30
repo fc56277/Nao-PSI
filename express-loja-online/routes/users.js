@@ -20,4 +20,6 @@ router.get('/logout', user_controller.user_logout_get);
 // regista um novo user
 router.post('/register', user_controller.user_register_post);
 
+router.get('/following', user_controller.following_users_get);
+
 module.exports = router;

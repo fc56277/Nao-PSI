@@ -6,7 +6,10 @@ exports.init = async (req, res) => {
     await Game.deleteMany({});
 
     await User.create([
-      { name: 'user1', email: "user1@gmail.com", password: "1", imagemPerfil: "https://i.scdn.co/image/ab67616d00001e027a58bc39b4e2466cd9273c55"}
+      { name: 'user1', 
+      email: "user1@gmail.com", 
+      password: "1", 
+      imagemPerfil: "https://i.scdn.co/image/ab67616d00001e027a58bc39b4e2466cd9273c55"},
     ]);
     
     const user1 = await User.findOne({ email: "user1@gmail.com" });

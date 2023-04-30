@@ -22,39 +22,14 @@
           <span>{{user.followers.length}}</span>
       </div>
       <div class="follow-item">
-          <a class="reactive-box" tabindex="0">A Seguir</a>
+          <a class="reactive-box" routerLink="/following" tabindex="0">A Seguir</a>
           <span>{{user.following.length}}</span>
       </div>
     </div>
     <div class="perfil-links">
-        <a class="reactive-box" tabindex="0" (click)="toggleGames()">Biblioteca</a>
+        <a class="reactive-box" tabindex="0" routerLink="/biblioteca">Biblioteca</a>
         <a class="reactive-box" tabindex="0">Wishlist</a>
         <a class="reactive-box" tabindex="0">Listas Personalizadas</a>
-    </div>
-    <ng-container class="IfBiblioteca" *ngIf="showGames">
-      <div class="games-grid" #gamesSection>  
-        <div class="destaques-container" *ngFor="let game of allGames">
-          <div class="card">
-            <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" />
-            <div class="card-body">
-              <div class="row">
-                <div class="card-title">
-                  <h4><a class="game-name" routerLink="/game/{{game._id}}">{{game.name}}</a></h4>
-                </div>
-                <div class="view-btn">
-                  <a>Detalhes</a>
-                </div>
-              </div>
-              <hr />
-              <p>
-                Lorem ipsum dolor sit amet.
-              </p>
-              <div class="btn-group">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-container>         
+    </div>        
   </div>
 </div>

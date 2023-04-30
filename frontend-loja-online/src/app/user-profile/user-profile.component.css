@@ -1,7 +1,7 @@
 .allElements {
   position: relative;
   display: grid;
-  height: 500vh;
+  height: 100vh;
   background: linear-gradient(135deg, rgba(28,61,90,1) 10%, rgba(52,211,153,1) 120%);
 }
 
@@ -182,7 +182,7 @@ nav a:hover {
 
 .perfil-container {
   position: absolute;
-  top: 3%;
+  top: 25%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;

@@ -9,4 +9,5 @@ export interface User {
     wishList: [Game];
     followers: [User];
     following: [User];
+    library: [Game];
 }
