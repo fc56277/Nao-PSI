@@ -1,1 +1,32 @@
-<p>user-library works!</p>
+<ul class="nav">
+    <li><a routerLink="/dashboard" data-hover="DASHBOARD">DASHBOARD</a></li>
+    <li><a routerLink="/user" data-hover="PERFIL">PERFIL</a></li>
+    <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
+</ul>
+
+<div class="allElements">
+    <h2>BIBLIOTECA</h2>
+    <div class="games-grid">  
+        <div class="destaques-container" *ngFor="let game of allGames">
+        <div class="card">
+            <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" />
+            <div class="card-body">
+            <div class="row">
+                <div class="card-title">
+                <h4><a class="game-name" routerLink="/game/{{game._id}}">{{game.name}}</a></h4>
+                </div>
+                <div class="view-btn">
+                <a>Detalhes</a>
+                </div>
+            </div>
+            <hr />
+            <p>
+                Lorem ipsum dolor sit amet.
+            </p>
+            <div class="btn-group">
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

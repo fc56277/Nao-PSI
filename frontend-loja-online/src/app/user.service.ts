@@ -19,6 +19,11 @@ export class UserService {
     return this.http.get<User[]>(this.usersUrl);
   }
 
+  getFollowingUsers() {
+    const url = `${this.usersUrl}/following`;
+    return this.http.get<User[]>(url);
+  }
+
   getUser(): Observable<User> {
     const url = `${'api/user'}`;
     return this.http.get<User>(url);

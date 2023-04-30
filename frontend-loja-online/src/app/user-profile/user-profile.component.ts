@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
     private gameService: GameService,
     private location: Location,
   ) {}
-
+      
   ngOnInit(): void {
     this.checkIfLogged();
     this.getUser();

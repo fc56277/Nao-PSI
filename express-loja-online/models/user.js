@@ -7,9 +7,10 @@ const UserSchema = new Schema({
   email: { type: String, required: true},
   password: { type: String, required: true},
   imagemPerfil: { type: String, required: false},
-  wishList: [{ type: Schema.Types.ObjectId, ref: 'Game' }, ],
+  wishList: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
   followers: [{ type: Schema.Types.ObjectId, ref: 'User'}],
-  following: [{ type: Schema.Types.ObjectId, ref: 'User'}]
+  following: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+  library: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
 });
 
 UserSchema.virtual("url").get(function () {

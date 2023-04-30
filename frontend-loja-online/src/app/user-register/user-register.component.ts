@@ -56,7 +56,7 @@ export class UserRegisterComponent {
             return;
         }
         var list: Game[] = []
-        this.userService.registerUser({ name: name, email: mail, password: pass1, wishList: list } as User)
+        this.userService.registerUser({ name: name, email: mail, password: pass1, wishList: list, library: list} as User)
             .subscribe(
                 () => {
                     alert("Registo bem sucedido")
