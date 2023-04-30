@@ -28,23 +28,31 @@ export class UserRegisterComponent {
     }
 
     register(name: string, mail: string, pass1: string, pass2: string): void {
+        const alphanumeric = /^[0-9a-zA-Z]+$/
+        const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]+$/;
+
+        if(name.length < 3 || !alphanumeric.test(name)) {
+            alert("O nome de utilizador só pode ter caracteres alfanuméricos e deve ter três caracteres no mínimo!");
+            return;
+        }
+        let userExists = false;
+        for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].name === name) {
+                userExists = true;
+                break;
+            }
+        }
+        if (userExists) {
+            alert("Este username não está disponivel.")
+            return;
+        }
+
         if (!(pass1 === pass2)) {
             alert("As passwords inseridas nao coincidem!")
             return;
         }
-        if (pass1.length < 5) {
-            alert("A password deve ter pelo menos 5 caracteres!")
-            return;
-        }
-        let emailExists = false;
-        for (let i = 0; i < this.users.length; i++) {
-            if (this.users[i].email === mail) {
-                emailExists = true;
-                break;
-            }
-        }
-        if (emailExists) {
-            alert("Ja existe uma conta associada a este e-mail!")
+        if (pass1.length < 8 || !pattern.test(pass1)) {
+            alert("A password deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula e um algarismo!")
             return;
         }
         var list: Game[] = []

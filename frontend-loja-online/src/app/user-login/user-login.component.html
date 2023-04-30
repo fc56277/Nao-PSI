@@ -5,9 +5,9 @@
 <h2>Login</h2>
 
 <form >
-  <input type="text" id="mail" placeholder="E-mail" #mail><br>
+  <input type="text" id="user" placeholder="Username" #user><br>
   <input type="password" id="pass" placeholder="Password" #pass><br><br>
-  <button type="button" (click)="login(mail.value, pass.value)">Iniciar Sessão</button>
+  <button type="button" (click)="login(user.value, pass.value)">Iniciar Sessão</button>
   <button type="button" onClick="window.location.href='http://localhost:4200/register'">Criar Conta</button>
 </form> 
 
