@@ -255,6 +255,7 @@ span {
 }
 
 .product-price-btn button {
+  float: right;
   display: inline-block;
   height: 50px;
   width: 136px;
