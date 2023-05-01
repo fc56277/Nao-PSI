@@ -23,7 +23,7 @@
 
   <h2>DESTAQUES</h2>
   <div class="destaques-container">
-    <div class="product-card-wrapper" *ngFor="let game of destaqueGames" >
+    <div class="product-card-wrapper" *ngFor="let game of destaqueGames" tabindex="0">
       <div class="product-img">
         <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
       </div>
@@ -34,7 +34,7 @@
         </div>
         <div class="product-price-btn">
           <p><span>{{game.price}}</span>€</p>
-          <button type="button">COMPRAR</button>
+          <button type="button" tabindex="0">COMPRAR</button>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="box-container" *ngIf="user">
  
-    <div class="box">
+    <div class="box" tabindex="0">
         <div class="text">
             <h2 class="topic-heading">{{user.followers.length}}</h2>
             <h2 class="topic">Seguidores</h2>
@@ -55,7 +55,7 @@
         <i class="fa fa-users" aria-hidden="true" style="color: white; font-size: 40px;"></i>
     </div>
 
-    <div class="box">
+    <div class="box" tabindex="0">
         <div class="text" >
             <h2 class="topic-heading">{{user.following.length}}</h2>
             <h2 class="topic" >A seguir</h2>
@@ -63,21 +63,21 @@
         <i class="fa fa-eye" aria-hidden="true" style="color: white; font-size: 40px;"></i>
     </div>
 
-    <div class="box">
+    <div class="box" tabindex="0">
         <div class="text">
             <h2 class="topic-2">Biblioteca</h2>
         </div>
         <i class="fa fa-gamepad" style="color: white; font-size: 45px;"></i>
     </div>
 
-    <div class="box">
+    <div class="box" tabindex="0">
         <div class="text">
             <h2 class="topic-2">Wishlist</h2>
         </div>
         <i class="fa fa-bookmark" aria-hidden="true" style="color: white; font-size: 40px;"></i>
     </div>
 
-    <div class="box">
+    <div class="box" tabindex="0">
       <div class="text">
           <h2 class="topic-2">Listas Personalizadas</h2>
       </div>
@@ -108,7 +108,7 @@
   <br><br>
   <h2>À VENDA</h2>
   <div class="destaques-container">
-    <div class="product-card-wrapper" *ngFor="let game of allGames" >
+    <div class="product-card-wrapper" *ngFor="let game of allGames" tabindex="0">
       <div class="product-img">
         <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
       </div>
@@ -119,7 +119,7 @@
         </div>
         <div class="product-price-btn">
           <p><span>{{game.price}}</span>€</p>
-          <button type="button">COMPRAR</button>
+          <button type="button" tabindex="0">COMPRAR</button>
         </div>
       </div>
     </div>
