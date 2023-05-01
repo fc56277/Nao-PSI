@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { User } from "./user";
 import { catchError, tap } from 'rxjs/operators';
+import { Game } from './game';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,11 @@ export class UserService {
     const url = `${this.usersUrl}/following`;
     return this.http.get<User[]>(url);
   }
+
+  getUserLibrary(): Observable<Game[]> {
+    const url = `${this.usersUrl}/library`;
+    return this.http.get<Game[]>(url);
+  }  
 
   getUser(): Observable<User> {
     const url = `${'api/user'}`;
