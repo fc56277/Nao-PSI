@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   name: { type: String, required: true},
-  email: { type: String, required: true},
   password: { type: String, required: true},
   imagemPerfil: { type: String, required: false},
   wishList: [{ type: Schema.Types.ObjectId, ref: 'Game' }],

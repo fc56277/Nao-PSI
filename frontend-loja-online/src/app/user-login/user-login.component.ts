@@ -2,10 +2,22 @@ import { Component } from '@angular/core';
 import { User } from "../user";
 import { UserService } from "../user.service"
 import { Router } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 @Component({
     selector: 'app-user-login',
     templateUrl: './user-login.component.html',
-    styleUrls: ['./user-login.component.css']
+    styleUrls: ['./user-login.component.css'],
+    animations: [
+        trigger('fadeInOut', [
+            transition(':enter', [
+              style({ opacity: 0 }),
+              animate('0.5s ease-in-out', style({ opacity: 1 }))
+            ]),
+            transition(':leave', [
+              animate('0.5s ease-in-out', style({ opacity: 0 }))
+            ])
+          ])
+      ]
 })
 
 export class UserLoginComponent {
@@ -49,5 +61,9 @@ export class UserLoginComponent {
                 }
               );
         }
+    }
+
+    goToRegister() {
+        this.router.navigate(['/register']);
     }
 }

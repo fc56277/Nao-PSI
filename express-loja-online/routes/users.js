@@ -22,4 +22,6 @@ router.post('/register', user_controller.user_register_post);
 
 router.get('/following', user_controller.following_users_get);
 
+router.get('/library', user_controller.user_library_get);
+
 module.exports = router;
