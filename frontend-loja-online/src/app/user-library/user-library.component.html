@@ -6,23 +6,23 @@
 </ul>
 
 
-<br><br><br><br><br><br>
-<h2>Biblioteca</h2>
-    <div class="destaques-container">
-        <div class="product-card-wrapper" *ngFor="let game of userLibrary" tabindex="0">
-            <div class="product-img">
-                <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
-            </div>
-            <div class="product-info">
-                <div class="product-text">
-                <h1 routerLink="/game/{{game._id}}">{{game.name}}</h1>
-                <p>{{game.description}}</p>
-                </div>
-                <div class="product-price-btn">
-
-                <button type="button" tabindex="0">Ver detalhes</button>
-                </div>
-            </div>
+<br><br><br><br><br>
+<h2>BIBLIOTECA</h2>
+<div class="destaques-container">
+    <div class="product-card-wrapper" *ngFor="let game of userLibrary" tabindex="0">
+      <div class="product-img">
+        <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
+      </div>
+      <div class="product-info">
+        <div class="product-text">
+          <h1>{{game.name}}</h1>
+          <p>{{game.description}}</p>
         </div>
+        <div class="product-price-btn">
+          <p><span>{{game.price}}</span>€</p>
+          <button type="button" tabindex="0">COMPRAR</button>
+        </div>
+      </div>
     </div>
+  </div>
 </body>

@@ -13,20 +13,32 @@
     </div>
     <div class="card_count">
         <div class="count">
-            <div class="followers" tabindex="0">
+            <div class="followers">
+              <a style="text-decoration: none;" tabindex="0">
                 <h3 style="text-indent: 25px">{{user.followers.length}}</h3><br>
+              </a>
                 <p>Seguidores</p>
             </div>
-            <div class="following" tabindex="0" routerLink="/following">
-                <h3 style="text-indent: 15px">{{user.following.length}}</h3><br>
+            <div class="following">
+                <a style="text-decoration: none;" routerLink="/following" tabindex="0">
+                  <h3 style="text-indent: 15px">{{user.following.length}}</h3>
+                </a>
+                <br>
                 <p>A seguir</p>
             </div>
            
         </div>
-         <div class="btn" tabindex="0" routerLink="/biblioteca" >Biblioteca</div>
-         <div class="btn" tabindex="0">Wishlist</div>
-         <div class="btn" tabindex="0">Listas Personalizadas</div> 
+        <a style="text-decoration: none;" routerLink="/biblioteca" tabindex="0">
+          <div class="btn">Biblioteca</div>
+        </a>
 
+        <a style="text-decoration: none;" tabindex="0">
+          <div class="btn">Wishlist</div>
+        </a>
+
+        <a style="text-decoration: none;" tabindex="0">
+          <div class="btn">Listas Personalizadas</div> 
+        </a>
     </div>
   </div>
   

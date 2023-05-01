@@ -5,7 +5,7 @@ body {
 
 /* Section headings */
 h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #ffffff;
   text-indent: 30px;
 }
@@ -262,6 +262,10 @@ h2 {
   color: #474747;
 }
 
+.product-price-btn button:focus {
+  outline: 1px solid rgb(105, 105, 105);
+}
+
 span {
   display: inline-block;
   height: 50px;
@@ -272,7 +276,7 @@ span {
   float: right;
   display: inline-block;
   height: 50px;
-  width: 136px;
+  width: 116px;
   margin: -25px 60px;
   box-sizing: border-box;
   border: transparent;
