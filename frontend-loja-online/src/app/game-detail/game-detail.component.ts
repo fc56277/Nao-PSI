@@ -26,8 +26,8 @@ export class GameDetailComponent {
 
 
   ngOnInit(): void {
-    this.getGame();
     this.checkIfLogged();
+    this.getGame();
   }
 
   getGame(): void {

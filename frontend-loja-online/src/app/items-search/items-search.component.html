@@ -1,10 +1,17 @@
 
 <div class="wrapper">
-    <input #searchBox id="searchQueryInput" (input)="search(searchBox.value)" placeholder="Pesquisar" type="text" name="searchQueryInput"/>
+  <input #searchBox id="searchQueryInput" (input)="search(searchBox.value)" placeholder="Pesquisar" type="text" name="searchQueryInput"/>
   
-    <ul class="search-result">
-      <li *ngFor="let game of games$ | async" >
-        <a routerLink="/detail/{{game._id}}">{{game.name}}</a>
-      </li>
-    </ul>
+  <ul class="search-result">
+    <ng-container *ngIf="games$ | async as games">
+      <ng-container *ngIf="games.length > 0; else noResults">
+        <li *ngFor="let game of games$ | async">
+          <a routerLink="/detail/{{game._id}}">{{game.name}}</a>
+        </li>
+      </ng-container>
+    </ng-container>
+    <ng-template #noResults>
+      <li><a>No results found</a></li>
+    </ng-template>
+  </ul>
 </div>
