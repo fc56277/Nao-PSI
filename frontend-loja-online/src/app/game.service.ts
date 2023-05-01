@@ -11,36 +11,62 @@ export class GameService {
 
   private gameUrl = 'http://localhost:3000';
 
-  constructor(
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getGames(): Observable<Game[]> {
-    return this.http.get<Game[]>('http://localhost:3000/games').pipe(
-      catchError(this.handleError<Game[]>('getGames', [])));
+    httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    
+    getGames(): Observable<Game[]> {
+      return this.http.get<Game[]>('http://localhost:3000/games').pipe(
+        catchError(this.handleError<Game[]>('getGames', [])));
+    }
+      /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   *
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      //this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+/* GET games whose name contains search term */
+  searchGames(name: string): Observable<Game[]> {
+    if (!name.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
 
-    /**
- * Handle Http operation that failed.
- * Let the app continue.
- *
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
-private handleError<T>(operation = 'operation', result?: T) {
-  return (error: any): Observable<T> => {
+    const url = `http://localhost:3000/games/${name}`;
 
-    // TODO: send the error to remote logging infrastructure
-    console.error(error); // log to console instead
+    return this.http.get<Game[]>(url).pipe(
+      tap(x => x.length ?
+        console.log(`found games matching "${name}"`) :
+        console.error(`no games matching "${name}"`)),
+      catchError(this.handleError<Game[]>('searchItems', []))
+    );
+  }
 
-    // TODO: better job of transforming error for user consumption
-    //this.log(`${operation} failed: ${error.message}`);
+  getGameById(id: string) {
+    const url = `${this.gameUrl}/detail/${id}`;
+      
+      return this.http.get<Game>(url).pipe(
+        tap(_ => console.error(`fetched game id=${id}`)),
+        catchError(this.handleError<Game>(`getGame id=${id}`))
+      );
+  }
 
-    // Let the app keep running by returning an empty result.
-    return of(result as T);
-  };
-}
+
 }

@@ -12,7 +12,7 @@ import { Game } from '../game';
 })
 export class UserLibraryComponent {
   user: User | undefined;
-  allGames: Game[] = [];
+  userLibrary: Game[] = [];
 
   constructor(
     private router: Router,
@@ -23,7 +23,7 @@ export class UserLibraryComponent {
   ngOnInit(): void {
     this.checkIfLogged();
     this.getUser();
-    this.getAllGames();
+    this.getUserLibrary();
   }
 
   getUser(): void {
@@ -31,10 +31,11 @@ export class UserLibraryComponent {
       .subscribe(user => this.user = user);
   }
 
-  getAllGames(): void {
-    this.gameService.getGames()
-      .subscribe(games => this.allGames = games)
+  getUserLibrary(): void {
+    this.userService.getUserLibrary()
+      .subscribe(library => this.userLibrary = library);
   }
+
 
   checkIfLogged(): void {
     this.userService.checkIfLogged()

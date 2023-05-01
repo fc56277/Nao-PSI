@@ -34,6 +34,7 @@ exports.init = async (req, res) => {
       { name: 'Minecraft', type: "Sandbox, survival game", price: 19.99 , description: "Minecraft is a game that allows players to explore, create, and survive in a blocky 3D world. The game has two primary modes: Survival, where players must gather resources and build structures to survive against monsters and other players, and Creative, where players have unlimited resources to build whatever they can imagine.", img: 'https://upload.wikimedia.org/wikipedia/pt/9/9c/Minecraft_capa.png'}
     ]);
 
+
     const games = await Game.find().limit(2); // encontra os dois primeiros jogos na lista de jogos
     user1.library = games.map(game => game._id); // mapeia os jogos e armazena os seus _id na biblioteca do user1
     await user1.save();
