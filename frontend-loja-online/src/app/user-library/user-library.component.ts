@@ -4,11 +4,24 @@ import { UserService } from '../user.service';
 import { GameService } from '../game.service';
 import { Router } from '@angular/router';
 import { Game } from '../game';
+import { trigger, transition, style, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-user-library',
   templateUrl: './user-library.component.html',
-  styleUrls: ['./user-library.component.css']
+  styleUrls: ['./user-library.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+        transition(':enter', [
+          style({ opacity: 0 }),
+          animate('0.5s ease-in-out', style({ opacity: 1 }))
+        ]),
+        transition(':leave', [
+          animate('0.5s ease-in-out', style({ opacity: 0 }))
+        ])
+      ])
+  ]
 })
 export class UserLibraryComponent {
   user: User | undefined;

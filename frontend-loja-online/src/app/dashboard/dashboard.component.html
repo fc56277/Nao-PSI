@@ -12,10 +12,10 @@
 
  
   <!-- slideshow -->
-  <img class="slideshow" src="http://drive.google.com/uc?export=view&id=17v0lEy0E5wOIJcFHuvWleMqVSyVetp7O" style="width:100%">
+  <img [@fadeInOut] class="slideshow" src="http://drive.google.com/uc?export=view&id=17v0lEy0E5wOIJcFHuvWleMqVSyVetp7O" style="width:100%">
 
-  <h2>DESTAQUES</h2>
-  <div class="destaques-container">
+  <h2 [@fadeInOut]>DESTAQUES</h2>
+  <div [@fadeInOut] class="destaques-container">
     <div class="product-card-wrapper" *ngFor="let game of destaqueGames" tabindex="0">
       <div class="product-img">
         <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
@@ -36,9 +36,9 @@
 
 
   <br><br>
-  <h2>SECÇÃO DO UTILIZADOR</h2>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <div class="box-container" *ngIf="user">
+  <h2 [@fadeInOut]>SECÇÃO DO UTILIZADOR</h2>
+  <link [@fadeInOut] rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div [@fadeInOut] class="box-container" *ngIf="user">
     
     <a style="text-decoration: none;" tabindex="0">
       <div class="box">
@@ -85,7 +85,7 @@
 </div>
 
   <br><br>
-  <h2>À VENDA</h2>
+  <h2 [@fadeInOut]>À VENDA</h2>
   <div class="destaques-container">
     <div class="product-card-wrapper" *ngFor="let game of allGames" tabindex="0">
       <div class="product-img">

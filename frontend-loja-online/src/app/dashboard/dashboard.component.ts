@@ -3,12 +3,24 @@ import { GameService } from '../game.service';
 import { Game } from '../game';
 import { User } from '../user';
 import { Router } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+        transition(':enter', [
+          style({ opacity: 0 }),
+          animate('0.5s ease-in-out', style({ opacity: 1 }))
+        ]),
+        transition(':leave', [
+          animate('0.5s ease-in-out', style({ opacity: 0 }))
+        ])
+      ])
+  ]
 })
 export class DashboardComponent {
   user: User | undefined;

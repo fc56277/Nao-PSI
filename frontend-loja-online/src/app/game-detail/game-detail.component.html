@@ -6,7 +6,7 @@
 
 <body>
     <br><br><br><br><br>
-    <div class="destaques-container">
+    <div [@fadeInOut] class="destaques-container">
         <div class="product-card-wrapper" *ngIf="game" tabindex="0">
           <div class="product-img">
             <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
@@ -23,28 +23,4 @@
           </div>
         </div>
       </div>
-
-
-
-    <!-- <div class="container">
-        <div *ngIf="game">
-            <h2 style="margin-left: 1%;">{{game.name | uppercase}}</h2>
-            <div class="gameContent">
-                <div class="leftContent">
-                    <img id="gameImage" [src]="game.img" alt="Imagem do jogo"/>
-                </div>
-                <div class="rightContent">
-                    <div id="price"><h3 style="margin-bottom: 5px;">Preço</h3>{{game.price}}</div>
-                    <h3 style="margin-bottom: 5px;">Descrição</h3>
-                    <div id="description">{{game.description}}</div>
-                    <div class="btn-group">
-                        <div class="btn">
-                          <a href="">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div> -->
 </body>
