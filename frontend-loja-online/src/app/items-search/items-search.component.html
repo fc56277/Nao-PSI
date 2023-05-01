@@ -1,6 +1,6 @@
 
 <div class="wrapper">
-  <input #searchBox id="searchQueryInput" (input)="search(searchBox.value)" placeholder="Pesquisar" type="text" name="searchQueryInput"/>
+  <input #searchBox id="searchQueryInput" (input)="search(searchBox.value)" placeholder="Pesquisar jogos" type="text" name="searchQueryInput"/>
 
   <ul class="search-result" >
     <ng-container *ngIf="games$ | async as games">
