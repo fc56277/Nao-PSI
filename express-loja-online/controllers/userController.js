@@ -33,6 +33,21 @@ exports.following_users_get = async (req, res) => {
   }
 };
 
+exports.user_library_get = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.session.user_id).populate('library').exec();
+    if (user == null) {
+      const err = new Error("User not found");
+      err.status = 404;
+      return next(err);
+    }
+    res.status(200).json(user.library);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+
 // verifica se o login foi efetuado
 exports.user_isLogged_get = async (req, res) => {
   res.status(200).json({ value: req.session.user_id != undefined });
