@@ -2,10 +2,22 @@ import { Component } from '@angular/core';
 import { User } from "../user";
 import { UserService } from "../user.service"
 import { Router } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 @Component({
     selector: 'app-user-login',
     templateUrl: './user-login.component.html',
-    styleUrls: ['./user-login.component.css']
+    styleUrls: ['./user-login.component.css'],
+    animations: [
+        trigger('fadeInOut', [
+            transition(':enter', [
+              style({ opacity: 0 }),
+              animate('0.5s ease-in-out', style({ opacity: 1 }))
+            ]),
+            transition(':leave', [
+              animate('0.5s ease-in-out', style({ opacity: 0 }))
+            ])
+          ])
+      ]
 })
 
 export class UserLoginComponent {
@@ -26,24 +38,21 @@ export class UserLoginComponent {
         })
     }
 
-    login(mail: string, pass: string): void {
-        var exists = false;
+    login(username: string, pass: string): void {
+        var success = false;
         var id: string | null = null;
         this.users.forEach(function(user) {
-            if(user.email === mail) {
-                exists = true;
+            if(user.name === username) {
                 if(user.password === pass) {
+                    success = true;
                     id = user._id;
-                    return;
-                } else {
-                    alert("A password inserida esta incorreta!");
                     return;
                 }
             }
         });
-        if(!exists) {
-            alert("Nao existe nenhuma conta associada a este e-mail!");
-        } else if(id != null) {
+        if(!success) {
+            alert("Ocorreu um erro na autenticação");
+        } else if (id != null) {
             this.userService.loginUser(id).subscribe(
                 (response) => {
                   alert(response.message);
@@ -52,5 +61,9 @@ export class UserLoginComponent {
                 }
               );
         }
+    }
+
+    goToRegister() {
+        this.router.navigate(['/register']);
     }
 }
