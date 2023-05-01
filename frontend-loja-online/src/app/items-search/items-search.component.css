@@ -1,4 +1,6 @@
-/* HeroSearch private styles */
+.wrapper {
+  margin-left: 500px;
+}
 
 li {
   list-style-type: none;
@@ -29,36 +31,6 @@ ul.search-result {
 }
 
 /* styling search bar */
-/* .wrapper {
-  width: 100%;
-  max-width: 31.25rem;
-  margin: 1% auto;
-  font-weight: 400;
-  color: white;
-  font-size: 17px;
-  margin-bottom: 1rem;
-}
-
-#searchQueryInput {
-  width: 100%;
-  height: 2.8rem;
-  background: #f5f5f5;
-  outline: none;
-  border: none;
-  border-radius: 1.625rem;
-  padding: 0 3.5rem 0 1.5rem;
-  font-size: 1rem;
-}  */
-/* ////////////////// */
-
-/* styling search bar */
-.searchBar-wrapper {
-  width: 100%;
-  max-width: 31.25rem;
-  display: flex;
-  margin-left: auto;
-}
-
 .label {
   color: white;
   font-size: 17px;
@@ -74,7 +46,7 @@ ul.search-result {
 }
 
 #searchQueryInput {
-  width: 100%;
+  width: 300px;
   height: 2.2rem;
   background: #f5f5f5;
   outline: none;
@@ -82,6 +54,7 @@ ul.search-result {
   border-radius: 1.625rem;
   padding: 0 3.5rem 0 1.5rem;
   font-size: 1rem;
+  justify-content: center;
 }
 
 #searchQuerySubmit {

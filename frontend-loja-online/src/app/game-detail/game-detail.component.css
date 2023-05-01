@@ -1,126 +1,333 @@
 body {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    background-color: #1b2839;
-    color: white;
-    height: 91.7vh;
+  background-color: #1b2839;
+  height: 200vh;
 }
 
-.container {
-    display: flexbox;
-    width: 70%;
-    height: min-content;
+/* Section headings */
+h2 {
+  font-size: 2rem;
+  color: #ffffff;
+  text-indent: 30px;
 }
 
-/* Content do jogo */
-.gameContent {
-    /* border: blue solid; */
-    display: flex;
-    /* flex-direction: row; */
-}
-
-.leftContent {
-    width: 60%;
-    height: 400px;
-    flex: 1;
-    /* border: green solid; */
-    padding: 13px;
-    display: flex;
-    justify-content: center;
-}
-
-#gameImage {
-    width: 100%;
-}
-
-.rightContent {
-    width: 40%;
-    /* border: yellow solid; */
-    display: flex;
-    flex-direction: column;
-}
-
-/* inicio buy button */
-.btn-group {
-  margin-top: 18px;
-}
-
-.btn-group .btn a {
-  padding: 5px 15px;
-  background-color: #28a745;
-  color: #fff;
-  border-radius: 3px;
-  margin-left: -2px;
-  text-decoration: none;
-}
-
-/* fim Content do jogo */
 
 /* Basic navigation bar styling */
 .nav {
-    background-color: #1c212a;
-    padding: 1%;
-    display: -webkit-flex;
-    display: -ms-flex;
-    display: flex;
-    margin-top: 0;
-    margin-bottom: 0;
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1c212a;
+  padding: 1%;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  z-index: 1; 
 }
-  .nav * {
-    box-sizing: border-box;
-    -webkit-transition: all 0.35s ease;
-    transition: all 0.35s ease;
-  }
-  .nav li {
-    display: inline-block;
-    list-style: outside none none;
-    margin: 0 1.5em;
-    overflow: hidden;
-  }
-  .nav a {
-    padding: 0.3em 0;
-    color: rgb(255, 255, 255);
-    position: relative;
-    display: inline-block;
-    letter-spacing: 1px;
-    margin-right: 2px;
-    text-decoration: none;
-  }
-  
-  .nav li:last-of-type {
-    margin-left: auto;
-  }
-  
-  .nav a:before,
-  .nav a:after {
-    position: absolute;
-    -webkit-transition: all 0.35s ease;
-    transition: all 0.35s ease;
-  }
-  .nav a:before {
-    top: 100%;
-    display: block;
-    height: 3px;
-    width: 100%;
-    content: "";
-    background-color: #0099ff;
-  }
-  .nav a:after {
-    padding: 0.3em 0;
-    position: absolute;
-    top: 108%;
-    left: 0;
-    content: attr(data-hover);
-    color: white;
-    white-space: nowrap;
-    font-weight: bold;
-  }
-  .nav li:hover a,
-  .nav .current a {
-    transform: translateY(-100%);
-  }
-  /* fim navbar */
+.nav * {
+  margin: 2.5px;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.nav li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0 1.5em;
+  overflow: hidden;
+}
+.nav a {
+  padding: 0.3em 0;
+  color: rgb(255, 255, 255);
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+  margin-right: 2px;
+  text-decoration: none;
+}
 
+.nav li:last-of-type {
+  margin-left: auto;
+}
+
+.nav a:before,
+.nav a:after {
+  position: absolute;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.nav a:before {
+  top: 100%;
+  display: block;
+  height: 3px;
+  width: 100%;
+  content: "";
+  background-color: #0099ff;
+}
+.nav a:after {
+  padding: 0.3em 0;
+  position: absolute;
+  top: 108%;
+  left: 0;
+  content: attr(data-hover);
+  color: white;
+  white-space: nowrap;
+  font-weight: bold;
+}
+.nav li:hover a,
+.nav .current a {
+  transform: translateY(-100%);
+}
+/*------------------------
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Basic navigation bar styling */
+  nav {
+    background-color: #1a237e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 0;
+    position: relative;
+  }
+  
+  nav::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: #64b5f6;
+    width: 0;
+    transition: width 0.4s;
+  }
+  
+  nav:hover::before {
+    width: 100%;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  nav a:hover {
+    color: #64b5f6; 
+    transform: scale(1.1);
+  }
+  
+  .perfil-container {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .perfil-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .reactive-box {
+    display: inline-block;
+    background-color: #1F2937;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin: 4px;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  
+  .reactive-box:hover {
+    background-color: #006cb3;
+    transform: translateY(-2px);
+  }
+  
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 4fr);
+    grid-gap: 1rem;
+    padding: 1rem;
+    margin-top: -30%; /* Adjust as needed */
+  }
+  
+/*Product-card*/
+.destaques-container {
+  width: 100%;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.product-card-wrapper {
+  margin-top: 1%;
+  background-color: rgb(255, 255, 255);
+  height: 320px;
+  width: 530px;
+  border-radius: 7px 7px 7px 7px;
+  /* VIA CSS MATIC https://goo.gl/cIbnS */
+  -webkit-box-shadow: 0px 14px 32px 0px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 0px 14px 32px 0px rgba(255, 255, 255, 0.15);
+  box-shadow: 0px 14px 32px 0px rgba(255, 255, 255, 0.15);
+}
+
+.product-card-wrapper:hover {
+  cursor: pointer;
+  background-color: rgb(242, 242, 242);
+}
+
+.product-img {
+  float: left;
+  height: 320px;
+  width: 250px;
+}
+
+.product-img img {
+  border-radius: 7px 0 0 7px;
+}
+
+.product-info {
+  float: left;
+  height: 320px;
+  width: 280px;
+  border-radius: 0 7px 10px 7px;
+}
+
+.product-text {
+  height: 300px;
+  width: 270px;
+}
+
+.product-text h1 {
+  margin: 0 0 0 38px;
+  padding-top: 52px;
+  font-size: 30px;
+  color: #474747;
+}
+
+.product-text h2 {
+  margin: 0 0 47px 38px;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #d2d2d2;
+  letter-spacing: 0.2em;
+}
+
+.product-text p {
+  height: 125px;
+  margin: 0 0 0 38px;
+  color: #8d8d8d;
+  line-height: 1.7em;
+  font-size: 15px;
+  font-weight: lighter;
+  overflow: hidden;
+}
+
+.product-price-btn {
+  width: 327px;
+  margin-top: -20px;
+  position: relative;
+}
+
+.product-price-btn p {
+  display: inline-block;
+  position: absolute;
+  top: -13px;
+  height: 50px;
+  margin: 0 0 0 38px;
+  font-size: 20px;
+  font-weight: lighter;
+  color: #474747;
+}
+
+.product-price-btn button:focus {
+  outline: 1px solid rgb(105, 105, 105);
+}
+
+span {
+  display: inline-block;
+  height: 50px;
+  font-size: 30px;
+}
+
+.product-price-btn button {
+  float: right;
+  display: inline-block;
+  height: 50px;
+  width: 116px;
+  margin: -25px 60px;
+  box-sizing: border-box;
+  border: transparent;
+  border-radius: 60px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #0b6dcf;
+  cursor: pointer;
+  outline: none;
+}
+
+.product-price-btn button:hover {
+  background-color: #0e85fc;
+}
+  /* Add media queries for responsiveness */
+  @media screen and (max-width: 1024px) {
+    .games-grid {
+      grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .games-grid {
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    }
+    .nav li {
+      margin: 0 1em;
+    }
+    .card {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .games-grid {
+      grid-template-columns: repeat(auto-fit, minmax(90%, 1fr));
+      grid-gap: 2rem;
+    }
+    .nav li {
+      margin: 0 0.5em;
+    }
+    .nav a {
+      font-size: 0.9rem;
+    }
+    .h2 {
+      font-size: 1.5rem;
+    }
+    .card {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }  

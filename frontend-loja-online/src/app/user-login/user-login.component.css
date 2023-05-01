@@ -10,7 +10,6 @@ body {
     height: 100vh;
     margin: 0;
     background-image: linear-gradient(-225deg, #283f5e 0%, #273950 48%, rgb(30, 52, 81) 100%);
-    width: 99%;
   }  
   
   h2 {
