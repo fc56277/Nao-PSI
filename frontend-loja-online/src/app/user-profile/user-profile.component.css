@@ -9,7 +9,7 @@ h2 {
   padding-left: 42px;
   color: white;
   font-size: 2rem;
-  margin: 2rem 0;
+  margin-top: 6rem;
 }
 
 /* Basic navigation bar styling */
@@ -346,4 +346,121 @@ nav a:hover {
     width: 100%;
     margin: 0 auto;
   }
+}
+
+
+/*--------------------------------------*/
+h3 {
+  font-size: 25px;
+  font-weight: bold;
+  color: #33363b;
+
+}
+
+p{
+  margin-top: 100px;
+  font-size: 14px;
+  color: #868d9b;
+}
+
+.card {
+  width: 360px;
+  height: 600px;
+  background-color: #ffffff;
+  margin: 0 auto;
+  margin-top: -100px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+}
+
+.card_profile_img {
+  width: 120px;
+  height: 120px;
+  background-color: #868d9b;
+  background: url("http://drive.google.com/uc?export=view&id=1avnhI3dWw5mZ710zmXE_Dk0jq5quAqov");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #ffffff;
+  border-radius: 120px;
+  margin: 0 auto;
+  margin-top: -60px;
+
+}
+
+.card_background_img {
+  width: 100%;
+  height: 180px;
+  background-color: #e1e7ed;
+  background: url("https://source.unsplash.com/9wg5jCEPBsw");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+
+.user_details p {
+  margin-bottom: 20px;
+  margin-top: -5px;
+}
+
+.user_details h3 {
+  margin-top: 10px;
+}
+
+.card_count {
+  padding: 30px;
+  border-top: 1px solid #dde1e7;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.count p {
+  margin-top: -10px;
+}
+
+.followers {
+  margin-top: 10px;
+  margin-bottom: 28px;
+  margin-left: 20px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.followers:hover, .following:hover {
+  cursor: pointer;
+  transform: scale(1.08);
+}
+
+.following {
+  margin-top: 10px;
+  margin-bottom: 28px;
+  margin-right: 20px;
+}
+
+.btn {
+  padding: 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: #006cb3;
+  color: white;
+  transition: background-color 0.2s, transform 0.2s;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #037fd2;
+  transform: translateY(-2px);
+}
+
+.btn:focus {
+  outline: 1px solid rgb(105, 105, 105); /* Change color and thickness as desired */
 }

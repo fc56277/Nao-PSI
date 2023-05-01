@@ -276,10 +276,15 @@ span {
   background-color: #0e85fc;
 }
 
+.product-price-btn button:focus {
+  outline: 1px solid rgb(105, 105, 105);
+}
+
 /*------------------------
   
   /* Section headings */
   h2 {
+    text-indent: 15px;
     font-size: 2rem;
     margin: 14px;
     margin-top: 30px;
