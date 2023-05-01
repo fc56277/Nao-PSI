@@ -1,0 +1,31 @@
+<ul class="nav">
+    <li><a routerLink="/dashboard" data-hover="DASHBOARD">DASHBOARD</a></li>
+    <li><a routerLink="/user" data-hover="PERFIL">PERFIL</a></li>
+    <li></li>
+    <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
+</ul>
+
+<body>
+    <div class="container">
+        <app-items-search></app-items-search>
+        <div *ngIf="game">
+            <h2 style="margin-left: 1%;">{{game.name | uppercase}}</h2>
+            <div class="gameContent">
+                <div class="leftContent">
+                    <img id="gameImage" [src]="game.img" alt="Imagem do jogo"/>
+                </div>
+                <div class="rightContent">
+                    <div id="price"><h3 style="margin-bottom: 5px;">Preço</h3>{{game.price}}</div>
+                    <h3 style="margin-bottom: 5px;">Descrição</h3>
+                    <div id="description">{{game.description}}</div>
+                    <div class="btn-group">
+                        <div class="btn">
+                          <a href="">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>

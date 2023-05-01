@@ -10,6 +10,7 @@ import {UserFollowingComponent} from './user-following/user-following.component'
 import {UserPersonalizedListComponent} from './user-personalized-list/user-personalized-list.component';
 import {UserWishlistComponent} from './user-wishlist/user-wishlist.component';
 import {UserLibraryComponent} from './user-library/user-library.component';
+import {GameDetailComponent} from './game-detail/game-detail.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'listas-personalizadas', component: UserPersonalizedListComponent },
     { path: 'followers', component: UserFollowersComponent },
     { path: 'following', component: UserFollowingComponent },
+    { path: 'detail/:id', component: GameDetailComponent },
 ];
 
 @NgModule({
