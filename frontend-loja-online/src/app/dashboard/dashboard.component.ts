@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  user: User | undefined;
   users: User[] = [];
   destaqueGames: Game[] = [];
   allGames: Game[] = [];
@@ -23,8 +24,14 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.checkIfLogged();
+    this.getUser();
     this.getEmDestaqueGames();
     this.getAllGames();
+  }
+
+  getUser(): void {
+    this.userService.getUser()
+      .subscribe(user => this.user = user);
   }
 
   getAllGames(): void {
