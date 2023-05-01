@@ -7,11 +7,23 @@ import { GameService } from '../game.service';
 
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-game-detail',
   templateUrl: './game-detail.component.html',
-  styleUrls: ['./game-detail.component.css']
+  styleUrls: ['./game-detail.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+        transition(':enter', [
+          style({ opacity: 0 }),
+          animate('0.5s ease-in-out', style({ opacity: 1 }))
+        ]),
+        transition(':leave', [
+          animate('0.5s ease-in-out', style({ opacity: 0 }))
+        ])
+      ])
+  ]
 })
 export class GameDetailComponent {
   game: Game | undefined;

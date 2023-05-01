@@ -4,8 +4,8 @@
   <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
 </ul>
 <div class="allElements" *ngIf="user">
-  <h2>PERFIL</h2>
-  <div class="card">
+  <h2 [@fadeInOut]>PERFIL</h2>
+  <div [@fadeInOut]  class="card">
     <div class="card_background_img"></div>
     <div class="card_profile_img"></div>
     <div class="user_details">

@@ -5,11 +5,24 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Game } from '../game';
 import { GameService } from '../game.service';
+import { trigger, transition, style, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+        transition(':enter', [
+          style({ opacity: 0 }),
+          animate('0.5s ease-in-out', style({ opacity: 1 }))
+        ]),
+        transition(':leave', [
+          animate('0.5s ease-in-out', style({ opacity: 0 }))
+        ])
+      ])
+  ]
 })
 export class UserProfileComponent implements OnInit {
   user: User | undefined;
