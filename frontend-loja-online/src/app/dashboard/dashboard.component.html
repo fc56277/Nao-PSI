@@ -13,26 +13,13 @@
         </button>
       </div>
     </div>
-
-
-
+    
     <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
   </ul>
 
  
   <!-- slideshow -->
   <img class="slideshow" src="https://i.imgur.com/eLzrVWU.png" style="width:100%">
-
-
-    
-
-
-    <!-- destaques -->
-    <!-- <div class="users-menu" *ngFor="let game of allGames">
-      <a routerLink="/game/{{game._id}}">{{game.name}}</a>
-      <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" />
-      <p>{{game.price}}</p>
-  </div> -->
 
   <h2>DESTAQUES</h2>
   <div class="destaques-container">
@@ -47,7 +34,7 @@
         </div>
         <div class="product-price-btn">
           <p><span>{{game.price}}</span>€</p>
-          <button type="button">buy now</button>
+          <button type="button">COMPRAR</button>
         </div>
       </div>
     </div>
@@ -55,7 +42,52 @@
 
 
 
-  <div class="combined-links">
+  <br><br>
+  <h2>SECÇÃO DO UTILIZADOR</h2>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div class="box-container" *ngIf="user">
+ 
+    <div class="box">
+        <div class="text">
+            <h2 class="topic-heading">{{user.followers.length}}</h2>
+            <h2 class="topic">Seguidores</h2>
+        </div>
+        <i class="fa fa-users" aria-hidden="true" style="color: white; font-size: 40px;"></i>
+    </div>
+
+    <div class="box">
+        <div class="text" >
+            <h2 class="topic-heading">{{user.following.length}}</h2>
+            <h2 class="topic" >A seguir</h2>
+        </div>
+        <i class="fa fa-eye" aria-hidden="true" style="color: white; font-size: 40px;"></i>
+    </div>
+
+    <div class="box">
+        <div class="text">
+            <h2 class="topic-2">Biblioteca</h2>
+        </div>
+        <i class="fa fa-gamepad" style="color: white; font-size: 45px;"></i>
+    </div>
+
+    <div class="box">
+        <div class="text">
+            <h2 class="topic-2">Wishlist</h2>
+        </div>
+        <i class="fa fa-bookmark" aria-hidden="true" style="color: white; font-size: 40px;"></i>
+    </div>
+
+    <div class="box">
+      <div class="text">
+          <h2 class="topic-2">Listas Personalizadas</h2>
+      </div>
+      <i class="fa fa-pencil-square-o" aria-hidden="true" style="color: white; font-size: 40px;"></i>
+  </div>
+</div>
+
+
+
+  <!-- <div class="combined-links">
     <div class="follow-info">
       <div class="follow-item">
         <a class="reactive-box">Seguidores</a>
@@ -69,30 +101,32 @@
       <a class="reactive-box">Wishlist</a>
       <a class="reactive-box">Listas Personalizadas</a>
     </div>
-  </div>
+  </div> -->
 
-  <h2>DESTAQUES</h2>
-  <div class="users-menu" *ngFor="let game of destaqueGames">
-      <a routerLink="/game/{{game._id}}">{{game.name}}</a>
-  </div>
 
+
+  <br><br>
   <h2>À VENDA</h2>
-  <div class="users-menu" *ngFor="let game of allGames">
-      <a routerLink="/game/{{game._id}}">{{game.name}}</a>
-      <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" />
-      <p>{{game.price}}</p>
+  <div class="destaques-container">
+    <div class="product-card-wrapper" *ngFor="let game of allGames" >
+      <div class="product-img">
+        <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
+      </div>
+      <div class="product-info">
+        <div class="product-text">
+          <h1>{{game.name}}</h1>
+          <p>{{game.description}}</p>
+        </div>
+        <div class="product-price-btn">
+          <p><span>{{game.price}}</span>€</p>
+          <button type="button">COMPRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Footer</p>
   </div>
 
 </body>
-
-<h2>DESTAQUES</h2>
-<div class="users-menu" *ngFor="let game of destaqueGames">
-    <a routerLink="/game/{{game._id}}">{{game.name}}</a>
-</div>
-
-<h2>À VENDA</h2>
-<div class="users-menu" *ngFor="let game of allGames">
-    <a routerLink="/game/{{game._id}}">{{game.name}}</a>
-    <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" />
-    <p class="game-price">{{game.price}}</p>
-</div>
