@@ -7,8 +7,7 @@ exports.init = async (req, res) => {
 
     await User.create([
       { name: 'user1', 
-      password: "1", 
-      imagemPerfil: "https://i.scdn.co/image/ab67616d00001e027a58bc39b4e2466cd9273c55"},
+      password: "1"},
     ]);
     
     const user1 = await User.findOne({ name: "user1" });
@@ -26,14 +25,14 @@ exports.init = async (req, res) => {
     await user1.save();
 
     Game.create([
-      { name: 'Among Us', type: "Multiplayer, Social Deduction", price: 4.99, description: "Among Us is a multiplayer online game developed and published by InnerSloth. The game takes place in a space-themed setting where players take on one of two roles: Crewmates or Impostors. Crewmates must complete tasks around the map while trying to identify and eliminate the Impostors before they sabotage the mission. Impostors must blend in with the Crewmates and eliminate them without being caught. The game is known for its social deduction aspect and has gained popularity through online streaming and social media.", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
-      { name: 'The Witcher 3', type: "RPG", price: 39.99, description: "Based on the popular book series, The Witcher 3: Wild Hunt follows the journey of Geralt of Rivia, a monster hunter in a dark fantasy world. The game features a vast open world, deep characters, and engaging combat.", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
-      { name: 'Elden Ring', type: "RPG Deduction", price: 4.99, description: "FromSoftware and George R.R. Martin bring you Elden Ring, an epic action RPG set in a vast and mysterious world. Players will create their own character, explore the landscape, and battle fearsome creatures using a variety of weapons and magic. With a focus on player choice and consequence, Elden Ring promises to deliver a deep and engaging gameplay experience.", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
-      { name: 'F1 2023', type:"Racing", price: 59.99, description: "Take the wheel of a Formula One car and race to victory in F1 2021. This racing game features realistic physics, challenging AI opponents, and a variety of tracks to race on.", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
-      { name: 'FIFA 23', type: "Sports", price: 69.90, description: "Experience the thrill of soccer in FIFA 23. This sports game features updated rosters, realistic graphics, and new gameplay mechanics to enhance the experience for both new and returning players", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
-      { name: 'CS:GO', type: "First-person Shooter", price: 69.90, description: "description", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'},
-      { name: 'AmonP', type: "Multiplayer, Social Deduction", price: 4.99, description: "AMONG P", img: 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png'}
-  ]);
+      { name: 'Among Us', type: "Multiplayer, Social Deduction", price: 4.99, description: "Among Us is a multiplayer online game developed and published by InnerSloth. The game takes place in a space-themed setting where players take on one of two roles: Crewmates or Impostors.", img: 'http://drive.google.com/uc?export=view&id=1mAh0iw7lOg4rpFEr7iW0vMmaAcoDv_43'},
+      { name: 'The Witcher 3', type: "RPG", price: 39.99, description: "Based on the popular book series, The Witcher 3: Wild Hunt follows the journey of Geralt of Rivia, a monster hunter in a dark fantasy world.", img: 'http://drive.google.com/uc?export=view&id=1SP3gIuSOkWt7cJkyNojIFz2ICFjoguXm'},
+      { name: 'Elden Ring', type: "RPG", price: 4.99, description: "FromSoftware and George R.R. Martin bring you Elden Ring, an epic action RPG set in a vast and mysterious world. Players will create their own character, explore the landscape, and battle fearsome creatures using a variety of weapons and magic. With a focus on player choice and consequence, Elden Ring promises to deliver a deep and engaging gameplay experience.", img: 'http://drive.google.com/uc?export=view&id=1sdG9WHVsgzAFMyuDNLZx7olbC1pkkGjJ'},
+      { name: 'F1 2022', type:"Racing", price: 59.99, description: "Take the wheel of a Formula One car and race to victory in F1 2021. This racing game features realistic physics, challenging AI opponents, and a variety of tracks to race on.", img: 'http://drive.google.com/uc?export=view&id=1DOET63YbwTBgvObQb10iXDXKrLMgvTN9'},
+      { name: 'FIFA 23', type: "Sports", price: 69.90, description: "Experience the thrill of soccer in FIFA 23. This sports game features updated rosters, realistic graphics, and new gameplay mechanics to enhance the experience for both new and returning players", img: 'http://drive.google.com/uc?export=view&id=16XfCDQ6F5Pes2QLazgZqOzs5pqDiRDnz'},
+      { name: 'Minecraft', type: "Sandbox, survival game", price: 19.99 , description: "Minecraft is a game that allows players to explore, create, and survive in a blocky 3D world. The game has two primary modes: Survival, where players must gather resources and build structures to survive against monsters and other players, and Creative, where players have unlimited resources to build whatever they can imagine.", img: 'http://drive.google.com/uc?export=view&id=1Ob3BffiPAtMXSPk3qmHy7EJSzTuanBnG'}
+    ]);
+
 
     const games = await Game.find().limit(2); // encontra os dois primeiros jogos na lista de jogos
     user1.library = games.map(game => game._id); // mapeia os jogos e armazena os seus _id na biblioteca do user1
