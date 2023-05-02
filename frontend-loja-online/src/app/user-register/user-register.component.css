@@ -88,3 +88,10 @@ li:before {
     margin-right: 10px;
     color: green;
 }
+
+@media screen and (max-width: 1700px) {
+    .requisito {
+        top: 48%;
+        left: 15%;
+    }
+}
