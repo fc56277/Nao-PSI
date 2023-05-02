@@ -2,8 +2,7 @@
 <html>
 <body >
 
-<div class="container">
-  <h2 [@fadeInOut]>Registo</h2>
+<h2 [@fadeInOut]>Registo</h2>
 
   <form [@fadeInOut]>
     <input type="text" id="mail" placeholder="Insira o seu username" #name><br><br><br>
@@ -12,7 +11,6 @@
     <button type="button" (click)="register(name.value, pass1.value, pass2.value)">Efetuar o registo</button>
     <button type="button" (click)="goToLogin()">Voltar</button>
   </form> 
-</div>
 
 <div class="requisito">
   <p>Requisitos para a password:</p><br>
