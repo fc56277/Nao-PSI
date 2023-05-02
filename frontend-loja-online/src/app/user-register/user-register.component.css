@@ -21,7 +21,11 @@ body {
     font-size: 800%
   }
   
-  form {
+.container {
+    margin-left: 2%;
+}
+
+form {
     display: grid;
     grid-column: 2;
     grid-row: 1;
@@ -71,7 +75,7 @@ input:focus {
     padding: 25px 25px 30px 25px;
     border-radius: 15px;
     box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.15);
-    font-size: 12px;
+    font-size: 13px;
     position: absolute;
     top: 48%;
     left: 20%;
