@@ -64,3 +64,27 @@ input:focus {
     border-right: 1px solid #F1F5F9;
     padding-bottom: 12px;
 }
+
+.requisito {
+    border: solid 1px white;
+    opacity: 0.9;
+    padding: 25px 25px 30px 25px;
+    border-radius: 15px;
+    box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.15);
+    font-size: 12px;
+    position: absolute;
+    top: 48%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+ul {
+    list-style: none;
+    font-size: 10px;
+  }
+  
+li:before {
+    content: "✓";
+    margin-right: 10px;
+    color: green;
+}
