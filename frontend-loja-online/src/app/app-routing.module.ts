@@ -11,6 +11,8 @@ import {UserPersonalizedListComponent} from './user-personalized-list/user-perso
 import {UserWishlistComponent} from './user-wishlist/user-wishlist.component';
 import {UserLibraryComponent} from './user-library/user-library.component';
 import {GameDetailComponent} from './game-detail/game-detail.component';
+import { SendPresentComponent } from './send-present/send-present.component';
+import { RecievePresentComponent } from './recieve-present/recieve-present.component';
 
 
 const routes: Routes = [
@@ -20,7 +22,8 @@ const routes: Routes = [
     { path: 'login', component: UserLoginComponent },
     { path: 'register', component: UserRegisterComponent },
     { path: 'user', component: UserProfileComponent },
-    
+    { path: 'send/:id', component: SendPresentComponent},
+    { path: 'recieve/:id', component: RecievePresentComponent},
     { path: 'biblioteca', component: UserLibraryComponent },
     { path: 'wishlist', component: UserWishlistComponent },
     { path: 'listas-personalizadas', component: UserPersonalizedListComponent },

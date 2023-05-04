@@ -1,18 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-
-import { Game } from '../game';
-import { GameService } from '../game.service';
-
-import { Router } from '@angular/router';
-import { UserService } from '../user.service';
+import { Component } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Game } from '../game';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GameService } from '../game.service';
+import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-game-detail',
-  templateUrl: './game-detail.component.html',
-  styleUrls: ['./game-detail.component.css'],
+  selector: 'app-send-present',
+  templateUrl: './send-present.component.html',
+  styleUrls: ['./send-present.component.css'],
   animations: [
     trigger('fadeInOut', [
         transition(':enter', [
@@ -25,41 +21,20 @@ import { trigger, transition, style, animate } from '@angular/animations';
       ])
   ]
 })
-export class GameDetailComponent {
+export class SendPresentComponent {
   game: Game | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService, 
     private gameService: GameService,
-    private location: Location,
     private router: Router,
   ) {}
 
-
   ngOnInit(): void {
+    console.log("aqui");
     this.checkIfLogged();
     this.getGame();
-  }
-
-  getGame(): void {
-    const id = this.route.snapshot.params['id'];
-    this.gameService.getGameById(id).subscribe(game => this.game = game);
-  }
-
-  goBack(): void {
-    this.location.back();
-  }
-
-  doLogOut(): void {
-    this.userService.logOutUser()
-      .subscribe(
-        (response) => {
-          alert(response.message);
-          // Redirect to login page
-          this.router.navigate(['/login']);
-        }
-      );
   }
 
   checkIfLogged(): void {
@@ -74,10 +49,9 @@ export class GameDetailComponent {
     );
   }
 
-  goToSendPresent(): void {
+  getGame(): void {
     const id = this.route.snapshot.params['id'];
-    this.router.navigate([`/send/${id}`]);
+    this.gameService.getGameById(id).subscribe(game => this.game = game);
   }
 
 }
-
