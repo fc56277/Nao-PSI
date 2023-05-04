@@ -52,4 +52,12 @@ export class RecievePresentComponent {
     const id = this.route.snapshot.params['id'];
     this.gameService.getGameById(id).subscribe(game => this.game = game);
   }
+
+  confirm(): void {
+
+  }
+
+  decline(): void {
+    
+  }
 }

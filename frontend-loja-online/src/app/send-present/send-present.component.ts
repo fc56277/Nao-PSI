@@ -54,4 +54,12 @@ export class SendPresentComponent {
     this.gameService.getGameById(id).subscribe(game => this.game = game);
   }
 
+  getReciever(): void {
+
+  }
+
+  confirm(): void {
+    
+  }
+
 }
