@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { GameService } from '../game.service';
 import { Router } from '@angular/router';
 import { Game } from '../game';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Present } from '../present';
 
 
 @Component({

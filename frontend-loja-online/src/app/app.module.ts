@@ -20,6 +20,7 @@ import { ItemsSearchComponent } from './items-search/items-search.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { SendPresentComponent } from './send-present/send-present.component';
 import { RecievePresentComponent } from './recieve-present/recieve-present.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { RecievePresentComponent } from './recieve-present/recieve-present.compo
     ItemsSearchComponent,
     GameDetailComponent,
     SendPresentComponent,
-    RecievePresentComponent ],
+    RecievePresentComponent,
+    UserDetailComponent ],
   imports: [
     HttpClientModule,
     BrowserModule,

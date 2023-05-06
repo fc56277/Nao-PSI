@@ -1,6 +1,7 @@
 body {
   background-color: #1b2839;
-  height: 200vh;
+  min-height: 100vh;
+  height: 100%;
 }
 
 /* Section headings */
