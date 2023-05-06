@@ -38,7 +38,7 @@ export class UserLoginComponent {
         })
     }
 
-    login(username: string, pass: string): void {
+    login(username: string, pass: string): void {   
         var success = false;
         var id: string | null = null;
         this.users.forEach(function(user) {

@@ -12,6 +12,7 @@
             <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
           </div>
           <div class="product-info">
+            <button type="button" class ="wishButton" (click)="addToWishlist(game)" tabindex="0">Adicionar à wishlist</button>
             <div class="product-text">
               <h1>{{game.name}}</h1>
               <p>{{game.description}}</p>

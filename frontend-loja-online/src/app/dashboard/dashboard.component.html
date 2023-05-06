@@ -21,6 +21,7 @@
         <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
       </div>
       <div class="product-info">
+        <button type="button" class ="wishButton" (click)="addToWishlist(game)" tabindex="0">Adicionar à wishlist</button>
         <div class="product-text">
           <h1>{{game.name}}</h1>
           <p>{{game.description}}</p>
@@ -69,13 +70,14 @@
       </div>
     </a>
 
-    <div class="box" tabindex="0">
-        <div class="text">
-            <h2 class="topic-2">Wishlist</h2>
-        </div>
-        <i class="fa fa-bookmark" aria-hidden="true" style="color: white; font-size: 40px;"></i>
-    </div>
-
+    <a style="text-decoration: none;" routerLink="/wishlist" tabindex="0">
+      <div class="box" tabindex="0">
+          <div class="text">
+              <h2 class="topic-2">Wishlist</h2>
+          </div>
+          <i class="fa fa-bookmark" aria-hidden="true" style="color: white; font-size: 40px;"></i>
+      </div>
+    </a>
     <div class="box" tabindex="0">
       <div class="text">
           <h2 class="topic-2">Listas Personalizadas</h2>
@@ -92,6 +94,7 @@
         <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
       </div>
       <div class="product-info">
+        <button type="button" class ="wishButton" (click)="addToWishlist(game)" tabindex="0">Adicionar à wishlist</button>
         <div class="product-text">
           <h1>{{game.name}}</h1>
           <p>{{game.description}}</p>

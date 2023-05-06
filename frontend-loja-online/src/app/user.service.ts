@@ -30,6 +30,12 @@ export class UserService {
     const url = `${this.usersUrl}/library`;
     return this.http.get<Game[]>(url);
   }  
+  
+
+  getUserWishlist(): Observable<Game[]> {
+    const url = `${this.usersUrl}/wishlist`;
+    return this.http.get<Game[]>(url);
+  }  
 
   getUser(): Observable<User> {
     const url = `${'api/user'}`;
@@ -68,4 +74,14 @@ export class UserService {
       return throwError(error);
     };
   }
+
+  updateUser(user: User): Observable<User> {
+    const url = `${this.usersUrl}/${user._id}`;
+    console.log("URL: " + url);
+    return this.http.put<User>(url, user).pipe(
+      tap(_ => console.log(`user with id=${user._id} updated`)),
+      catchError(this.handleError<any>('updateUser'))
+    );
+  }
+
 }

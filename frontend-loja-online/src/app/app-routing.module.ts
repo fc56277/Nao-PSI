@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {UserLoginComponent} from "./user-login/user-login.component";
 import {UserRegisterComponent} from "./user-register/user-register.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {DashboardComponent } from './dashboard/dashboard.component';
 import {UserFollowersComponent} from './user-followers/user-followers.component';
 import {UserFollowingComponent} from './user-following/user-following.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'login', component: UserLoginComponent },
     { path: 'register', component: UserRegisterComponent },
     { path: 'user', component: UserProfileComponent },
+    { path: 'users/:id', component: UserDetailComponent },
     
     { path: 'biblioteca', component: UserLibraryComponent },
     { path: 'wishlist', component: UserWishlistComponent },

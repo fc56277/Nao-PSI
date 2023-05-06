@@ -18,6 +18,7 @@ import { UserWishlistComponent } from './user-wishlist/user-wishlist.component';
 import { UserPersonalizedListComponent } from './user-personalized-list/user-personalized-list.component';
 import { ItemsSearchComponent } from './items-search/items-search.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
     UserWishlistComponent,
     UserPersonalizedListComponent,
     ItemsSearchComponent,
-    GameDetailComponent ],
+    GameDetailComponent,
+    UserDetailComponent ],
   imports: [
     HttpClientModule,
     BrowserModule,
