@@ -21,6 +21,11 @@ export class GameService {
       return this.http.get<Game[]>('http://localhost:3000/games').pipe(
         catchError(this.handleError<Game[]>('getGames', [])));
     }
+
+    getRecievedGames():Observable<Game[]> {
+      return this.http.get<Game[]>('http://localhost:3000/recievedGames').pipe(
+        catchError(this.handleError<Game[]>('getRecievedGames', [])));
+    }
       /**
    * Handle Http operation that failed.
    * Let the app continue.

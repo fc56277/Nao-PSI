@@ -59,6 +59,11 @@ export class UserService {
     return this.http.get<{ message: string }>(url);
   }  
 
+  sendGame(reciever: User, game: Game): Observable<{ message: string }> {
+    const url = `${this.usersUrl}/sendGame/${game._id}`;
+    return this.http.put<{ message: string }>(url, reciever);
+  }
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

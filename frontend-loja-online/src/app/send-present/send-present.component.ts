@@ -4,6 +4,7 @@ import { Game } from '../game';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from '../game.service';
 import { UserService } from '../user.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-send-present',
@@ -23,6 +24,7 @@ import { UserService } from '../user.service';
 })
 export class SendPresentComponent {
   game: Game | undefined;
+  users: User[] | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,9 +34,9 @@ export class SendPresentComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log("aqui");
     this.checkIfLogged();
     this.getGame();
+    this.getUsers();
   }
 
   checkIfLogged(): void {
@@ -49,17 +51,52 @@ export class SendPresentComponent {
     );
   }
 
+  doLogOut(): void {
+    this.userService.logOutUser()
+      .subscribe(
+        (response) => {
+          alert(response.message);
+          // Redirect to login page
+          this.router.navigate(['/login']);
+        }
+      );
+  }
+
   getGame(): void {
     const id = this.route.snapshot.params['id'];
     this.gameService.getGameById(id).subscribe(game => this.game = game);
   }
 
-  getReciever(): void {
-
+  getUsers(): void {
+    this.userService.getUsers().subscribe(users => this.users = users);
   }
 
-  confirm(): void {
-    
+  confirm(user: string): void {
+    if(this.users != undefined) {
+      var selectedUser = null;
+      for(var i = 0; i < this.users.length; i++) {
+        if(this.users[i].name === user) {
+          selectedUser = this.users[i];
+          break;
+        }
+      }
+      if(selectedUser != null) {
+        var hasGame = false;
+        for(var i = 0; i < selectedUser.recievedGames.length && !hasGame; i++) {
+          if(selectedUser.recievedGames[i] == this.game) {
+            hasGame = true;
+          }
+        }
+        for(var i = 0; i < selectedUser.library.length && !hasGame; i++) {
+          if(selectedUser.library[i] == this.game) {
+            hasGame = true;
+          }
+        }
+        if(!hasGame && this.game != undefined) {
+          this.userService.sendGame(selectedUser, this.game);
+        }
+      }
+    }
   }
 
 }

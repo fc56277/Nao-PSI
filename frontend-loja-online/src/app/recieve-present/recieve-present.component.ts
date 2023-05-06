@@ -22,7 +22,7 @@ import { UserService } from '../user.service';
   ]
 })
 export class RecievePresentComponent {
-  game: Game | undefined;
+  games: Game[] | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +33,7 @@ export class RecievePresentComponent {
 
   ngOnInit(): void {
     this.checkIfLogged();
-    this.getGame();
+    this.getRecievedGames();
   }
 
   checkIfLogged(): void {
@@ -48,16 +48,15 @@ export class RecievePresentComponent {
     );
   }
 
-  getGame(): void {
-    const id = this.route.snapshot.params['id'];
-    this.gameService.getGameById(id).subscribe(game => this.game = game);
+  getRecievedGames(): void {
+    this.gameService.getRecievedGames().subscribe(games => this.games = games);
   }
 
-  confirm(): void {
-
+  confirm(id:string): void {
+    
   }
 
-  decline(): void {
+  decline(id:string): void {
     
   }
 }
