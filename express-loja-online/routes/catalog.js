@@ -9,6 +9,8 @@ router.get("/init", init_controller.init);
 
 router.get("/users", users_controller.users_get);
 
+router.put('/api/users/:id', users_controller.update_user);
+
 router.get("/api/user", users_controller.user_detail);
 
 router.get("/games", games_controller.games_list);

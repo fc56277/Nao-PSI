@@ -24,4 +24,8 @@ router.get('/following', user_controller.following_users_get);
 
 router.get('/library', user_controller.user_library_get);
 
+router.get('/wishlist', user_controller.user_wishlist_get);
+
+router.put('/users/:id', user_controller.update_user);
+
 module.exports = router;

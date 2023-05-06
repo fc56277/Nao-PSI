@@ -15,8 +15,8 @@ var app = express();
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
-// const mongoDB = "mongodb+srv://fc56292:mPFyAfkivzGYvBQV@cluster0.dtza9rt.mongodb.net/ProjetoPSI17";
-const mongoDB = "mongodb://psi017:psi017@localhost:27017/psi017?retryWrites=true&authSource=psi017";
+const mongoDB = "mongodb+srv://fc56292:mPFyAfkivzGYvBQV@cluster0.dtza9rt.mongodb.net/ProjetoPSI17";
+// const mongoDB = "mongodb://psi017:psi017@localhost:27017/psi017?retryWrites=true&authSource=psi017";
 
 main().catch(err => console.log(err));
 async function main() {
@@ -46,7 +46,8 @@ app.use(session({
 
 // Middleware for parsing JSON request body
 //app.use(express.json());
-app.use(cors({ origin: ["http://appserver.alunos.di.fc.ul.pt:3017"], credentials: true }));
+// app.use(cors({ origin: ["http://appserver.alunos.di.fc.ul.pt:3017"], credentials: true }));
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

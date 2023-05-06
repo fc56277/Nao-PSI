@@ -48,6 +48,21 @@ exports.user_library_get = async (req, res, next) => {
 };
 
 
+exports.user_wishlist_get = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.session.user_id).populate('wishList').exec();
+    if (user == null) {
+      const err = new Error("User not found");
+      err.status = 404;
+      return next(err);
+    }
+    res.status(200).json(user.wishList);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+
 // verifica se o login foi efetuado
 exports.user_isLogged_get = async (req, res) => {
   res.status(200).json({ value: req.session.user_id != undefined });
@@ -85,3 +100,19 @@ exports.user_detail = async (req, res, next) => {
     return next(err);
   }
 };
+
+exports.update_user = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const user = await User.findByIdAndUpdate(userId, req.body, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred while updating user' });
+  }
+}
+
