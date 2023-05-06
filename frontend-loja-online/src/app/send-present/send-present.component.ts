@@ -72,29 +72,23 @@ export class SendPresentComponent {
   }
 
   confirm(user: string): void {
-    if(this.users != undefined) {
-      var selectedUser = null;
+    var found = false;
+    if(this.users != undefined && this.game != undefined) {
       for(var i = 0; i < this.users.length; i++) {
         if(this.users[i].name === user) {
-          selectedUser = this.users[i];
+          found = true;
+          this.userService.sendGame(this.users[i]._id, this.game).subscribe(
+            (response) => {
+              console.log("aqui");
+              alert(response.message);
+              this.router.navigate([`/detail/${this.game?._id}`]);
+            }
+          );
           break;
         }
       }
-      if(selectedUser != null) {
-        var hasGame = false;
-        for(var i = 0; i < selectedUser.recievedGames.length && !hasGame; i++) {
-          if(selectedUser.recievedGames[i] == this.game) {
-            hasGame = true;
-          }
-        }
-        for(var i = 0; i < selectedUser.library.length && !hasGame; i++) {
-          if(selectedUser.library[i] == this.game) {
-            hasGame = true;
-          }
-        }
-        if(!hasGame && this.game != undefined) {
-          this.userService.sendGame(selectedUser, this.game);
-        }
+      if(!found) {
+        alert("O utilizador selecionado não existe!");
       }
     }
   }

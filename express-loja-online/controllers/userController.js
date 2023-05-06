@@ -61,7 +61,7 @@ exports.user_logout_get = async (req, res) => {
 
 // regista um novo user
 exports.user_register_post = async(req, res) => {
-    const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, wishList: req.body.wishList, library: req.body.library });
+    const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, wishList: req.body.wishList, library: req.body.library, recievedGames: req.body.recievedGames });
     user.save();
     res.set('Content-Type', 'application/json');
     res.status(200).send(JSON.stringify(user));
@@ -85,3 +85,26 @@ exports.user_detail = async (req, res, next) => {
     return next(err);
   }
 };
+
+exports.user_sendGame_put = async(req, res, next) => {
+  var reciever =  await User.findById({_id: req.body[0]});
+  var game = req.body[1];
+  var hasGame = false;
+  for(var i = 0; i < reciever.recievedGames.length && !hasGame; i++) {
+    if(reciever.recievedGames[i]._id == game._id) {
+      hasGame = true;
+    }
+  }
+  for(var i = 0; i < reciever.library.length && !hasGame; i++) {
+    if(reciever.library[i]._id == game._id) {
+      hasGame = true;
+    }
+  }
+  if(!hasGame) {
+    reciever.recievedGames.push(game);
+    reciever.save();
+    res.status(200).json({ message: 'Presente enviado!' });
+  } else {
+    res.status(200).json({ message: 'O utilizador selecionado já tem este jogo!' });
+  }
+}

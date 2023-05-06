@@ -24,4 +24,6 @@ router.get('/following', user_controller.following_users_get);
 
 router.get('/library', user_controller.user_library_get);
 
+router.put('/sendGame', user_controller.user_sendGame_put);
+
 module.exports = router;
