@@ -1,4 +1,5 @@
 import {Game} from "./game";
+import { Present } from "./present";
 
 export interface User {
     _id: string;
@@ -9,5 +10,6 @@ export interface User {
     followers: [User];
     following: [User];
     library: [Game];
-    recievedGames:[Game];
+    recievedGames:[Present];
+    sentGames:[Present];
 }

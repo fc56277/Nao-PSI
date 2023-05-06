@@ -1,9 +1,11 @@
 const User = require("../models/user");
 const Game = require("../models/game");
+const present = require("../models/present");
 
 exports.init = async (req, res) => {
     await User.deleteMany({});
     await Game.deleteMany({});
+    await present.deleteMany({});
 
     await User.create([
       { name: 'user1', 

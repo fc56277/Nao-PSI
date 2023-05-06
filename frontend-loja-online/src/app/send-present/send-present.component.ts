@@ -79,7 +79,6 @@ export class SendPresentComponent {
           found = true;
           this.userService.sendGame(this.users[i]._id, this.game).subscribe(
             (response) => {
-              console.log("aqui");
               alert(response.message);
               this.router.navigate([`/detail/${this.game?._id}`]);
             }

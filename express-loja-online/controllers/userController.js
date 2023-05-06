@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Present = require("../models/present");
 
 // devolve json com todos os users
 exports.users_get = async (req, res) => {
@@ -61,7 +62,7 @@ exports.user_logout_get = async (req, res) => {
 
 // regista um novo user
 exports.user_register_post = async(req, res) => {
-    const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, wishList: req.body.wishList, library: req.body.library, recievedGames: req.body.recievedGames });
+    const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, wishList: req.body.wishList, library: req.body.library, recievedGames: req.body.recievedGames, sentGames: req.body.sentGames });
     user.save();
     res.set('Content-Type', 'application/json');
     res.status(200).send(JSON.stringify(user));
@@ -87,24 +88,36 @@ exports.user_detail = async (req, res, next) => {
 };
 
 exports.user_sendGame_put = async(req, res, next) => {
-  var reciever =  await User.findById({_id: req.body[0]});
-  var game = req.body[1];
-  var hasGame = false;
-  for(var i = 0; i < reciever.recievedGames.length && !hasGame; i++) {
-    if(reciever.recievedGames[i]._id == game._id) {
-      hasGame = true;
-    }
-  }
-  for(var i = 0; i < reciever.library.length && !hasGame; i++) {
-    if(reciever.library[i]._id == game._id) {
-      hasGame = true;
-    }
-  }
-  if(!hasGame) {
-    reciever.recievedGames.push(game);
-    reciever.save();
-    res.status(200).json({ message: 'Presente enviado!' });
+  if(req.session.user_id == req.body[0]) {
+    res.status(200).json({ message: 'Não pode enviar um presente a si proprio!' });
   } else {
-    res.status(200).json({ message: 'O utilizador selecionado já tem este jogo!' });
+    var sender = await User.findById({_id: req.session.user_id});
+    var reciever =  await User.findById({_id: req.body[0]});
+    var sentGame = req.body[1];
+    var hasGame = false;
+    for(var i = 0; i < reciever.recievedGames.length && !hasGame; i++) {
+      var p = await Present.findById(reciever.recievedGames[i]);
+      console.log(reciever.recievedGames[i]);
+      console.log(p);
+      if(p.game._id == sentGame._id) {
+        hasGame = true;
+      }
+    }
+    for(var i = 0; i < reciever.library.length && !hasGame; i++) {
+      if(reciever.library[i]._id == sentGame._id) {
+        hasGame = true;
+      }
+    }
+    if(!hasGame) {
+      var present = new Present({game: sentGame._id, sender: sender._id, reciever: reciever, status:0});
+      present.save();
+      reciever.recievedGames.push(present);
+      reciever.save();
+      sender.sentGames.push(present);
+      sender.save();
+      res.status(200).json({ message: 'Presente enviado!' });
+    } else {
+      res.status(200).json({ message: 'O utilizador selecionado já tem este jogo!' });
+    }
   }
 }

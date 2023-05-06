@@ -10,7 +10,8 @@ const UserSchema = new Schema({
   followers: [{ type: Schema.Types.ObjectId, ref: 'User'}],
   following: [{ type: Schema.Types.ObjectId, ref: 'User'}],
   library: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
-  recievedGames: [{ type: Schema.Types.ObjectId, ref: 'Game' }]
+  recievedGames: [{ type: Schema.Types.ObjectId, ref: 'Present' }],
+  sentGames: [{ type: Schema.Types.ObjectId, ref: 'Present' }]
 });
 
 UserSchema.virtual("url").get(function () {
