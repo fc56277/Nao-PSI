@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Game = require("../models/game");
 const Present = require("../models/present");
 
 // devolve json com todos os users
@@ -120,4 +121,28 @@ exports.user_sendGame_put = async(req, res, next) => {
       res.status(200).json({ message: 'O utilizador selecionado já tem este jogo!' });
     }
   }
-}
+};
+
+exports.user_sentGames_get = async(req, res, next) => {
+  var result = []
+  var presents = await Present.find({});
+  for(var i = 0; i < presents.length; i++) {
+    if(presents[i].sender._id.toString() === req.session.user_id) {
+      var g = await Game.findById(presents[i].game);
+      result.push(g)
+    }
+  }
+  res.json(result);
+};
+
+exports.user_recievedGames_get = async(req, res, next) => {
+  var result = []
+  var presents = await Present.find({});
+  for(var i = 0; i < presents.length; i++) {
+    if(presents[i].reciever._id.toString() === req.session.user_id) {
+      var g = await Game.findById(presents[i].game);
+      result.push(g)
+    }
+  }
+  res.json(result);
+};

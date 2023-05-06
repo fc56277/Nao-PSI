@@ -64,6 +64,16 @@ export class UserService {
     return this.http.put<{ message: string }>(url, [reciever, game]);
   }
 
+  getSentGames(): Observable<Game[]> {
+    const url = `${this.usersUrl}/sentGames`;
+    return this.http.get<Game[]>(url);
+  }
+
+  getRecievedGames(): Observable<Game[]> {
+    const url = `${this.usersUrl}/recievedGames`;
+    return this.http.get<Game[]>(url);
+  }
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

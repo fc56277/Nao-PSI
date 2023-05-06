@@ -26,4 +26,8 @@ router.get('/library', user_controller.user_library_get);
 
 router.put('/sendGame', user_controller.user_sendGame_put);
 
+router.get('/sentGames', user_controller.user_sentGames_get);
+
+router.get('/recievedGames', user_controller.user_recievedGames_get);
+
 module.exports = router;
