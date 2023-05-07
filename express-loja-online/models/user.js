@@ -11,7 +11,8 @@ const UserSchema = new Schema({
   following: [{ type: Schema.Types.ObjectId, ref: 'User'}],
   library: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
   recievedGames: [{ type: Schema.Types.ObjectId, ref: 'Present' }],
-  sentGames: [{ type: Schema.Types.ObjectId, ref: 'Present' }]
+  sentGames: [{ type: Schema.Types.ObjectId, ref: 'Present' }],
+  shoppingCartSize: { type: Number, required: true},
 });
 
 UserSchema.virtual("url").get(function () {

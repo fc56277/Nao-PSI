@@ -9,7 +9,8 @@ exports.init = async (req, res) => {
 
     await User.create([
       { name: 'user1', 
-      password: "1"},
+      password: "1",
+      shoppingCartSize: 0},
     ]);
     
     const user1 = await User.findOne({ name: "user1" });
@@ -19,6 +20,7 @@ exports.init = async (req, res) => {
       password: "2",
       followers: [user1._id], // Adiciona o _id do user1 à lista de seguidores do user2
       //following: [user1.id],
+      shoppingCartSize: 0
     });
     
     await user2.save();

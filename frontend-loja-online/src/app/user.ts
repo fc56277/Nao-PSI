@@ -12,4 +12,5 @@ export interface User {
     library: [Game];
     recievedGames:[Present];
     sentGames:[Present];
+    shoppingCartSize: Number;
 }
