@@ -226,23 +226,17 @@ body {
     color: #474747;
   }
   
-  .product-text h2 {
-    margin: 0 0 47px 38px;
-    font-size: 11px;
-    font-weight: 400;
-    text-transform: uppercase;
-    color: #d2d2d2;
-    letter-spacing: 0.2em;
-  }
-  
   .product-text p {
-    height: 125px;
     margin: 0 0 0 38px;
     color: #8d8d8d;
     line-height: 1.7em;
-    font-size: 15px;
+    font-size: 25px;
     font-weight: lighter;
     overflow: hidden;
+  }
+
+  .product-text span {
+    font-size: 25px;
   }
   
   .product-price-btn {
@@ -281,37 +275,12 @@ body {
     box-sizing: border-box;
     border: transparent;
     border-radius: 60px;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: bold;
     color: #ffffff;
     background-color: #0b6dcf;
     cursor: pointer;
     outline: none;
-  }
-  
-  .wishButton {
-    position: relative;
-    float: right;
-    display: inline-block;
-    height: 38px;
-    width: 160px;
-    box-sizing: border-box;
-    border: transparent;
-    border-radius: 7px;
-    font-size: 15px;
-    font-weight: bold;
-    color: black;
-    background-color: #ffe600;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  .wishButton[type="button"]:hover {
-    background-color: #ffd500;
-  }
-  
-  .wishButton[type="button"]:focus {
-    outline: 1px solid rgb(105, 105, 105);
   }
   
   .product-price-btn button:hover {
