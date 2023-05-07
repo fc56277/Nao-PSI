@@ -13,15 +13,19 @@ import {UserLibraryComponent} from './user-library/user-library.component';
 import {GameDetailComponent} from './game-detail/game-detail.component';
 import { SendPresentComponent } from './send-present/send-present.component';
 import { RecievePresentComponent } from './recieve-present/recieve-present.component';
+import { CommunityComponent } from './community/community.component';
+import { UserProfileToWatchComponent } from './user-profile-to-watch/user-profile-to-watch.component';
 
 
 const routes: Routes = [
   // no futuro redirect e para o dashboard do User logado
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'dashboard', component: DashboardComponent },
+    { path: 'community', component: CommunityComponent },
     { path: 'login', component: UserLoginComponent },
     { path: 'register', component: UserRegisterComponent },
     { path: 'user', component: UserProfileComponent },
+    { path: 'users/:id', component: UserProfileToWatchComponent },
     { path: 'send/:id', component: SendPresentComponent},
     { path: 'recieve', component: RecievePresentComponent},
     { path: 'biblioteca', component: UserLibraryComponent },
@@ -29,7 +33,7 @@ const routes: Routes = [
     { path: 'listas-personalizadas', component: UserPersonalizedListComponent },
     { path: 'followers', component: UserFollowersComponent },
     { path: 'following', component: UserFollowingComponent },
-    { path: 'detail/:id', component: GameDetailComponent },
+    { path: 'detail/:id', component: GameDetailComponent }
 ];
 
 @NgModule({

@@ -121,3 +121,41 @@ exports.user_sendGame_put = async(req, res, next) => {
     }
   }
 }
+
+exports.user_names = async (req, res) => {
+  
+  const searchTerm = req.params.name;
+  
+  if (!searchTerm) {
+    return res.status(400).json({ error: "Missing search term" });
+  }
+  
+  const regex = new RegExp(`^${searchTerm}`, "i");
+  
+  try {
+    const users = await User.find({ name: { $regex: regex } });
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+  
+};
+
+exports.getUserById = async (req, res) => {
+  try {
+    const userId = req.params.id; 
+    console.log(userId);
+    const user = await User.findById({_id: userId});
+    
+
+    if (!user) { 
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    return res.json(user); 
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};

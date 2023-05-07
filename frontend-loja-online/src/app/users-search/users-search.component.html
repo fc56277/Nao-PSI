@@ -1,0 +1,16 @@
+
+<div class="allElements">
+  <input #searchBox id="searchQueryInput" (input)="search(searchBox.value)" placeholder="Pesquisar users" type="text" name="searchQueryInput"/>
+  <ul class="search-results">
+    <ng-container *ngIf="users$ | async as users">
+      <ng-container *ngIf="users.length > 0; else noResults">
+        <li *ngFor="let user of users">
+          <a style="z-index: 99;" routerLink="/users/{{user._id}}">{{user.name}}</a>
+        </li>
+      </ng-container>
+    </ng-container>
+    <ng-template #noResults>
+      <li><a>No results found</a></li>
+    </ng-template>
+  </ul>    
+  </div>

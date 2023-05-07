@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { User } from "./user";
 import { catchError, tap } from 'rxjs/operators';
 import { Game } from './game';
@@ -18,6 +18,15 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
+  }
+
+  getUserById(id: string) {
+    const url = `${this.usersUrl}/${id}`;
+      
+      return this.http.get<User>(url).pipe(
+        tap(_ => console.error(`fetched user id=${id}`)),
+        catchError(this.handleError<User>(`getUser id=${id}`))
+      );
   }
 
   getFollowingUsers() {
@@ -72,4 +81,20 @@ export class UserService {
       return throwError(error);
     };
   }
+
+  searchUsers(name: string): Observable<User[]> {
+    if (!name.trim()) {
+      return of([]);
+    }
+
+    const url = `http://localhost:3000/users/${name}`;
+
+    return this.http.get<User[]>(url).pipe(
+      tap(x => x.length ?
+        console.log(`found user matching "${name}"`) :
+        console.error(`no user matching "${name}"`)),
+      catchError(this.handleError<User[]>('searchUsers', []))
+    );
+  }
+  
 }

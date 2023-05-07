@@ -1,0 +1,44 @@
+<ul class="nav">
+  <li><a routerLink="/dashboard" data-hover="DASHBOARD">DASHBOARD</a></li>
+  <li><a routerLink="/user" data-hover="PERFIL">PERFIL</a></li>
+  <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
+</ul>
+<div class="allElements" *ngIf="user">
+  <h2 [@fadeInOut]>PERFIL</h2>
+  <div [@fadeInOut]  class="card">
+    <div class="card_background_img"></div>
+    <div class="card_profile_img"></div>
+    <div class="user_details">
+        <h3>{{user.name | uppercase}}</h3><br>
+    </div>
+    <div class="card_count">
+        <div class="count">
+            <div class="followers">
+              <a style="text-decoration: none;" tabindex="0">
+                <h3 style="text-indent: 25px">{{user.followers.length}}</h3><br>
+              </a>
+                <p>Seguidores</p>
+            </div>
+            <div class="following">
+                <a style="text-decoration: none;" routerLink="/following" tabindex="0">
+                  <h3 style="text-indent: 15px">{{user.following.length}}</h3>
+                </a>
+                <br>
+                <p>A seguir</p>
+            </div>
+           
+        </div>
+        <a style="text-decoration: none;" routerLink="/biblioteca" tabindex="0">
+          <div class="btn">Biblioteca</div>
+        </a>
+
+        <a style="text-decoration: none;" tabindex="0">
+          <div class="btn">Wishlist</div>
+        </a>
+
+        <a style="text-decoration: none;" tabindex="0">
+          <div class="btn">Listas Personalizadas</div> 
+        </a>
+    </div>
+  </div>
+</div>

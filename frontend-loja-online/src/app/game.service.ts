@@ -50,7 +50,6 @@ export class GameService {
 /* GET games whose name contains search term */
   searchGames(name: string): Observable<Game[]> {
     if (!name.trim()) {
-      // if not search term, return empty hero array.
       return of([]);
     }
 
