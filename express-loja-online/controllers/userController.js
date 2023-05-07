@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Game = require("../models/game");
 const Present = require("../models/present");
+const present = require("../models/present");
 
 // devolve json com todos os users
 exports.users_get = async (req, res) => {
@@ -210,5 +211,27 @@ exports.user_declinePresent_put = async (req, res, next) => {
     }
   }
   res.status(200).json({ message: 'Presente recusado!' });
+}
+
+exports.user_getSentPresent_get = async (req, res, next) => {
+  var user = await User.findById({_id: req.session.user_id});
+  for(var i = 0; i < user.sentGames.length; i++) {
+    var present = await Present.findById({_id: user.sentGames[i]});
+    if(present.game.toString() === req.params.id) {
+      res.status(200).send(JSON.stringify(present));
+    }
+  }
+}
+
+exports.user_deletePresent_delete = async (req, res, next) => {
+  var user = await User.findById({_id: req.session.user_id});
+  for(var i = 0; i < user.sentGames.length; i++) {
+    if(user.sentGames[i].toString() === req.params.id) {
+      user.sentGames.splice(i, 1);
+      user.save();
+      break;
+    }
+  }
+  res.status(200).json({ message: 'Notificação apagada' });
 }
 

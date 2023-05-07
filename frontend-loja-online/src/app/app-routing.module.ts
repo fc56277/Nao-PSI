@@ -14,6 +14,7 @@ import {UserLibraryComponent} from './user-library/user-library.component';
 import {GameDetailComponent} from './game-detail/game-detail.component';
 import { SendPresentComponent } from './send-present/send-present.component';
 import { RecievePresentComponent } from './recieve-present/recieve-present.component';
+import { PresentDetailComponent } from './present-detail/present-detail.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'user', component: UserProfileComponent },
     { path: 'send/:id', component: SendPresentComponent},
     { path: 'recieve/:id', component: RecievePresentComponent},
+    { path: 'present/:id', component: PresentDetailComponent},
     { path: 'users/:id', component: UserDetailComponent },
     { path: 'biblioteca', component: UserLibraryComponent },
     { path: 'wishlist', component: UserWishlistComponent },

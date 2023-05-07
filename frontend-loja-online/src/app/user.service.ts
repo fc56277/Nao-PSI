@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { User } from "./user";
 import { catchError, tap } from 'rxjs/operators';
 import { Game } from './game';
+import { Present } from './present';
 
 @Injectable({
   providedIn: 'root'
@@ -108,6 +109,16 @@ export class UserService {
   declinePresent(id: string):Observable<{ message: string }>  {
     const url = `${this.usersUrl}/declinePresent`;
     return this.http.put<{ message: string }>(url, {id});
+  }
+
+  getSentPresent(id:string):Observable<Present> {
+    const url = `${this.usersUrl}/getSentPresent/${id}`;
+    return this.http.get<Present>(url);
+  }
+
+  deletePresent(id: string):Observable<{ message: string }>  {
+    const url = `${this.usersUrl}/deletePresent/${id}`;
+    return this.http.delete<{ message: string }>(url);
   }
 
 }

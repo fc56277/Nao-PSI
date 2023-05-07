@@ -85,4 +85,8 @@ export class UserLibraryComponent {
   goToRecieve(id:string): void {
     this.router.navigate([`/recieve/${id}`]);
   }
+
+  goToDetail(id:string): void {
+    this.router.navigate([`/present/${id}`]);
+  }
 }

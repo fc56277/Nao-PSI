@@ -36,6 +36,10 @@ router.put('/confirmPresent', user_controller.user_confirmPresent_put);
 
 router.put('/declinePresent', user_controller.user_declinePresent_put);
 
+router.get('/getSentPresent/:id', user_controller.user_getSentPresent_get);
+
+router.delete('/deletePresent/:id', user_controller.user_deletePresent_delete);
+
 router.put('/:id', user_controller.update_user);
 
 module.exports = router;

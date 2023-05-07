@@ -1,0 +1,28 @@
+<ul class="nav">
+    <li><a routerLink="/dashboard" data-hover="DASHBOARD">DASHBOARD</a></li>
+    <li><a routerLink="/user" data-hover="PERFIL">PERFIL</a></li>
+    <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
+  </ul>
+
+<body>
+    <br><br><br><br><br>
+    <div [@fadeInOut] class="destaques-container">
+        <div class="product-card-wrapper" *ngIf="game" tabindex="0">
+          <div class="product-img">
+            <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
+          </div>
+          <div class="product-info">
+            <div class="product-text">
+              <h1>{{game.name}}</h1>
+                <p>Estado: <span *ngIf="present?.status === 0">Pendente</span>
+                    <span *ngIf="present?.status === 1">Aceite</span>
+                    <span *ngIf="present?.status === -1">Recusado</span>
+                </p>
+            </div>
+            <div class="product-price-btn">
+              <button type="button" (click)="deletePresent()">Apagar notificação</button>
+            </div>
+        </div>
+        </div>
+      </div>
+</body>

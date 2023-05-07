@@ -21,6 +21,7 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
 import { SendPresentComponent } from './send-present/send-present.component';
 import { RecievePresentComponent } from './recieve-present/recieve-present.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { PresentDetailComponent } from './present-detail/present-detail.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     GameDetailComponent,
     SendPresentComponent,
     RecievePresentComponent,
-    UserDetailComponent ],
+    UserDetailComponent,
+    PresentDetailComponent ],
   imports: [
     HttpClientModule,
     BrowserModule,
