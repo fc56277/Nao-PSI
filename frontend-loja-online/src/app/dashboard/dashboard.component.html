@@ -5,7 +5,11 @@
 
     <!-- search bar -->
     <app-items-search></app-items-search>
-    <li *ngIf="user"><div id="shoppingCartSize">{{ user.shoppingCartSize }}<i class="fa fa-shopping-cart" style="color: #ffffff; margin-left: 0.5rem;"></i></div></li>
+    <li *ngIf="user" id="shoppingCartSize">
+      <a style="display: flex; align-items: center;">{{ user.shoppingCartSize }}
+        <i class="fa fa-shopping-cart" style="color: #ffffff; margin-left: 0.5rem;"></i>
+      </a>
+    </li>
     <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
   </ul>
 

@@ -19,7 +19,7 @@
         </div>
         <div class="product-price-btn">
           <p><span>{{game.price}}</span>€</p>
-          <button type="button">Comprar</button>
+          <button type="button" (click)="incCart()">Comprar</button>
           <button type="button" (click)="goToSendPresent()">Enviar presente</button>
         </div>
       </div>
@@ -27,42 +27,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div [@fadeInOut] class="detailsContainer" *ngIf="game">
-      <div id="avgClassification"><h2 id="avgTitle">Classificação Média {{game.avgClassification}}</h2></div>
+      <div id="avgClassification"><h2 id="avgTitle">Classificação Média: {{game.avgClassification}}</h2></div>
       <div class="stars" id="5start">
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
         <a>{{classifications.get(5)}}</a>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
       </div>
       <div class="stars"id="4start">
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
         <a>{{classifications.get(4)}}</a>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
       </div>
       <div class="stars" id="3start">
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
         <a>{{classifications.get(3)}}</a>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
       </div>
       <div class="stars"id="2start">
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
         <a>{{classifications.get(2)}}</a>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
       </div>
       <div class="stars" id="1start">
-        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
         <a>{{classifications.get(1)}}</a>
+        <i class="fa fa-star" aria-hidden="true" style="color: #5500cb"></i>
       </div>
       <div id="classify">
         <input #inputClassification id="inputClassification" (input)="saveInput(inputClassification.value)" placeholder="Classificar (1 - 5)" type="search" name="classificationInput" />
-        <div> <button (click)="classify()">OK</button></div>
+        <button id="OKBtn" (click)="classify()">OK</button>
       </div>
-      <div id="importantMarkers"><h3>Marcadores Importantes</h3></div>
+      <h4 style="margin-left: 3px; margin-top: 20px;">Marcadores Importantes:</h4>
+      <div id="importantMarkers">
+        <div class="marker">{{game.gameType}}</div>
+        <div class="marker">{{game.plataform}}</div>
+        <div class="marker">{{game.languages}}</div>
+        
+      </div>
     </div>
   </div>
 </body>

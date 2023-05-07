@@ -49,16 +49,26 @@ body {
   letter-spacing: 1px;
   margin-right: 2px;
   text-decoration: none;
+  /* border: yellow solid; */
 }
 
 .nav li:last-of-type {
   margin-left: auto;
+  /* width: 20%; */
+  /* border: green solid; */
 }
 
+#cartLI {
+  /* margin-left: 15rem; */
+}
 #shoppingCartSize {
+  display: flex;
+  align-content: center;
+  /* border: red solid; */
   color: white;
   font-size: 20px;
   width: 100px;
+  /* margin-left: 80%; */
 }
 
 #shoppingCartSize:hover {
