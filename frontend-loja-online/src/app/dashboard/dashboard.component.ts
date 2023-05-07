@@ -87,4 +87,20 @@ export class DashboardComponent {
         }
       );
   }
+
+  addToWishlist(game: Game) {
+    if (this.user) {
+      if (!this.user.wishList.some(wishGame => wishGame.toString() === game._id)) {
+        this.user.wishList.push(game);
+        this.userService.updateUser(this.user).subscribe(() => {
+          alert(`Adicionado o jogo ${game.name} à wishlist`);
+          window.scrollTo(0, 0);
+          this.router.navigate(['/wishlist']);
+        });
+      } else {
+        alert(`Erro, o jogo ${game.name} já existe na wishlist`);
+      }
+    }
+  }
+
 }

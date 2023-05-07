@@ -15,6 +15,7 @@ export class UserService {
   ) { }
   
   private usersUrl = 'api/users'; 
+  //private usersUrl = 'http://appserver.alunos.di.fc.ul.pt:3067';
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
@@ -27,6 +28,12 @@ export class UserService {
 
   getUserLibrary(): Observable<Game[]> {
     const url = `${this.usersUrl}/library`;
+    return this.http.get<Game[]>(url);
+  }  
+  
+
+  getUserWishlist(): Observable<Game[]> {
+    const url = `${this.usersUrl}/wishlist`;
     return this.http.get<Game[]>(url);
   }  
 
@@ -74,6 +81,16 @@ export class UserService {
     return this.http.put<{ message: string }>(url, [reciever, game]);
   }
 
+  getSentGames(): Observable<Game[]> {
+    const url = `${this.usersUrl}/sentGames`;
+    return this.http.get<Game[]>(url);
+  }
+
+  getRecievedGames(): Observable<Game[]> {
+    const url = `${this.usersUrl}/recievedGames`;
+    return this.http.get<Game[]>(url);
+  }
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -82,4 +99,25 @@ export class UserService {
       return throwError(error);
     };
   }
+
+  updateUser(user: User): Observable<User> {
+    const url = `${this.usersUrl}/${user._id}`;
+    console.log("URL: " + url);
+    return this.http.put<User>(url, user).pipe(
+      tap(_ => console.log(`user with id=${user._id} updated`)),
+      catchError(this.handleError<any>('updateUser'))
+    );
+  }
+
+  confirmPresent(id: string):Observable<{ message: string }>  {
+    const url = `${this.usersUrl}/confirmPresent`;
+    console.log(id);
+    return this.http.put<{ message: string }>(url, {id});
+  }
+
+  declinePresent(id: string):Observable<{ message: string }>  {
+    const url = `${this.usersUrl}/declinePresent`;
+    return this.http.put<{ message: string }>(url, {id});
+  }
+
 }

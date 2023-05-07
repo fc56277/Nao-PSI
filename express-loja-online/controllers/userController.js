@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Game = require("../models/game");
 const Present = require("../models/present");
 
 // devolve json com todos os users
@@ -69,6 +70,21 @@ exports.incCart = async (req, res) => {
 };
 
 
+exports.user_wishlist_get = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.session.user_id).populate('wishList').exec();
+    if (user == null) {
+      const err = new Error("User not found");
+      err.status = 404;
+      return next(err);
+    }
+    res.status(200).json(user.wishList);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+
 // verifica se o login foi efetuado
 exports.user_isLogged_get = async (req, res) => {
   res.status(200).json({ value: req.session.user_id != undefined });
@@ -117,8 +133,6 @@ exports.user_sendGame_put = async(req, res, next) => {
     var hasGame = false;
     for(var i = 0; i < reciever.recievedGames.length && !hasGame; i++) {
       var p = await Present.findById(reciever.recievedGames[i]);
-      console.log(reciever.recievedGames[i]);
-      console.log(p);
       if(p.game._id == sentGame._id) {
         hasGame = true;
       }
@@ -140,4 +154,81 @@ exports.user_sendGame_put = async(req, res, next) => {
       res.status(200).json({ message: 'O utilizador selecionado já tem este jogo!' });
     }
   }
+};
+
+exports.user_sentGames_get = async(req, res, next) => {
+  var result = []
+  var user = await User.findById({_id: req.session.user_id});
+  for(var i = 0; i < user.sentGames.length; i++) {
+    var present = await Present.findById({_id: user.sentGames[i]});
+    var game = await Game.findById({_id: present.game});
+    result.push(game);
+  }
+  res.json(result);
+};
+
+exports.user_recievedGames_get = async(req, res, next) => {
+  var result = []
+  var user = await User.findById({_id: req.session.user_id});
+  for(var i = 0; i < user.recievedGames.length; i++) {
+    var present = await Present.findById({_id: user.recievedGames[i]});
+    var game = await Game.findById({_id: present.game});
+    result.push(game);
+  }
+  res.json(result);
+};
+
+exports.update_user = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const user = await User.findByIdAndUpdate(userId, req.body, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred while updating user' });
+  }
+};
+
+exports.user_confirmPresent_put = async (req, res, next) => {
+  var user = await User.findById({_id: req.session.user_id});
+  var game = await Game.findById({_id: req.body.id});
+  for(var i = 0; i < user.recievedGames.length; i++) {
+    var present = await Present.findById({_id: user.recievedGames[i]});
+    if(present.game._id.equals(game._id)){
+      present.status = 1;
+      present.save();
+      user.recievedGames.splice(i, 1);
+      user.library.push(game);
+      for(var j = 0; j < user.wishList.length; j++) {
+        if(present.game._id.equals(user.wishList[j])) {
+          user.wishList.splice(j, 1);
+          break;
+        }
+      }
+      user.save();
+      break;
+    }
+  }
+  res.status(200).json({ message: 'Presente aceite!' });
 }
+
+exports.user_declinePresent_put = async (req, res, next) => {
+  var user = await User.findById({_id: req.session.user_id});
+  var game = await Game.findById({_id: req.body.id});
+  for(var i = 0; i < user.recievedGames.length; i++) {
+    var present = await Present.findById({_id: user.recievedGames[i]});
+    if(present.game._id.equals(game._id)){
+      present.status = -1;
+      present.save();
+      user.recievedGames.splice(i, 1);
+      user.save();
+      break;
+    }
+  }
+  res.status(200).json({ message: 'Presente recusado!' });
+}
+

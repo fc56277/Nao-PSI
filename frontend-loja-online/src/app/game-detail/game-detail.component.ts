@@ -5,7 +5,9 @@ import { Location } from '@angular/common';
 import { Game } from '../game';
 import { GameService } from '../game.service';
 
+
 import { Router } from '@angular/router';
+import { User } from '../user';
 import { UserService } from '../user.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 
@@ -27,6 +29,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class GameDetailComponent {
   game: Game | undefined;
+  user: User | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,7 +42,13 @@ export class GameDetailComponent {
 
   ngOnInit(): void {
     this.checkIfLogged();
+    this.getUser();
     this.getGame();
+  }
+
+  getUser(): void {
+    this.userService.getUser()
+      .subscribe(user => this.user = user);
   }
 
   getGame(): void {
@@ -77,6 +86,21 @@ export class GameDetailComponent {
   goToSendPresent(): void {
     const id = this.route.snapshot.params['id'];
     this.router.navigate([`/send/${id}`]);
+  }
+  
+  addToWishlist(game: Game) {
+    if (this.user) {
+      if (!this.user.wishList.some(wishGame => wishGame.toString() === game._id)) {
+        this.user.wishList.push(game);
+        this.userService.updateUser(this.user).subscribe(() => {
+          alert(`Adicionado o jogo ${game.name} à wishlist`);
+          window.scrollTo(0, 0);
+          this.router.navigate(['/wishlist']);
+        });
+      } else {
+        alert(`Erro, o jogo ${game.name} já existe na wishlist`);
+      }
+    }
   }
 
 }

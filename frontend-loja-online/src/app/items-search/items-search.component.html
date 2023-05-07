@@ -4,7 +4,7 @@
 
   <ul class="search-result" >
     <ng-container *ngIf="games$ | async as games">
-      <ng-container *ngIf="games.length > 0; else noResults">
+      <ng-container *ngIf="games.length > 0 || !searchBox.value; else noResults">
         <li *ngFor="let game of games">
           <a style="z-index: 99;" routerLink="/detail/{{game._id}}">{{game.name}}</a>
         </li>

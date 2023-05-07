@@ -21,7 +21,11 @@ body {
     font-size: 800%
   }
   
-  form {
+.container {
+    margin-left: 2%;
+}
+
+form {
     display: grid;
     grid-column: 2;
     grid-row: 1;
@@ -63,4 +67,35 @@ input:focus {
     border-bottom: 1px solid #F1F5F9;
     border-right: 1px solid #F1F5F9;
     padding-bottom: 12px;
+}
+
+.requisito {
+    border: solid 1px white;
+    opacity: 0.9;
+    padding: 25px 25px 30px 25px;
+    border-radius: 15px;
+    box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.15);
+    font-size: 14px;
+    position: absolute;
+    top: 48%;
+    left: 12%;
+    transform: translate(-50%, -50%);
+}
+
+ul {
+    list-style: none;
+    font-size: 13px;
+  }
+  
+li:before {
+    content: "✓";
+    margin-right: 10px;
+    color: green;
+}
+
+@media screen and (max-width: 1700px) {
+    .requisito {
+        top: 48%;
+        left: 13%;
+    }
 }

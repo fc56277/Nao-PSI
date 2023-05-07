@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { GameService } from '../game.service';
 import { Router } from '@angular/router';
 import { Game } from '../game';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -26,17 +25,20 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class UserLibraryComponent {
   user: User | undefined;
   userLibrary: Game[] = [];
+  recievedGames: Game[] = [];
+  sentGames: Game[] = [];
 
   constructor(
     private router: Router,
     private userService: UserService,
-    private gameService: GameService,
   ) {}
 
   ngOnInit(): void {
     this.checkIfLogged();
     this.getUser();
     this.getUserLibrary();
+    this.getRecievedGames();
+    this.getSentGames();
   }
 
   getUser(): void {
@@ -47,6 +49,14 @@ export class UserLibraryComponent {
   getUserLibrary(): void {
     this.userService.getUserLibrary()
       .subscribe(library => this.userLibrary = library);
+  }
+
+  getRecievedGames(): void {
+    this.userService.getRecievedGames().subscribe(games => this.recievedGames = games);
+  }
+
+  getSentGames(): void {
+    this.userService.getSentGames().subscribe(games => this.sentGames = games);
   }
 
 
@@ -67,9 +77,12 @@ export class UserLibraryComponent {
       .subscribe(
         (response) => {
           alert(response.message);
-          // Redirect to login page
           this.router.navigate(['/login']);
         }
       );
+  }
+
+  goToRecieve(id:string): void {
+    this.router.navigate([`/recieve/${id}`]);
   }
 }

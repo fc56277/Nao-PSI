@@ -22,7 +22,7 @@ import { UserService } from '../user.service';
   ]
 })
 export class RecievePresentComponent {
-  games: Game[] | undefined;
+  game: Game | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +33,7 @@ export class RecievePresentComponent {
 
   ngOnInit(): void {
     this.checkIfLogged();
-    this.getRecievedGames();
+    this.getGame();
   }
 
   checkIfLogged(): void {
@@ -48,15 +48,37 @@ export class RecievePresentComponent {
     );
   }
 
-  getRecievedGames(): void {
-    this.gameService.getRecievedGames().subscribe(games => this.games = games);
+  doLogOut(): void {
+    this.userService.logOutUser()
+      .subscribe(
+        (response) => {
+          alert(response.message);
+          // Redirect to login page
+          this.router.navigate(['/login']);
+        }
+      );
   }
 
-  confirm(id:string): void {
-    
+  getGame(): void {
+    const id = this.route.snapshot.params['id'];
+    this.gameService.getGameById(id).subscribe(game => this.game = game);
   }
 
-  decline(id:string): void {
-    
+  confirm(): void {
+    const id = this.route.snapshot.params['id'];
+    this.userService.confirmPresent(id).subscribe((response) => {
+      alert(response.message);
+      // Redirect to login page
+      this.router.navigate(['/biblioteca']);
+    })
+  }
+
+  decline(): void {
+    const id = this.route.snapshot.params['id'];
+    this.userService.declinePresent(id).subscribe((response) => {
+      alert(response.message);
+      // Redirect to login page
+      this.router.navigate(['/biblioteca']);
+    })
   }
 }
