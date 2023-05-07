@@ -183,6 +183,12 @@ exports.user_confirmPresent_put = async (req, res, next) => {
       present.save();
       user.recievedGames.splice(i, 1);
       user.library.push(game);
+      for(var j = 0; j < user.wishList.length; j++) {
+        if(present.game._id.equals(user.wishList[j])) {
+          user.wishList.splice(j, 1);
+          break;
+        }
+      }
       user.save();
       break;
     }
