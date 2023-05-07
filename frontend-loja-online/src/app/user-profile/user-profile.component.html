@@ -9,8 +9,9 @@
     <div class="card_background_img"></div>
     <div class="card_profile_img"></div>
     <div class="user_details">
-      <input class="username-input" [(ngModel)]="user.name" (keyup.enter)="updateUsername()" />
-    </div>
+      <input class="username-input" [(ngModel)]="user.name" placeholder="Insira username"/>
+      <button type="button" (click)="saveUsername()">save</button>
+    </div>      
     <div class="card_count">
         <div class="count">
             <div class="followers">

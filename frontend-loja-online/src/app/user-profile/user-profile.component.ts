@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { Game } from '../game';
 import { GameService } from '../game.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile',
@@ -29,7 +30,6 @@ export class UserProfileComponent implements OnInit {
   showGames: boolean = false;
   allGames: Game[] = [];
   @ViewChild('gamesSection') gamesSection!: ElementRef;
-  editedUsername: string = '';
 
   constructor(
     private router: Router,
@@ -63,6 +63,23 @@ export class UserProfileComponent implements OnInit {
   scrollToGames() {
     this.gamesSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
+
+  async saveUsername(): Promise<void> {
+    if (this.user) {
+      const trimmedUsername = this.user.name.trim();
+      const errorMessage = await this.validateUsername(this.user._id, trimmedUsername);
+  
+      if (errorMessage) {
+        alert(errorMessage);
+        return;
+      }
+  
+      this.userService.updateUser(this.user)
+        .subscribe(() => {
+          alert('Username foi atualizado com sucesso.');
+        });
+    }
+  }  
   
   goBack(): void {
     this.location.back();
@@ -91,41 +108,31 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  updateUsername(): void {
-    const newUsername = this.user!.name.trim();
+  async validateUsername(userId: string, username: string): Promise<string> {
     const alphanumeric = /^[a-zA-Z0-9]+$/;
-  
     let errorMessage = '';
   
-    if (newUsername === '') {
+    if (username === '') {
       errorMessage += '\n- Username não pode ser vazio.';
     }
   
-    if (newUsername.length < 3) {
+    if (username.length < 3) {
       errorMessage += '\n- O nome de Utilizador deve ter pelo menos três carateres.';
     }
   
-    if (!alphanumeric.test(newUsername)) {
+    if (!alphanumeric.test(username)) {
       errorMessage += '\n- O nome de Utilizador deve ser alfanumérico.';
     }
   
     if (errorMessage) {
-      alert(errorMessage);
-      return;
+      return errorMessage;
     }
   
-    this.userService.updateUsername(this.user!._id, newUsername)
-      .subscribe(
-        (response) => {
-          alert('Username foi atualizado com sucesso.');
-        },
-        (error) => {
-          if (error.error && error.error.message) {
-            alert(error.error.message);
-          } else {
-            alert('Erro ao atualizar o Utilizador.');
-          }
-        }
-      );
+    const usernameExists = await this.userService.checkUsernameExists(username, userId).toPromise();
+    if (usernameExists) {
+      errorMessage += '\n- Este username não está disponível.';
+    }
+  
+    return errorMessage;
   }  
 }

@@ -44,6 +44,6 @@ router.delete('/deletePresent/:id', user_controller.user_deletePresent_delete);
 
 router.put('/:id', user_controller.update_user);
 
-router.put('/updateUsername/:id', user_controller.update_user_name);
+router.get('/check-username-exists', user_controller.check_username_exists);
 
 module.exports = router;

@@ -110,7 +110,6 @@ export class UserService {
 
   updateUser(user: User): Observable<User> {
     const url = `${this.usersUrl}/${user._id}`;
-    console.log("URL: " + url);
     return this.http.put<User>(url, user).pipe(
       tap(_ => console.log(`user with id=${user._id} updated`)),
       catchError(this.handleError<any>('updateUser'))
@@ -137,4 +136,11 @@ export class UserService {
     return this.http.delete<{ message: string }>(url);
   }
 
+  // Add this method to the UserService
+  checkUsernameExists(username: string, userId: string): Observable<boolean> {
+    const url = `${this.usersUrl}/check-username-exists?username=${username}&userId=${userId}`;
+    return this.http.get<boolean>(url).pipe(
+      catchError(this.handleError<boolean>('checkUsernameExists'))
+    );
+  }  
 }
