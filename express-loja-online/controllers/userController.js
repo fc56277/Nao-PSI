@@ -138,24 +138,22 @@ exports.user_sendGame_put = async(req, res, next) => {
 
 exports.user_sentGames_get = async(req, res, next) => {
   var result = []
-  var presents = await Present.find({});
-  for(var i = 0; i < presents.length; i++) {
-    if(presents[i].sender._id.toString() === req.session.user_id) {
-      var g = await Game.findById(presents[i].game);
-      result.push(g)
-    }
+  var user = await User.findById({_id: req.session.user_id});
+  for(var i = 0; i < user.sentGames.length; i++) {
+    var present = await Present.findById({_id: user.sentGames[i]});
+    var game = await Game.findById({_id: present.game});
+    result.push(game);
   }
   res.json(result);
 };
 
 exports.user_recievedGames_get = async(req, res, next) => {
   var result = []
-  var presents = await Present.find({});
-  for(var i = 0; i < presents.length; i++) {
-    if(presents[i].reciever._id.toString() === req.session.user_id) {
-      var g = await Game.findById(presents[i].game);
-      result.push(g)
-    }
+  var user = await User.findById({_id: req.session.user_id});
+  for(var i = 0; i < user.recievedGames.length; i++) {
+    var present = await Present.findById({_id: user.recievedGames[i]});
+    var game = await Game.findById({_id: present.game});
+    result.push(game);
   }
   res.json(result);
 };
@@ -174,4 +172,37 @@ exports.update_user = async (req, res, next) => {
     res.status(500).json({ message: 'An error occurred while updating user' });
   }
 };
+
+exports.user_confirmPresent_put = async (req, res, next) => {
+  var user = await User.findById({_id: req.session.user_id});
+  var game = await Game.findById({_id: req.body.id});
+  for(var i = 0; i < user.recievedGames.length; i++) {
+    var present = await Present.findById({_id: user.recievedGames[i]});
+    if(present.game._id.equals(game._id)){
+      present.status = 1;
+      present.save();
+      user.recievedGames.splice(i, 1);
+      user.library.push(game);
+      user.save();
+      break;
+    }
+  }
+  res.status(200).json({ message: 'Presente aceite!' });
+}
+
+exports.user_declinePresent_put = async (req, res, next) => {
+  var user = await User.findById({_id: req.session.user_id});
+  var game = await Game.findById({_id: req.body.id});
+  for(var i = 0; i < user.recievedGames.length; i++) {
+    var present = await Present.findById({_id: user.recievedGames[i]});
+    if(present.game._id.equals(game._id)){
+      present.status = -1;
+      present.save();
+      user.recievedGames.splice(i, 1);
+      user.save();
+      break;
+    }
+  }
+  res.status(200).json({ message: 'Presente recusado!' });
+}
 

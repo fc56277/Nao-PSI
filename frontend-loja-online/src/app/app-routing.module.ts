@@ -24,9 +24,8 @@ const routes: Routes = [
     { path: 'register', component: UserRegisterComponent },
     { path: 'user', component: UserProfileComponent },
     { path: 'send/:id', component: SendPresentComponent},
-    { path: 'recieve', component: RecievePresentComponent},
+    { path: 'recieve/:id', component: RecievePresentComponent},
     { path: 'users/:id', component: UserDetailComponent },
-    
     { path: 'biblioteca', component: UserLibraryComponent },
     { path: 'wishlist', component: UserWishlistComponent },
     { path: 'listas-personalizadas', component: UserPersonalizedListComponent },

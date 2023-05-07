@@ -77,9 +77,12 @@ export class UserLibraryComponent {
       .subscribe(
         (response) => {
           alert(response.message);
-          // Redirect to login page
           this.router.navigate(['/login']);
         }
       );
+  }
+
+  goToRecieve(id:string): void {
+    this.router.navigate([`/recieve/${id}`]);
   }
 }

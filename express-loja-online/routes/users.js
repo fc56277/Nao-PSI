@@ -32,6 +32,10 @@ router.get('/recievedGames', user_controller.user_recievedGames_get);
 
 router.get('/wishlist', user_controller.user_wishlist_get);
 
+router.put('/confirmPresent', user_controller.user_confirmPresent_put);
+
+router.put('/declinePresent', user_controller.user_declinePresent_put);
+
 router.put('/:id', user_controller.update_user);
 
 module.exports = router;

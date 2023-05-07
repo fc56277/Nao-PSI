@@ -28,7 +28,6 @@ exports.games_names = async (req, res) => {
 exports.getGameById = async (req, res) => {
   try {
     const gameId = req.params.id; 
-    console.log(gameId);
     const game = await Game.findById({_id: gameId});
     
 
