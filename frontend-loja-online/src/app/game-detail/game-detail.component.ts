@@ -60,16 +60,15 @@ export class GameDetailComponent {
       const id = this.route.snapshot.params['id'];
       this.gameService.getGameById(id).subscribe(game => {
         this.game = game;
-      
+        
         for (var i=1; i <=5; i++ ) {
           this.classifications.set(i, this.game.allClassifications.filter(c => c == i).length);
         }
-
+        
         if (game.allClassifications.length == 0) {
           this.game.avgClassification = 0;
         }
-    });
-
+      });      
     }
     
     saveInput(inputValue: string) {
@@ -92,7 +91,15 @@ export class GameDetailComponent {
       this.gameService.classify(this.game, classification).subscribe(game => {this.game = game;
         this.classifications.set(classification, this.game.allClassifications.filter(c => c == classification).length);
       });
+      
+    }
 
+    incCart(): void {
+      if (!this.user) {
+        console.error('User is not defined');
+        return;
+      }
+      this.userService.incCart().subscribe(user => this.user = user);
     }
     
     goBack(): void {
