@@ -9,7 +9,7 @@
     <div class="card_background_img"></div>
     <div class="card_profile_img"></div>
     <div class="user_details">
-        <h3>{{user.name | uppercase}}</h3><br>
+      <input class="username-input" [(ngModel)]="user.name" (keyup.enter)="updateUsername()" />
     </div>
     <div class="card_count">
         <div class="count">
