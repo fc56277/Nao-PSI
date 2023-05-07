@@ -29,6 +29,7 @@ export class UserProfileComponent implements OnInit {
   showGames: boolean = false;
   allGames: Game[] = [];
   @ViewChild('gamesSection') gamesSection!: ElementRef;
+  editedUsername: string = '';
 
   constructor(
     private router: Router,
@@ -89,4 +90,42 @@ export class UserProfileComponent implements OnInit {
       }
     );
   }
+
+  updateUsername(): void {
+    const newUsername = this.user!.name.trim();
+    const alphanumeric = /^[a-zA-Z0-9]+$/;
+  
+    let errorMessage = '';
+  
+    if (newUsername === '') {
+      errorMessage += '\n- Username não pode ser vazio.';
+    }
+  
+    if (newUsername.length < 3) {
+      errorMessage += '\n- O nome de Utilizador deve ter pelo menos três carateres.';
+    }
+  
+    if (!alphanumeric.test(newUsername)) {
+      errorMessage += '\n- O nome de Utilizador deve ser alfanumérico.';
+    }
+  
+    if (errorMessage) {
+      alert(errorMessage);
+      return;
+    }
+  
+    this.userService.updateUsername(this.user!._id, newUsername)
+      .subscribe(
+        (response) => {
+          alert('Username foi atualizado com sucesso.');
+        },
+        (error) => {
+          if (error.error && error.error.message) {
+            alert(error.error.message);
+          } else {
+            alert('Erro ao atualizar o Utilizador.');
+          }
+        }
+      );
+  }  
 }

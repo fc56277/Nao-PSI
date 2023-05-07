@@ -1,7 +1,6 @@
 const User = require("../models/user");
 const Game = require("../models/game");
 const Present = require("../models/present");
-const present = require("../models/present");
 
 // devolve json com todos os users
 exports.users_get = async (req, res) => {
@@ -255,3 +254,25 @@ exports.user_deletePresent_delete = async (req, res, next) => {
   res.status(200).json({ message: 'Notificação apagada' });
 }
 
+exports.update_user_name = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const newUsername = req.body.name;
+
+    // Check if the username already exists
+    const existingUser = await User.findOne({ name: newUsername });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Este username não se encontra disponível.' });
+    }
+
+    const user = await User.findByIdAndUpdate(userId, { name: newUsername }, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ message: 'Utilizador não encontrado.' });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Ocorreu um erro ao atualizar o Utilizador.' });
+  }
+}
