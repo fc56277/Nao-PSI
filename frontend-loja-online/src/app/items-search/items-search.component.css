@@ -2,6 +2,12 @@
   margin-left: 460px;
 }
 
+@media screen and (max-width: 1600px) {
+  .wrapper {
+      margin-left: 340px;
+  }
+}
+
 li {
   list-style-type: none;
 }

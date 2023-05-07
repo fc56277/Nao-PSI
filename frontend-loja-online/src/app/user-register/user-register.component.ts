@@ -42,11 +42,10 @@ export class UserRegisterComponent {
 
     register(name: string, pass1: string, pass2: string): void {
         const alphanumeric = /^[0-9a-zA-Z]+$/;
-        const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]+$/;
 
+        let str = "";
         if(name.length < 3 || !alphanumeric.test(name)) {
-            alert("O nome de utilizador só pode ter caracteres alfanuméricos e deve ter três caracteres no mínimo!");
-            return;
+            str += "\n- O nome de utilizador só pode ter caracteres alfanuméricos e deve ter três caracteres no mínimo!";
         }
         let userExists = false;
         for (let i = 0; i < this.users.length; i++) {
@@ -56,16 +55,25 @@ export class UserRegisterComponent {
             }
         }
         if (userExists) {
-            alert("Este username não está disponivel.")
-            return;
+            str += "\n- Este username não está disponivel.";
         }
-
         if (!(pass1 === pass2)) {
-            alert("As passwords inseridas nao coincidem!")
-            return;
+            str += "\n- As passwords inseridas nao coincidem!";
         }
-        if (pass1.length < 8 || !pattern.test(pass1)) {
-            alert("A password deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula e um algarismo!")
+        if (pass1.length < 8) {
+            str += "\n- A password deve ter pelo menos 8 caracteres";
+        }
+        if (!/[a-z]/.test(pass1)) {
+            str += "\n- A password deve incluir pelo menos uma letra minúscula!";
+        }
+        if (!/[A-Z]/.test(pass1)) {
+            str += "\n- A password deve incluir pelo menos uma letra maiúscula!";
+        }
+        if (!/\d/.test(pass1)) {
+            str += "\n- A password deve incluir pelo menos um número!";
+        }
+        if (str != ""){
+            alert(str);
             return;
         }
         var list: Game[] = []
@@ -82,4 +90,4 @@ export class UserRegisterComponent {
     goToLogin(): void {
         this.router.navigate(['/login']);
     }
- }
+}
