@@ -19,18 +19,45 @@
         </div>
         <div class="product-price-btn">
           <p><span>{{game.price}}</span>€</p>
-          <button type="button">Ver detalhes</button>
+          <button type="button">Comprar</button>
+          <button type="button" (click)="goToSendPresent()">Enviar presente</button>
         </div>
       </div>
-      <button type="button" (click)="goToSendPresent()">Enviar presente</button>
     </div>
-    <div class="detailsContainer" *ngIf="game">
-      <div id="avgClassification"><h2 id="avgTitle">Classficação Média {{game.avgClassification}}</h2></div>
-      <div class="stars" id="5start">5</div>
-      <div class="stars"id="4start">4</div>
-      <div class="stars" id="3start">3</div>
-      <div class="stars"id="2start">2</div>
-      <div class="stars" id="1start">1</div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div [@fadeInOut] class="detailsContainer" *ngIf="game">
+      <div id="avgClassification"><h2 id="avgTitle">Classificação Média {{game.avgClassification}}</h2></div>
+      <div class="stars" id="5start">
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <a>{{classifications.get(5)}}</a>
+      </div>
+      <div class="stars"id="4start">
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <a>{{classifications.get(4)}}</a>
+      </div>
+      <div class="stars" id="3start">
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <a>{{classifications.get(3)}}</a>
+      </div>
+      <div class="stars"id="2start">
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <a>{{classifications.get(2)}}</a>
+      </div>
+      <div class="stars" id="1start">
+        <i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
+        <a>{{classifications.get(1)}}</a>
+      </div>
       <div id="classify">
         <input #inputClassification id="inputClassification" (input)="saveInput(inputClassification.value)" placeholder="Classificar (1 - 5)" type="search" name="classificationInput" />
         <div> <button (click)="classify()">OK</button></div>

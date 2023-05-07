@@ -32,7 +32,7 @@ export class GameDetailComponent {
   game: Game | undefined;
   user: User | undefined;
   currentInput: string;
-  // classifications = new Map<number, number>();
+  classifications = new Map<number, number>();
   
   constructor(
     private route: ActivatedRoute,
@@ -49,12 +49,6 @@ export class GameDetailComponent {
       this.checkIfLogged();
       this.getUser();
       this.getGame();
-      
-      // this.classifications.set(1, 0);
-      // this.classifications.set(2, 0);
-      // this.classifications.set(3, 0);
-      // this.classifications.set(4, 0);
-      // this.classifications.set(5, 0);
     }
     
     getUser(): void {
@@ -64,7 +58,18 @@ export class GameDetailComponent {
     
     getGame(): void {
       const id = this.route.snapshot.params['id'];
-      this.gameService.getGameById(id).subscribe(game => this.game = game);
+      this.gameService.getGameById(id).subscribe(game => {
+        this.game = game;
+      
+        for (var i=1; i <=5; i++ ) {
+          this.classifications.set(i, this.game.allClassifications.filter(c => c == i).length);
+        }
+
+        if (game.allClassifications.length == 0) {
+          this.game.avgClassification = 0;
+        }
+    });
+
     }
     
     saveInput(inputValue: string) {
@@ -85,10 +90,9 @@ export class GameDetailComponent {
       }
       
       this.gameService.classify(this.game, classification).subscribe(game => {this.game = game;
-        // location.reload();
+        this.classifications.set(classification, this.game.allClassifications.filter(c => c == classification).length);
       });
-      // this.classifications.set(classification, this.game.allClassifications.filter(c => c == classification).length);
-      // console.log(this.classifications.get(classification));
+
     }
     
     goBack(): void {
