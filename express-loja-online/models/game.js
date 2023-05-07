@@ -7,7 +7,9 @@ const GameSchema = new Schema({
   type: { type: String, required: false},
   price: { type: Number, required: true},
   description: {type: String, required: true},
-  img: {type: String, required: true}
+  img: {type: String, required: true},
+  avgClassification: {type: Number, required: true}, 
+  allClassifications: [{type: Number}]
 });
 
 GameSchema.virtual("url").get(function () {

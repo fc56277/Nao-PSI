@@ -112,7 +112,6 @@ export class UserService {
 
   confirmPresent(id: string):Observable<{ message: string }>  {
     const url = `${this.usersUrl}/confirmPresent`;
-    console.log(id);
     return this.http.put<{ message: string }>(url, {id});
   }
 

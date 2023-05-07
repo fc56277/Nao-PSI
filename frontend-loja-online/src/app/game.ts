@@ -5,4 +5,6 @@ export interface Game {
     price: number;
     description: string;
     img: string;
+    avgClassification: number;
+    allClassifications: number[];
 }

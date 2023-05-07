@@ -356,3 +356,28 @@ span {
       margin: 0 auto;
     }
   }  
+
+  /* ---------------------------------------
+    INICIO DA PARTE DAS CLASSIFICACOES
+  ------------------------------- */
+
+  .detailsContainer {
+    color: white;
+    border: red solid;
+  }
+
+  #avgClassification {
+    border: white solid;
+  }
+
+  #avgTitle {
+    text-indent: 0;
+  }
+
+  .stars {
+    border: green solid;
+  }
+
+  #importantMarkers {
+    border: white solid;
+  }
