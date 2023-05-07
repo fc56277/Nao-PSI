@@ -24,6 +24,12 @@ body {
   z-index: 1; 
 }
 
+@media screen and (max-width: 1600px) {
+  .nav {
+    height: 65px;
+  }
+}
+
 .nav * {
   box-sizing: border-box;
   -webkit-transition: all 0.35s ease;
@@ -47,6 +53,16 @@ body {
 
 .nav li:last-of-type {
   margin-left: auto;
+}
+
+#shoppingCartSize {
+  color: white;
+  font-size: 20px;
+  width: 100px;
+}
+
+#shoppingCartSize:hover {
+  transform: scale(1.1);
 }
 
 .nav a:before,

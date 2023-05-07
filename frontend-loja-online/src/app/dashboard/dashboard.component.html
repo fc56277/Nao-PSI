@@ -5,8 +5,7 @@
 
     <!-- search bar -->
     <app-items-search></app-items-search>
-
-    
+    <li *ngIf="user"><div id="shoppingCartSize">{{ user.shoppingCartSize }}<i class="fa fa-shopping-cart" style="color: #ffffff; margin-left: 0.5rem;"></i></div></li>
     <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
   </ul>
 
@@ -27,7 +26,7 @@
         </div>
         <div class="product-price-btn">
           <p><span>{{game.price}}</span>€</p>
-          <button type="button" tabindex="0">COMPRAR</button>
+          <button type="button" tabindex="0" (click)="incCart()">COMPRAR</button>
         </div>
       </div>
     </div>

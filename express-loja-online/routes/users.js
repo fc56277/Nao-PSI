@@ -26,4 +26,6 @@ router.get('/library', user_controller.user_library_get);
 
 router.put('/sendGame', user_controller.user_sendGame_put);
 
+router.put('/incCart', user_controller.incCart);
+
 module.exports = router;

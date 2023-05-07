@@ -35,6 +35,16 @@ export class UserService {
     return this.http.get<User>(url);
   }
 
+  
+  incCart(): Observable<User> {
+    const url = `${this.usersUrl}/incCart`
+    return this.http.put<any>(url, {})
+      .pipe(
+        tap(_ => console.log('User registration successful')),
+        catchError(this.handleError<any>('registerUser'))
+      );
+  }
+
   registerUser(user: User): Observable<User> {
     const url = `${this.usersUrl}/register`;
     return this.http.post<User>(url, user)

@@ -46,6 +46,26 @@ exports.user_library_get = async (req, res, next) => {
   } catch (err) {
     return next(err);
   }
+
+};
+
+exports.incCart = async (req, res) => {
+  try {
+
+    const user = await User.findById(req.session.user_id)
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.shoppingCartSize+=1
+
+    await user.save();
+    res.status(200).json(user);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'An error occurred while incrementing the cart size' });
+  }
 };
 
 
@@ -62,7 +82,7 @@ exports.user_logout_get = async (req, res) => {
 
 // regista um novo user
 exports.user_register_post = async(req, res) => {
-    const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, wishList: req.body.wishList, library: req.body.library, recievedGames: req.body.recievedGames, sentGames: req.body.sentGames });
+    const user = new User({ name: req.body.name, email: req.body.email, password:req.body.password, wishList: req.body.wishList, library: req.body.library, recievedGames: req.body.recievedGames, sentGames: req.body.sentGames, shoppingCartSize: 0 });
     user.save();
     res.set('Content-Type', 'application/json');
     res.status(200).send(JSON.stringify(user));

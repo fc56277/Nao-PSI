@@ -56,6 +56,15 @@ export class DashboardComponent {
       .subscribe(games => this.destaqueGames = games.slice(0,3));
   }
 
+  incCart(): void {
+    if (!this.user) {
+      console.error('User is not defined');
+      return;
+    }
+    this.userService.incCart().subscribe(user => this.user = user);
+  }
+  
+
   checkIfLogged(): void {
     this.userService.checkIfLogged()
     .subscribe(
