@@ -374,16 +374,18 @@ p{
 .card_profile_img {
   width: 120px;
   height: 120px;
-  background-color: #868d9b;
-  background: url("http://drive.google.com/uc?export=view&id=1avnhI3dWw5mZ710zmXE_Dk0jq5quAqov");
   background-repeat: no-repeat;
-  background-size: cover;
   background-position: center;
   border: 2px solid #ffffff;
-  border-radius: 120px;
+  border-radius: 50%;
   margin: 0 auto;
   margin-top: -60px;
+}
 
+.profile-image-inner {
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .card_background_img {
@@ -395,6 +397,20 @@ p{
   background-size: cover;
   background-position: center;
   border-radius: 5px;
+}
+
+.perfil-imagem {
+  width: 10px;
+  height: 1px;
+  border-radius: 50%;
+}
+
+.image-options {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .user_details p {

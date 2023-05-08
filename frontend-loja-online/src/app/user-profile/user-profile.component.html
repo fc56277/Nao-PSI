@@ -7,7 +7,20 @@
   <h2 [@fadeInOut]>PERFIL</h2>
   <div [@fadeInOut]  class="card">
     <div class="card_background_img"></div>
-    <div class="card_profile_img"></div>
+    <div class="card_profile_img">
+      <ng-container *ngIf="user.imagemPerfil; else defaultImage">
+        <img [src]="user.imagemPerfil" alt="Imagem de perfil" class="profile-image-inner" (click)="toggleImageOptions()" />
+      </ng-container>
+      <ng-template #defaultImage>
+        <img src="./assets/perfil.jpg" alt="Imagem de perfil" class="profile-image-inner" (click)="toggleImageOptions()" />
+      </ng-template>
+    </div>    
+    
+    <div *ngIf="showImageOptions">
+      <img src="http://drive.google.com/uc?export=view&id=1_Hk6EqZRjqa0FqVP-NM0XUhbYrTvijFf" alt="Imagem de perfil 1" class="option-image" (click)="chooseImage('http://drive.google.com/uc?export=view&id=1_Hk6EqZRjqa0FqVP-NM0XUhbYrTvijFf')" />
+      <img src="http://drive.google.com/uc?export=view&id=1yNU9qyTnv8Pua5HjNPMkoZzMDVl2KQS-" alt="Imagem de perfil 2" class="option-image" (click)="chooseImage('http://drive.google.com/uc?export=view&id=1yNU9qyTnv8Pua5HjNPMkoZzMDVl2KQS-')" />
+    </div>    
+    
     <div class="user_details">
       <input class="username-input" [(ngModel)]="user.name" placeholder="Insira username"/>
       <button type="button" (click)="saveUsername()">save</button>
