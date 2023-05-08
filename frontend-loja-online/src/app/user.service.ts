@@ -30,8 +30,7 @@ export class UserService {
   getUserLibrary(): Observable<Game[]> {
     const url = `${this.usersUrl}/library`;
     return this.http.get<Game[]>(url);
-  }  
-  
+  }
 
   getUserWishlist(): Observable<Game[]> {
     const url = `${this.usersUrl}/wishlist`;
@@ -136,7 +135,6 @@ export class UserService {
     return this.http.delete<{ message: string }>(url);
   }
 
-  // Add this method to the UserService
   checkUsernameExists(username: string, userId: string): Observable<boolean> {
     const url = `${this.usersUrl}/check-username-exists?username=${username}&userId=${userId}`;
     return this.http.get<boolean>(url).pipe(
