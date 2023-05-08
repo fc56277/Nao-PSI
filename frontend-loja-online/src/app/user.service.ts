@@ -42,14 +42,6 @@ export class UserService {
     return this.http.get<User>(url);
   }
 
-  updateUsername(userId: string, newUsername: string): Observable<User> {
-    const url = `${this.usersUrl}/updateUsername/${userId}`;
-    return this.http.put<User>(url, { name: newUsername }).pipe(
-      tap(_ => console.log(`user with id=${userId} updated`)),
-      catchError(this.handleError<any>('updateUsername'))
-    );
-  }  
-  
   incCart(): Observable<User> {
     const url = `${this.usersUrl}/incCart`
     return this.http.put<any>(url, {})

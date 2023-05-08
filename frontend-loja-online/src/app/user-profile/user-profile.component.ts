@@ -30,6 +30,7 @@ export class UserProfileComponent implements OnInit {
   showGames: boolean = false;
   allGames: Game[] = [];
   @ViewChild('gamesSection') gamesSection!: ElementRef;
+  showImageOptions: boolean = false;
 
   constructor(
     private router: Router,
@@ -135,4 +136,18 @@ export class UserProfileComponent implements OnInit {
   
     return errorMessage;
   }  
+
+  toggleImageOptions(): void {
+    this.showImageOptions = !this.showImageOptions;
+  }
+
+  chooseImage(imageUrl: string): void {
+    if (this.user) {
+      this.user.imagemPerfil = imageUrl;
+      this.userService.updateUser(this.user).subscribe(() => {
+        alert('Imagem de perfil atualizada com sucesso.');
+      });
+    }
+    this.showImageOptions = false;
+  }
 }
