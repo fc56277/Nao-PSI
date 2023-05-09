@@ -16,11 +16,6 @@
       </ng-template>
     </div>    
     
-    <div *ngIf="showImageOptions">
-      <img src="http://drive.google.com/uc?export=view&id=1_Hk6EqZRjqa0FqVP-NM0XUhbYrTvijFf" alt="Imagem de perfil 1" class="option-image" (click)="chooseImage('http://drive.google.com/uc?export=view&id=1_Hk6EqZRjqa0FqVP-NM0XUhbYrTvijFf')" />
-      <img src="http://drive.google.com/uc?export=view&id=1yNU9qyTnv8Pua5HjNPMkoZzMDVl2KQS-" alt="Imagem de perfil 2" class="option-image" (click)="chooseImage('http://drive.google.com/uc?export=view&id=1yNU9qyTnv8Pua5HjNPMkoZzMDVl2KQS-')" />
-    </div>    
-    
     <div class="user_details">
       <input class="username-input" [(ngModel)]="user.name" placeholder="Insira username"/>
       <button type="button" (click)="saveUsername()">save</button>
@@ -55,33 +50,8 @@
         </a>
     </div>
   </div>
-  
-
-
-  <!-- <div class="perfil-container">
-    <div class="perfil-info">
-      <h3>{{user.name | uppercase}}</h3>
-      <ng-container *ngIf="user.imagemPerfil; else defaultImage">
-        <img [src]="user.imagemPerfil" alt="Imagem de perfil" class="perfil-imagem" />
-      </ng-container>    
-      <ng-template #defaultImage>
-        <img src="assets/perfil.jpg" alt="Imagem de perfil" class="perfil-imagem" />
-      </ng-template>
-    </div>
-    <div class="follow-info">
-      <div class="follow-item">
-          <a class="reactive-box" tabindex="0">Seguidores</a>
-          <span>{{user.followers.length}}</span>
-      </div>
-      <div class="follow-item">
-          <a class="reactive-box" routerLink="/following" tabindex="0">A Seguir</a>
-          <span>{{user.following.length}}</span>
-      </div>
-    </div>
-    <div class="perfil-links">
-        <a class="reactive-box" tabindex="0" routerLink="/biblioteca">Biblioteca</a>
-        <a class="reactive-box" tabindex="0">Wishlist</a>
-        <a class="reactive-box" tabindex="0">Listas Personalizadas</a>
-    </div>        
-  </div> -->
+  <div *ngIf="showImageOptions" class="imageOptions">
+    <img height="110" width="75" src="http://drive.google.com/uc?export=view&id=1_Hk6EqZRjqa0FqVP-NM0XUhbYrTvijFf" alt="Imagem de perfil 1" class="option-image" (click)="chooseImage('http://drive.google.com/uc?export=view&id=1_Hk6EqZRjqa0FqVP-NM0XUhbYrTvijFf')" />
+    <img id="secImage" height="110" width="75" style="z-index: 1"src="http://drive.google.com/uc?export=view&id=1yNU9qyTnv8Pua5HjNPMkoZzMDVl2KQS-" alt="Imagem de perfil 2" class="option-image" (click)="chooseImage('http://drive.google.com/uc?export=view&id=1yNU9qyTnv8Pua5HjNPMkoZzMDVl2KQS-')" />
+  </div>    
 </div>

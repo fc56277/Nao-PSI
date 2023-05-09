@@ -376,16 +376,20 @@ p{
   height: 120px;
   background-repeat: no-repeat;
   background-position: center;
-  border: 2px solid #ffffff;
   border-radius: 50%;
   margin: 0 auto;
   margin-top: -60px;
 }
 
-.profile-image-inner {
+.card_profile_img img {
+  width: 120px;
   height: 120px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid #ffffff;
   border-radius: 50%;
-  object-fit: cover;
+  margin-top: -7px;
+  margin-left: -10px;
 }
 
 .card_background_img {
@@ -411,6 +415,18 @@ p{
   justify-content: center;
   padding: 50px;
   background-color: rgba(255, 255, 255, 0.9);
+}
+
+.imageOptions {
+  margin-left: 45%;
+}
+
+.imageOptions img {
+  border-radius: 25%;
+}
+
+#secImage {
+  margin-left: 10px;
 }
 
 .user_details p {
