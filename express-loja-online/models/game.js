@@ -5,9 +5,14 @@ const Schema = mongoose.Schema;
 const GameSchema = new Schema({
   name: { type: String, required: true},
   type: { type: String, required: false},
+  gameType: { type: String, required: true},
+  plataform: { type: String, required: true},
+  languages: [{type: String}],
   price: { type: Number, required: true},
   description: {type: String, required: true},
-  img: {type: String, required: true}
+  img: {type: String, required: true},
+  avgClassification: {type: Number, required: true}, 
+  allClassifications: [{type: Number}]
 });
 
 GameSchema.virtual("url").get(function () {

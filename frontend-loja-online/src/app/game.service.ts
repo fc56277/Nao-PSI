@@ -67,8 +67,17 @@ export class GameService {
     const url = `${this.gameUrl}/detail/${id}`;
       
       return this.http.get<Game>(url).pipe(
-        tap(_ => console.error(`fetched game id=${id}`)),
+        tap(_ => console.log(`fetched game id=${id}`)),
         catchError(this.handleError<Game>(`getGame id=${id}`))
+      );
+  }
+
+  classify(game: Game, classification: number): Observable<Game> {
+      const url = `${this.gameUrl}/classify/${classification}`;
+      
+      return this.http.put<Game>(url,  game).pipe(
+        tap(_ => console.log(`${classification} stars classification given`)),
+        catchError(this.handleError<Game>(`error classifying with ${classification} stars`))
       );
   }
 

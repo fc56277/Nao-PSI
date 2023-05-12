@@ -15,9 +15,9 @@
           <div class="product-info">
             <div class="product-text">
               <h1>{{game.name}}</h1>
+              <p><span>{{game.price}}</span>€</p>
             </div>
             <div class="product-price-btn">
-              <p><span>{{game.price}}</span>€</p>
               <input type="text" id="user" placeholder="Username" #user>
               <button type="button" (click)="confirm(user.value)">Comprar como presente</button>
             </div>

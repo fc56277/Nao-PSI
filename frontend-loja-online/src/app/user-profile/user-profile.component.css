@@ -354,7 +354,6 @@ h3 {
   font-size: 25px;
   font-weight: bold;
   color: #33363b;
-
 }
 
 p{
@@ -375,16 +374,22 @@ p{
 .card_profile_img {
   width: 120px;
   height: 120px;
-  background-color: #868d9b;
-  background: url("http://drive.google.com/uc?export=view&id=1avnhI3dWw5mZ710zmXE_Dk0jq5quAqov");
   background-repeat: no-repeat;
-  background-size: cover;
   background-position: center;
-  border: 2px solid #ffffff;
-  border-radius: 120px;
+  border-radius: 50%;
   margin: 0 auto;
   margin-top: -60px;
+}
 
+.card_profile_img img {
+  width: 120px;
+  height: 120px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  margin-top: -7px;
+  margin-left: -10px;
 }
 
 .card_background_img {
@@ -396,6 +401,32 @@ p{
   background-size: cover;
   background-position: center;
   border-radius: 5px;
+}
+
+.perfil-imagem {
+  width: 10px;
+  height: 1px;
+  border-radius: 50%;
+}
+
+.image-options {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.imageOptions {
+  margin-left: 45%;
+}
+
+.imageOptions img {
+  border-radius: 25%;
+}
+
+#secImage {
+  margin-left: 10px;
 }
 
 .user_details p {
@@ -463,4 +494,44 @@ p{
 
 .btn:focus {
   outline: 1px solid rgb(105, 105, 105); /* Change color and thickness as desired */
+}
+
+.username-input {
+  font-size: 1.5em;
+  font-weight: bold;
+  background: none;
+  outline: none;
+  min-width: 22.2ch;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user_details {
+  display: inline-block;
+  position: relative;
+}
+
+button {
+  float: left;
+  height: 20px;
+  width: 70px;
+  margin-top: 5px;
+  border: transparent;
+  border-radius: 60px;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #0b6dcf;
+  outline: none;
+}
+
+button:hover {
+  background-color: #0e85fc;
+}
+
+button:focus {
+  outline: 1px solid rgb(105, 105, 105);
 }

@@ -62,20 +62,29 @@ export class UserProfileToWatchComponent implements OnInit {
 
   followUser(user: User): void {
       if (this.userSession) {
-        if (!this.userSession.following.some(followingUser => {followingUser.toString() === user._id})) {
-          this.userSession.following.push(user);
-          this.userService.updateUser(this.userSession).subscribe(() => {alert(`Adicionado o user ${user.name}`);
-          });
-        } 
-        if (!user.followers.some(followerUser => {
-          followerUser.toString() === this.userSession?._id})) {
-          user.followers.push(this.userSession);
-          this.userService.updateUser(user).subscribe(() => {alert(`Adicionado o user ${user.name}`);
-          });
-        } 
+        const followingUserIdList = this.userSession.following.map(followingUser => followingUser.toString().trim());
+        const userId = user._id.toString().trim();
+        const isFollowing = followingUserIdList.indexOf(userId) !== -1;
+
+        if(this.userSession._id === user._id){
+          alert("Não pode seguir-se a si mesmo!");
+        }
+        else if (isFollowing) {
+          alert("Não pode seguir alguém novamente!");
+        } else {
+          const userToFollow = JSON.parse(JSON.stringify(user));
+          userToFollow.followers = [...user.followers, this.userSession];
+          delete userToFollow.following;
+          this.userService.updateUser(userToFollow).subscribe(() => { console.log("Done") });
+    
+          const userSessionToFollow = JSON.parse(JSON.stringify(this.userSession));
+          userSessionToFollow.following = [...this.userSession.following, user];
+          delete userSessionToFollow.followers;
+          this.userService.updateUser(userSessionToFollow).subscribe(() => { console.log("Done") });
+        }
       }
       else {
-        alert("else");
+        alert("Não pode seguir alguém novamente nem seguir-se a si mesmo!");
     }
   }
 

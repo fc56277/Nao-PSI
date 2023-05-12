@@ -1,7 +1,6 @@
 const User = require("../models/user");
 const Game = require("../models/game");
 const Present = require("../models/present");
-const present = require("../models/present");
 
 // devolve json com todos os users
 exports.users_get = async (req, res) => {
@@ -181,8 +180,6 @@ exports.getUserById = async (req, res) => {
     const userId = req.params.id; 
     const user = await User.findById({_id: userId});
 
-    console.log(" aaaa: " + user);
-
     if (!user) { 
       return res.status(404).json({ error: 'User not found' });
     }
@@ -290,4 +287,16 @@ exports.user_deletePresent_delete = async (req, res, next) => {
     }
   }
   res.status(200).json({ message: 'Notificação apagada' });
+}
+
+exports.check_username_exists = async (req, res, next) => {
+  try {
+    const username = req.query.username;
+    const userId = req.query.userId;
+    const user = await User.findOne({ name: username, _id: { $ne: userId } });
+
+    res.status(200).json(!!user);
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred while checking if the username exists.' });
+  }
 }

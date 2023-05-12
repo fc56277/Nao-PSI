@@ -6,7 +6,11 @@
 
     <!-- search bar -->
     <app-items-search></app-items-search>
-    <li *ngIf="user"><div id="shoppingCartSize">{{ user.shoppingCartSize }}<i class="fa fa-shopping-cart" style="color: #ffffff; margin-left: 0.5rem;"></i></div></li>
+    <li *ngIf="user" id="shoppingCartSize">
+      <a style="display: flex; align-items: center;">{{ user.shoppingCartSize }}
+        <i class="fa fa-shopping-cart" style="color: #ffffff; margin-left: 0.5rem;"></i>
+      </a>
+    </li>
     <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
   </ul>
 
@@ -38,7 +42,6 @@
 
   <br><br>
   <h2 [@fadeInOut]>SECÇÃO DO UTILIZADOR</h2>
-  <link [@fadeInOut] rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div [@fadeInOut] class="box-container" *ngIf="user">
     
     <a style="text-decoration: none;" tabindex="0">

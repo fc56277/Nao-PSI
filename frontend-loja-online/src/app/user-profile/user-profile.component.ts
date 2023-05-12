@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { Game } from '../game';
 import { GameService } from '../game.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile',
@@ -29,6 +30,7 @@ export class UserProfileComponent implements OnInit {
   showGames: boolean = false;
   allGames: Game[] = [];
   @ViewChild('gamesSection') gamesSection!: ElementRef;
+  showImageOptions: boolean = false;
 
   constructor(
     private router: Router,
@@ -62,6 +64,23 @@ export class UserProfileComponent implements OnInit {
   scrollToGames() {
     this.gamesSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
+
+  async saveUsername(): Promise<void> {
+    if (this.user) {
+      const trimmedUsername = this.user.name.trim();
+      const errorMessage = await this.validateUsername(this.user._id, trimmedUsername);
+  
+      if (errorMessage) {
+        alert(errorMessage);
+        return;
+      }
+  
+      this.userService.updateUser(this.user)
+        .subscribe(() => {
+          alert('Username foi atualizado com sucesso.');
+        });
+    }
+  }  
   
   goBack(): void {
     this.location.back();
@@ -88,5 +107,47 @@ export class UserProfileComponent implements OnInit {
         }
       }
     );
+  }
+
+  async validateUsername(userId: string, username: string): Promise<string> {
+    const alphanumeric = /^[a-zA-Z0-9]+$/;
+    let errorMessage = '';
+  
+    if (username === '') {
+      errorMessage += '\n- Username não pode ser vazio.';
+    }
+  
+    if (username.length < 3) {
+      errorMessage += '\n- O nome de Utilizador deve ter pelo menos três carateres.';
+    }
+  
+    if (!alphanumeric.test(username)) {
+      errorMessage += '\n- O nome de Utilizador deve ser alfanumérico.';
+    }
+  
+    if (errorMessage) {
+      return errorMessage;
+    }
+  
+    const usernameExists = await this.userService.checkUsernameExists(username, userId).toPromise();
+    if (usernameExists) {
+      errorMessage += '\n- Este username não está disponível.';
+    }
+  
+    return errorMessage;
+  }  
+
+  toggleImageOptions(): void {
+    this.showImageOptions = !this.showImageOptions;
+  }
+
+  chooseImage(imageUrl: string): void {
+    if (this.user) {
+      this.user.imagemPerfil = imageUrl;
+      this.userService.updateUser(this.user).subscribe(() => {
+        alert('Imagem de perfil atualizada com sucesso.');
+      });
+    }
+    this.showImageOptions = false;
   }
 }

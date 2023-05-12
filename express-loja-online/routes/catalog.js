@@ -16,5 +16,7 @@ router.get("/games", games_controller.games_list);
 router.get("/games/:name", games_controller.games_names);
 
 router.get("/detail/:id", games_controller.getGameById);
+
+router.put("/classify/:classification", games_controller.classify);
  
 module.exports = router;

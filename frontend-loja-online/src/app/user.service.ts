@@ -39,8 +39,7 @@ export class UserService {
   getUserLibrary(): Observable<Game[]> {
     const url = `${this.usersUrl}/library`;
     return this.http.get<Game[]>(url);
-  }  
-  
+  }
 
   getUserWishlist(): Observable<Game[]> {
     const url = `${this.usersUrl}/wishlist`;
@@ -52,7 +51,6 @@ export class UserService {
     return this.http.get<User>(url);
   }
 
-  
   incCart(): Observable<User> {
     const url = `${this.usersUrl}/incCart`
     return this.http.put<any>(url, {})
@@ -127,7 +125,6 @@ export class UserService {
 
   updateUser(user: User): Observable<User> {
     const url = `${this.usersUrl}/${user._id}`;
-    console.log("URL: " + url);
     return this.http.put<User>(url, user).pipe(
       tap(_ => console.log(`user with id=${user._id} updated`)),
       catchError(this.handleError<any>('updateUser'))
@@ -136,7 +133,6 @@ export class UserService {
 
   confirmPresent(id: string):Observable<{ message: string }>  {
     const url = `${this.usersUrl}/confirmPresent`;
-    console.log(id);
     return this.http.put<{ message: string }>(url, {id});
   }
 
@@ -155,4 +151,10 @@ export class UserService {
     return this.http.delete<{ message: string }>(url);
   }
 
+  checkUsernameExists(username: string, userId: string): Observable<boolean> {
+    const url = `${this.usersUrl}/check-username-exists?username=${username}&userId=${userId}`;
+    return this.http.get<boolean>(url).pipe(
+      catchError(this.handleError<boolean>('checkUsernameExists'))
+    );
+  }  
 }

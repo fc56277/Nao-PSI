@@ -36,7 +36,6 @@ export class UserWishlistComponent {
       .subscribe(wishlist => this.userWishlist = wishlist);
   }
 
-
   checkIfLogged(): void {
     this.userService.checkIfLogged()
     .subscribe(
@@ -59,4 +58,26 @@ export class UserWishlistComponent {
         }
       );
   }
+
+  removeFromWishlist(game: Game) {
+    if (this.user) {
+      const gameIndex = this.user.wishList.findIndex(wishGame => wishGame.toString() === game._id);
+  
+      if (gameIndex !== -1) {
+        this.user.wishList.splice(gameIndex, 1);
+        this.userService.updateUser(this.user).subscribe(() => {
+          alert(`Removido o jogo ${game.name} da wishlist`);
+  
+          // Remove the game from the local userWishlist variable
+          this.userWishlist.splice(gameIndex, 1);
+  
+          window.scrollTo(0, 0);
+          this.router.navigate(['/wishlist']);
+        });
+      } else {
+        alert(`Erro, o jogo ${game.name} não foi encontrado na wishlist`);
+      }
+    }
+  }
+   
 }
