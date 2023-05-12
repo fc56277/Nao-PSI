@@ -33,6 +33,7 @@ a {
 }
 
 ul.search-result {
+  color: white;
   margin-top: 0;
   padding-left: 0;
   width: 100%;
@@ -54,6 +55,7 @@ ul.search-result {
 }
 
 #searchQueryInput {
+  color: white;
   width: 300px;
   height: 5.2rem;
   background: #f5f5f5;
@@ -78,11 +80,5 @@ ul.search-result {
 
 #searchQuerySubmit:hover {
   cursor: pointer;
-}
-
-.no-results-message {
-  color: red;
-  font-size: 16px;
-  font-weight: bold;
 }
 

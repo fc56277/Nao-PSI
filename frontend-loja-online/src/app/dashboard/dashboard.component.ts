@@ -56,6 +56,15 @@ export class DashboardComponent {
       .subscribe(games => this.destaqueGames = games.slice(0,3));
   }
 
+  incCart(): void {
+    if (!this.user) {
+      console.error('User is not defined');
+      return;
+    }
+    this.userService.incCart().subscribe(user => this.user = user);
+  }
+  
+
   checkIfLogged(): void {
     this.userService.checkIfLogged()
     .subscribe(
@@ -78,4 +87,20 @@ export class DashboardComponent {
         }
       );
   }
+
+  addToWishlist(game: Game) {
+    if (this.user) {
+      if (!this.user.wishList.some(wishGame => wishGame.toString() === game._id)) {
+        this.user.wishList.push(game);
+        this.userService.updateUser(this.user).subscribe(() => {
+          alert(`Adicionado o jogo ${game.name} à wishlist`);
+          window.scrollTo(0, 0);
+          this.router.navigate(['/wishlist']);
+        });
+      } else {
+        alert(`Erro, o jogo ${game.name} já existe na wishlist`);
+      }
+    }
+  }
+
 }

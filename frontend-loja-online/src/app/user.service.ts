@@ -4,6 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { User } from "./user";
 import { catchError, tap } from 'rxjs/operators';
 import { Game } from './game';
+import { Present } from './present';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class UserService {
   }
 
   getUserById(id: string) {
-    const url = `${this.usersUrl}/${id}`;
+    const url = `${this.usersUrl}/profile/${id}`;
       
       return this.http.get<User>(url).pipe(
         tap(_ => console.error(`fetched user id=${id}`)),
@@ -39,10 +40,26 @@ export class UserService {
     const url = `${this.usersUrl}/library`;
     return this.http.get<Game[]>(url);
   }  
+  
+
+  getUserWishlist(): Observable<Game[]> {
+    const url = `${this.usersUrl}/wishlist`;
+    return this.http.get<Game[]>(url);
+  }  
 
   getUser(): Observable<User> {
     const url = `${'api/user'}`;
     return this.http.get<User>(url);
+  }
+
+  
+  incCart(): Observable<User> {
+    const url = `${this.usersUrl}/incCart`
+    return this.http.put<any>(url, {})
+      .pipe(
+        tap(_ => console.log('User registration successful')),
+        catchError(this.handleError<any>('registerUser'))
+      );
   }
 
   registerUser(user: User): Observable<User> {
@@ -74,6 +91,16 @@ export class UserService {
     return this.http.put<{ message: string }>(url, [reciever, game]);
   }
 
+  getSentGames(): Observable<Game[]> {
+    const url = `${this.usersUrl}/sentGames`;
+    return this.http.get<Game[]>(url);
+  }
+
+  getRecievedGames(): Observable<Game[]> {
+    const url = `${this.usersUrl}/recievedGames`;
+    return this.http.get<Game[]>(url);
+  }
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -88,7 +115,7 @@ export class UserService {
       return of([]);
     }
 
-    const url = `http://localhost:3000/users/${name}`;
+    const url = `http://localhost:3000/api/users/${name}`;
 
     return this.http.get<User[]>(url).pipe(
       tap(x => x.length ?
@@ -97,5 +124,35 @@ export class UserService {
       catchError(this.handleError<User[]>('searchUsers', []))
     );
   }
-  
+
+  updateUser(user: User): Observable<User> {
+    const url = `${this.usersUrl}/${user._id}`;
+    console.log("URL: " + url);
+    return this.http.put<User>(url, user).pipe(
+      tap(_ => console.log(`user with id=${user._id} updated`)),
+      catchError(this.handleError<any>('updateUser'))
+    );
+  }
+
+  confirmPresent(id: string):Observable<{ message: string }>  {
+    const url = `${this.usersUrl}/confirmPresent`;
+    console.log(id);
+    return this.http.put<{ message: string }>(url, {id});
+  }
+
+  declinePresent(id: string):Observable<{ message: string }>  {
+    const url = `${this.usersUrl}/declinePresent`;
+    return this.http.put<{ message: string }>(url, {id});
+  }
+
+  getSentPresent(id:string):Observable<Present> {
+    const url = `${this.usersUrl}/getSentPresent/${id}`;
+    return this.http.get<Present>(url);
+  }
+
+  deletePresent(id: string):Observable<{ message: string }>  {
+    const url = `${this.usersUrl}/deletePresent/${id}`;
+    return this.http.delete<{ message: string }>(url);
+  }
+
 }

@@ -2,6 +2,7 @@
 <ul class="nav">
     <li><a routerLink="/dashboard" data-hover="DASHBOARD">DASHBOARD</a></li>
     <li><a routerLink="/user" data-hover="PERFIL">PERFIL</a></li>
+    <li><a routerLink="/community" data-hover="COMUNIDADE">COMUNIDADE</a></li>
     <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
 </ul>
 
@@ -19,8 +20,43 @@
           <p>{{game.description}}</p>
         </div>
         <div class="product-price-btn">
-          <p><span>{{game.price}}</span>€</p>
           <button type="button" tabindex="0">Ver detalhes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h2 [@fadeInOut]>PRESENTES RECEBIDOS</h2>
+<div [@fadeInOut] class="destaques-container">
+    <div class="product-card-wrapper" *ngFor="let game of recievedGames" tabindex="0">
+      <div class="product-img">
+        <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
+      </div>
+      <div class="product-info">
+        <div class="product-text">
+          <h1>{{game.name}}</h1>
+          <p>{{game.description}}</p>
+        </div>
+        <div class="product-price-btn">
+          <button type="button" (click)="goToRecieve(game._id)" tabindex="0">Ver detalhes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h2 [@fadeInOut]>PRESENTES ENVIADOS</h2>
+<div [@fadeInOut] class="destaques-container">
+    <div class="product-card-wrapper" *ngFor="let game of sentGames" tabindex="0">
+      <div class="product-img">
+        <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
+      </div>
+      <div class="product-info">
+        <div class="product-text">
+          <h1>{{game.name}}</h1>
+          <p>{{game.description}}</p>
+        </div>
+        <div class="product-price-btn">
+          <button type="button" (click)="goToDetail(game._id)" tabindex="0">Ver detalhes</button>
         </div>
       </div>
     </div>

@@ -24,6 +24,12 @@ body {
   z-index: 1; 
 }
 
+@media screen and (max-width: 1600px) {
+  .nav {
+    height: 65px;
+  }
+}
+
 .nav * {
   box-sizing: border-box;
   -webkit-transition: all 0.35s ease;
@@ -47,6 +53,16 @@ body {
 
 .nav li:last-of-type {
   margin-left: auto;
+}
+
+#shoppingCartSize {
+  color: white;
+  font-size: 20px;
+  width: 100px;
+}
+
+#shoppingCartSize:hover {
+  transform: scale(1.1);
 }
 
 .nav a:before,
@@ -254,6 +270,31 @@ span {
 }
 
 .product-price-btn button:focus {
+  outline: 1px solid rgb(105, 105, 105);
+}
+
+.wishButton {
+  position: relative;
+  float: right;
+  display: inline-block;
+  height: 38px;
+  width: 160px;
+  box-sizing: border-box;
+  border: transparent;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  background-color: #ffe600;
+  cursor: pointer;
+  outline: none;
+}
+
+.wishButton[type="button"]:hover {
+  background-color: #ffd500;
+}
+
+.wishButton[type="button"]:focus {
   outline: 1px solid rgb(105, 105, 105);
 }
 

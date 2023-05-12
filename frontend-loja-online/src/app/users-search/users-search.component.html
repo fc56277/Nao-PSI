@@ -5,7 +5,7 @@
     <ng-container *ngIf="users$ | async as users">
       <ng-container *ngIf="users.length > 0; else noResults">
         <li *ngFor="let user of users">
-          <a style="z-index: 99;" routerLink="/users/{{user._id}}">{{user.name}}</a>
+          <a style="z-index: 99;" routerLink="/profile/{{user._id}}">{{user.name}}</a>
         </li>
       </ng-container>
     </ng-container>
@@ -13,4 +13,4 @@
       <li><a>No results found</a></li>
     </ng-template>
   </ul>    
-  </div>
+</div>

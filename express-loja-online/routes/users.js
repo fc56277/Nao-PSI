@@ -26,4 +26,26 @@ router.get('/library', user_controller.user_library_get);
 
 router.put('/sendGame', user_controller.user_sendGame_put);
 
+router.put('/incCart', user_controller.incCart);
+
+router.get('/sentGames', user_controller.user_sentGames_get);
+
+router.get('/recievedGames', user_controller.user_recievedGames_get);
+
+router.get('/wishlist', user_controller.user_wishlist_get);
+
+router.put('/confirmPresent', user_controller.user_confirmPresent_put);
+
+router.put('/declinePresent', user_controller.user_declinePresent_put);
+
+router.get('/getSentPresent/:id', user_controller.user_getSentPresent_get);
+
+router.get("/:name", user_controller.user_names);
+
+router.get("/profile/:id", user_controller.getUserById);
+
+router.delete('/deletePresent/:id', user_controller.user_deletePresent_delete);
+
+router.put('/:id', user_controller.update_user);
+
 module.exports = router;

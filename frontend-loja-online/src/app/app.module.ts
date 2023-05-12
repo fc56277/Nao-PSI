@@ -23,6 +23,7 @@ import { RecievePresentComponent } from './recieve-present/recieve-present.compo
 import { CommunityComponent } from './community/community.component';
 import { UsersSearchComponent } from './users-search/users-search.component';
 import { UserProfileToWatchComponent } from './user-profile-to-watch/user-profile-to-watch.component';
+import { PresentDetailComponent } from './present-detail/present-detail.component';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { UserProfileToWatchComponent } from './user-profile-to-watch/user-profil
     CommunityComponent,
     UsersSearchComponent,
     UserProfileToWatchComponent,
-    UserProfileToWatchComponent ],
+    PresentDetailComponent ],
   imports: [
     HttpClientModule,
     BrowserModule,

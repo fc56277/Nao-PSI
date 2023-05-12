@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-search',
@@ -14,7 +15,7 @@ export class UsersSearchComponent implements OnInit {
   private searchTerms = new Subject<string>();
   noResults = true;
   
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {

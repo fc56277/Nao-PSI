@@ -15,13 +15,15 @@
           <div class="product-info">
             <div class="product-text">
               <h1>{{game.name}}</h1>
+                <p>Estado: <span *ngIf="present?.status === 0">Pendente</span>
+                    <span *ngIf="present?.status === 1">Aceite</span>
+                    <span *ngIf="present?.status === -1">Recusado</span>
+                </p>
             </div>
             <div class="product-price-btn">
-              <p><span>{{game.price}}</span>€</p>
-              <input type="text" id="user" placeholder="Username" #user>
-              <button type="button" (click)="confirm(user.value)">Comprar como presente</button>
+              <button type="button" (click)="deletePresent()">Apagar notificação</button>
             </div>
-          </div>
+        </div>
         </div>
       </div>
 </body>

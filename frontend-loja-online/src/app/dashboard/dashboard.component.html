@@ -6,8 +6,7 @@
 
     <!-- search bar -->
     <app-items-search></app-items-search>
-
-    
+    <li *ngIf="user"><div id="shoppingCartSize">{{ user.shoppingCartSize }}<i class="fa fa-shopping-cart" style="color: #ffffff; margin-left: 0.5rem;"></i></div></li>
     <li><a routerLink="" data-hover="SAIR" (click)="doLogOut()">SAIR</a></li>
   </ul>
 
@@ -22,13 +21,14 @@
         <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
       </div>
       <div class="product-info">
+        <button type="button" class ="wishButton" (click)="addToWishlist(game)" tabindex="0">Adicionar à wishlist</button>
         <div class="product-text">
           <h1>{{game.name}}</h1>
           <p>{{game.description}}</p>
         </div>
         <div class="product-price-btn">
           <p><span>{{game.price}}</span>€</p>
-          <button type="button" tabindex="0">COMPRAR</button>
+          <button type="button" tabindex="0" (click)="incCart()">COMPRAR</button>
         </div>
       </div>
     </div>
@@ -70,13 +70,14 @@
       </div>
     </a>
 
-    <div class="box" tabindex="0">
-        <div class="text">
-            <h2 class="topic-2">Wishlist</h2>
-        </div>
-        <i class="fa fa-bookmark" aria-hidden="true" style="color: white; font-size: 40px;"></i>
-    </div>
-
+    <a style="text-decoration: none;" routerLink="/wishlist" tabindex="0">
+      <div class="box" tabindex="0">
+          <div class="text">
+              <h2 class="topic-2">Wishlist</h2>
+          </div>
+          <i class="fa fa-bookmark" aria-hidden="true" style="color: white; font-size: 40px;"></i>
+      </div>
+    </a>
     <div class="box" tabindex="0">
       <div class="text">
           <h2 class="topic-2">Listas Personalizadas</h2>
@@ -93,6 +94,7 @@
         <img [src]="game.img" alt="Imagem do jogo" class="jogo-imagem" height="320" width="250"/>
       </div>
       <div class="product-info">
+        <button type="button" class ="wishButton" (click)="addToWishlist(game)" tabindex="0">Adicionar à wishlist</button>
         <div class="product-text">
           <h1>{{game.name}}</h1>
           <p>{{game.description}}</p>

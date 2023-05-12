@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Game } from '../game';
+import { Present } from '../present';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GameService } from '../game.service';
 import { UserService } from '../user.service';
+import { GameService } from '../game.service';
+import { Game } from '../game';
 
 @Component({
-  selector: 'app-recieve-present',
-  templateUrl: './recieve-present.component.html',
-  styleUrls: ['./recieve-present.component.css'],
+  selector: 'app-present-detail',
+  templateUrl: './present-detail.component.html',
+  styleUrls: ['./present-detail.component.css'],
   animations: [
     trigger('fadeInOut', [
         transition(':enter', [
@@ -21,7 +22,8 @@ import { UserService } from '../user.service';
       ])
   ]
 })
-export class RecievePresentComponent {
+export class PresentDetailComponent {
+  present: Present | undefined;
   game: Game | undefined;
 
   constructor(
@@ -34,6 +36,7 @@ export class RecievePresentComponent {
   ngOnInit(): void {
     this.checkIfLogged();
     this.getGame();
+    this.getPresent();
   }
 
   checkIfLogged(): void {
@@ -59,26 +62,24 @@ export class RecievePresentComponent {
       );
   }
 
+  getPresent(): void {
+    const id = this.route.snapshot.params['id'];
+    this.userService.getSentPresent(id).subscribe(present => this.present = present);
+  }
+
   getGame(): void {
     const id = this.route.snapshot.params['id'];
     this.gameService.getGameById(id).subscribe(game => this.game = game);
   }
 
-  confirm(): void {
-    const id = this.route.snapshot.params['id'];
-    this.userService.confirmPresent(id).subscribe((response) => {
-      alert(response.message);
-      // Redirect to login page
-      this.router.navigate(['/biblioteca']);
-    })
+  deletePresent(): void{
+    if(this.present)
+      this.userService.deletePresent(this.present?._id).subscribe(
+        (response) => {
+          alert(response.message);
+          this.router.navigate(['/biblioteca']);
+        }
+      )
   }
 
-  decline(): void {
-    const id = this.route.snapshot.params['id'];
-    this.userService.declinePresent(id).subscribe((response) => {
-      alert(response.message);
-      // Redirect to login page
-      this.router.navigate(['/biblioteca']);
-    })
-  }
 }

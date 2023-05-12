@@ -307,6 +307,22 @@
     text-decoration: none;
     color: #000;
   }
+
+  .followButton {
+    display: inline-block;
+    height: 28px;
+    width: 60px;
+    box-sizing: border-box;
+    border: transparent;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    background-color: rgb(0, 174, 255);
+    cursor: pointer;
+    outline: none;
+  }
+  
   
   /* Add media queries for responsiveness */
   @media screen and (max-width: 1024px) {
