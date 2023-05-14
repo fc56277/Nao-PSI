@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "http://localhost:3000",
+        "target": "http://appserver.alunos.di.fc.ul.pt:3067",
         "secure": false,
         "logLevel": "debug"
     }

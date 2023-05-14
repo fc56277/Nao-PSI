@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class GameService {
 
-  private gameUrl = 'http://localhost:3000';
+  private gameUrl = 'http://appserver.alunos.di.fc.ul.pt:3067';
 
   constructor(private http: HttpClient) { }
 
@@ -18,12 +18,12 @@ export class GameService {
     };
     
     getGames(): Observable<Game[]> {
-      return this.http.get<Game[]>('http://localhost:3000/games').pipe(
+      return this.http.get<Game[]>('http://appserver.alunos.di.fc.ul.pt:3067').pipe(
         catchError(this.handleError<Game[]>('getGames', [])));
     }
 
     getRecievedGames():Observable<Game[]> {
-      return this.http.get<Game[]>('http://localhost:3000/recievedGames').pipe(
+      return this.http.get<Game[]>('http://appserver.alunos.di.fc.ul.pt:3067').pipe(
         catchError(this.handleError<Game[]>('getRecievedGames', [])));
     }
       /**
@@ -53,7 +53,7 @@ export class GameService {
       return of([]);
     }
 
-    const url = `http://localhost:3000/games/${name}`;
+    const url = `http://appserver.alunos.di.fc.ul.pt:3067/games/${name}`;
 
     return this.http.get<Game[]>(url).pipe(
       tap(x => x.length ?

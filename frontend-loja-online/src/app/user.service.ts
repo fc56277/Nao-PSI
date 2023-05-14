@@ -113,7 +113,7 @@ export class UserService {
       return of([]);
     }
 
-    const url = `http://localhost:3000/api/users/${name}`;
+    const url = `http://appserver.alunos.di.fc.ul.pt:3067/api/users/${name}`;
 
     return this.http.get<User[]>(url).pipe(
       tap(x => x.length ?

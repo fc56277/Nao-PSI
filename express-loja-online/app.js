@@ -46,8 +46,8 @@ app.use(session({
 
 // Middleware for parsing JSON request body
 //app.use(express.json());
-// app.use(cors({ origin: ["http://appserver.alunos.di.fc.ul.pt:3017"], credentials: true }));
-app.use(cors());
+app.use(cors({ origin: ["http://appserver.alunos.di.fc.ul.pt:3017"], credentials: true }));
+// app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
