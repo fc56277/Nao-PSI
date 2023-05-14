@@ -7,7 +7,7 @@ import { Game } from '../game';
 import { GameService } from '../game.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile',
@@ -65,22 +65,28 @@ export class UserProfileComponent implements OnInit {
     this.gamesSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
-  async saveUsername(): Promise<void> {
+  saveUsername(): void {
     if (this.user) {
       const trimmedUsername = this.user.name.trim();
-      const errorMessage = await this.validateUsername(this.user._id, trimmedUsername);
-  
-      if (errorMessage) {
-        alert(errorMessage);
-        return;
-      }
-  
-      this.userService.updateUser(this.user)
-        .subscribe(() => {
-          alert('Username foi atualizado com sucesso.');
-        });
-    }
-  }  
+      this.validateUsername(this.user._id, trimmedUsername).subscribe(errorMessage => {
+        if (errorMessage) {
+          alert(errorMessage);
+          return;
+        }
+    
+        // Check if this.user is not undefined before passing it to updateUser
+        if (this.user) {
+          this.userService.updateUser(this.user)
+            .subscribe(() => {
+              alert('O nome de utilizador foi atualizado com sucesso.');
+            });
+        } else {
+          // Handle the case where this.user is undefined
+          console.error('User is undefined');
+        }
+      });
+    }    
+}  
   
   goBack(): void {
     this.location.back();
@@ -109,33 +115,35 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  async validateUsername(userId: string, username: string): Promise<string> {
+  validateUsername(userId: string, username: string): Observable<string> {
     const alphanumeric = /^[a-zA-Z0-9]+$/;
     let errorMessage = '';
   
     if (username === '') {
-      errorMessage += '\n- Username não pode ser vazio.';
+      errorMessage += '\n- O nome de utilizador não pode estar vazio.';
     }
   
     if (username.length < 3) {
-      errorMessage += '\n- O nome de Utilizador deve ter pelo menos três carateres.';
+      errorMessage += '\n- O nome de utilizador deve ter pelo menos três caracteres.';
     }
   
     if (!alphanumeric.test(username)) {
-      errorMessage += '\n- O nome de Utilizador deve ser alfanumérico.';
+      errorMessage += '\n- O nome de utilizador deve ser alfanumérico.';
     }
   
     if (errorMessage) {
-      return errorMessage;
+      return of(errorMessage);
     }
   
-    const usernameExists = await this.userService.checkUsernameExists(username, userId).toPromise();
-    if (usernameExists) {
-      errorMessage += '\n- Este username não está disponível.';
-    }
-  
-    return errorMessage;
-  }  
+    return this.userService.checkUsernameExists(username, userId).pipe(
+      map((usernameExists: any) => {
+        if (usernameExists) {
+          errorMessage += '\n- Este nome de utilizador não está disponível.';
+        }
+        return errorMessage;
+      })
+    );
+  }
 
   toggleImageOptions(): void {
     this.showImageOptions = !this.showImageOptions;

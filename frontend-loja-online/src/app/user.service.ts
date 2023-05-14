@@ -151,8 +151,8 @@ export class UserService {
     return this.http.delete<{ message: string }>(url);
   }
 
-  checkUsernameExists(username: string, userId: string): Observable<boolean> {
-    const url = `${this.usersUrl}/check-username-exists?username=${username}&userId=${userId}`;
+  checkUsernameExists(username: string, id: string): Observable<boolean> {
+    const url = `${this.usersUrl}/check-username-exists/${username}/${id}`;
     return this.http.get<boolean>(url).pipe(
       catchError(this.handleError<boolean>('checkUsernameExists'))
     );
