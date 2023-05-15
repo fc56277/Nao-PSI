@@ -291,8 +291,8 @@ exports.user_deletePresent_delete = async (req, res, next) => {
 
 exports.check_username_exists = async (req, res, next) => {
   try {
-    const username = req.query.username;
-    const userId = req.query.userId;
+    const username = req.params.username;
+    const userId = req.params.userId;
     const user = await User.findOne({ name: username, _id: { $ne: userId } });
 
     res.status(200).json(!!user);
