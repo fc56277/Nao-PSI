@@ -81,6 +81,8 @@ export class UserProfileToWatchComponent implements OnInit {
           userSessionToFollow.following = [...this.userSession.following, user];
           delete userSessionToFollow.followers;
           this.userService.updateUser(userSessionToFollow).subscribe(() => { console.log("Done") });
+
+          location.reload();
         }
       }
       else {
