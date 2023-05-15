@@ -15,8 +15,8 @@ export class UserService {
     private http:HttpClient
   ) { }
   
-  // private usersUrl = 'api/users'; 
-  private usersUrl = 'http://appserver.alunos.di.fc.ul.pt:3067';
+  private usersUrl = 'api/users'; 
+  // private usersUrl = 'http://appserver.alunos.di.fc.ul.pt:3067';
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
@@ -113,7 +113,7 @@ export class UserService {
       return of([]);
     }
 
-    const url = `http://appserver.alunos.di.fc.ul.pt:3067/api/users/${name}`;
+    const url = `api/users/${name}`;
 
     return this.http.get<User[]>(url).pipe(
       tap(x => x.length ?

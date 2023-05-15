@@ -18,12 +18,12 @@ export class GameService {
     };
     
     getGames(): Observable<Game[]> {
-      return this.http.get<Game[]>('http://appserver.alunos.di.fc.ul.pt:3067').pipe(
+      return this.http.get<Game[]>('http://appserver.alunos.di.fc.ul.pt:3067/games').pipe(
         catchError(this.handleError<Game[]>('getGames', [])));
     }
 
     getRecievedGames():Observable<Game[]> {
-      return this.http.get<Game[]>('http://appserver.alunos.di.fc.ul.pt:3067').pipe(
+      return this.http.get<Game[]>('http://appserver.alunos.di.fc.ul.pt:3067/recievedGames').pipe(
         catchError(this.handleError<Game[]>('getRecievedGames', [])));
     }
       /**
