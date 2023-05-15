@@ -11,9 +11,11 @@
     <div class="card_profile_img">
       <ng-container *ngIf="user.imagemPerfil; else defaultImage">
         <img [src]="user.imagemPerfil" alt="Imagem de perfil" class="profile-image-inner" (click)="toggleImageOptions()" />
+        <span class="hover-text" (click)="toggleImageOptions()">Alterar Imagem</span>
       </ng-container>
       <ng-template #defaultImage>
         <img src="./assets/perfil.jpg" alt="Imagem de perfil" class="profile-image-inner" (click)="toggleImageOptions()" />
+        <span class="hover-text" (click)="toggleImageOptions()">Alterar Imagem</span>
       </ng-template>
     </div>    
     
